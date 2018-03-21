@@ -1,12 +1,12 @@
 package setlab;
 
 import java.util.*;
+import setlab.ReversPolish.*;
 
 public class SetCore {
 
-    public static class SetObj {
+    public static class SetObj extends HashSet<String> {
 
-        public HashSet<String> set = new HashSet<>();
         public String name;
 
         SetObj(String name) {
@@ -15,51 +15,68 @@ public class SetCore {
 
         SetObj(String name, String line) {
             this.name = name;
-            ArrayList<String> inner = new ArrayList<>();
-            String[] s = line.split(",");
-            this.set.addAll(Arrays.asList(s));
+            this.addAll(Arrays.asList(line.split(",")));
         }
 
-        SetObj(String name, HashSet<String> set) {
+        SetObj(String name, String[] sequence) {
             this.name = name;
-            this.set.addAll(set);
+            this.addAll(Arrays.asList(sequence));
         }
 
-        public int size() {
-            return this.set.size();
+        SetObj(String name, SetObj set) {
+            this.name = name;
+            this.addAll(set);
+        }
+
+        SetObj(SetObj set) {
+            this.name = set.name;
+            this.addAll(set);
         }
 
         @Override
         public String toString() {
             StringBuilder res = new StringBuilder(this.name + " = [ ");
-            int i = 0;
-            for (String s : this.set) {
-                res.append(s);
-                i++;
-                if (i < this.set.size()) {
-                    res.append(", ");
-                }
+            Iterator t = this.iterator();
+            if (!t.hasNext()) {
+                return "[]";
             }
-            res.append(" ]");
-            return res.toString();
+            for (;;) {
+                res.append(t.next());
+                if (!t.hasNext()) {
+                    return res.append("]").toString();
+                }
+                res.append(",").append(" ");
+            }
         }
     }
 
-    public static SetObj union(SetObj a, SetObj b) {
-        SetObj Res = new SetObj("Ans", a.set);
-        Res.set.addAll(b.set);
+    public static SetObj Union(SetObj a, SetObj b) {
+        SetObj Res = new SetObj("Ans", a);
+        Res.addAll(b);
         return Res;
     }
-    
-    public static SetObj intersect(SetObj a, SetObj b) {
-        SetObj Res = new SetObj("Ans", a.set);
-        Res.set.retainAll(b.set);
+
+    public static SetObj Intersect(SetObj a, SetObj b) {
+        SetObj Res = new SetObj("Ans", a);
+        Res.retainAll(b);
         return Res;
     }
-    
-    public static SetObj diff(SetObj a, SetObj b) {
-        SetObj Res = new SetObj("Ans", a.set);
-        Res.set.removeAll(b.set);
+
+    public static SetObj Diff(SetObj a, SetObj b) {
+        SetObj Res = new SetObj("Ans", a);
+        Res.removeAll(b);
+        return Res;
+    }
+
+    public static SetObj SymmetricDiff(SetObj a, SetObj b) {
+        return Union(Diff(a, b), Diff(b, a));
+    }
+
+    public static SetObj createSetOnSeq(String name, String f, String max) {
+        SetObj Res = new SetObj(name);
+        for (int i = 0; i < Integer.parseInt(max); i++) {
+            Res.add(String.valueOf(ReversPolish.get(f.replaceAll("x", String.valueOf(i)))));
+        }
         return Res;
     }
 
