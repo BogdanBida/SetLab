@@ -1,7 +1,6 @@
 package setlab;
 
 import java.util.*;
-import setlab.ReversPolish.*;
 
 public class SetCore {
 
@@ -9,26 +8,26 @@ public class SetCore {
 
         public String name;
 
-        SetObj(String name) {
+        public SetObj(String name) {
             this.name = name;
         }
 
-        SetObj(String name, String line) {
+        public SetObj(String name, String line) {
             this.name = name;
             this.addAll(Arrays.asList(line.split(",")));
         }
 
-        SetObj(String name, String[] sequence) {
+        public SetObj(String name, String[] sequence) {
             this.name = name;
             this.addAll(Arrays.asList(sequence));
         }
 
-        SetObj(String name, SetObj set) {
+        public SetObj(String name, SetObj set) {
             this.name = name;
             this.addAll(set);
         }
 
-        SetObj(SetObj set) {
+        public SetObj(SetObj set) {
             this.name = set.name;
             this.addAll(set);
         }
@@ -49,7 +48,7 @@ public class SetCore {
             }
         }
     }
-
+    // --------------------------------------------------- OPERATIONS ---
     public static SetObj Union(SetObj a, SetObj b) {
         SetObj Res = new SetObj("Ans", a);
         Res.addAll(b);
@@ -71,7 +70,7 @@ public class SetCore {
     public static SetObj SymmetricDiff(SetObj a, SetObj b) {
         return Union(Diff(a, b), Diff(b, a));
     }
-
+    // ------------------------------------------- METHODS OF CREATING --- 
     public static SetObj createSetOnSeq(String name, String f, String max) {
         SetObj Res = new SetObj(name);
         for (int i = 0; i < Integer.parseInt(max); i++) {

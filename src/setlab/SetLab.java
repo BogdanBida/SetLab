@@ -1,22 +1,20 @@
 package setlab;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import setlab.SetCore.*;
+
 
 public class SetLab extends Application {
-    
+
     @Override
-    public void start(Stage primaryStage) {
-       StackPane root = new StackPane();
-        
-        Scene scene = new Scene(root, 300, 250);
-        
-        SetObj A = new SetObj("A", "a,b,c,d,e,1,2,3,4");
-        System.out.println(A.toString());
-        
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("/setlab/fxml/MainWindow.fxml"));
+
+        Scene scene = new Scene(root);
+
         primaryStage.setTitle("SetLab v.0.1 alpha");
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -25,5 +23,5 @@ public class SetLab extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }
