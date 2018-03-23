@@ -2,15 +2,38 @@ package setlab.cores;
 
 import java.math.BigInteger;
 
-
 public class CombCore {
-    static double Gamma(double z)
-    {
-        double tmp1 = Math.sqrt(2*Math.PI/z);
-        double tmp2 = z + 1.0/(12 * z - 1.0/(10*z));
-        tmp2 = Math.pow(z/Math.E, z); // ooops; thanks hj
-        tmp2 = Math.pow(tmp2/Math.E, z);
-        return tmp1 * tmp2;
+
+    private static BigInteger Factorial(int n) {
+        BigInteger res = BigInteger.ONE;
+        for (int i = 1; i <= n; ++i) {
+            res = res.multiply(BigInteger.valueOf(i));
+        }
+        return res;
     }
-    
+
+    public static BigInteger P(int n) {
+        return Factorial(n);
+    }
+
+    public static BigInteger Pmk(int m, int[] k) {
+        return new BigInteger("2");
+    }
+
+    public static BigInteger Amn(int m, int[] k) {
+        return new BigInteger("2");
+    }
+
+    public static BigInteger A_mn(int m, int[] k) {
+        return new BigInteger("2");
+    }
+
+    public static BigInteger Cmn(int m, int[] k) {
+        return new BigInteger("2");
+    }
+
+    public static BigInteger C_mn(int m, int[] k) {
+        return new BigInteger("2");
+    }
+
 }

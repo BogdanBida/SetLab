@@ -9,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import setlab.cores.SetCore;
 import setlab.cores.SetCore.SetObj;
+import setlab.cores.CombCore;
+import setlab.cores.BinRelCore;
 
 public class MainWindowController implements Initializable {
     
@@ -16,12 +18,7 @@ public class MainWindowController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        SetObj A = new SetObj("A", "a,b,c,d,e,1,2,3,4");
-        SetObj B = new SetObj("B", "2,c,f,d,r,5");
-        System.out.println(SetCore.Union(A, B).toString());
-        System.out.println(SetCore.Intersect(A, B).toString());
-        System.out.println(SetCore.Diff(A, B).toString());
-        System.out.println(SetCore.SymmetricDiff(A, B).toString());
+       
     }
     
     @FXML
