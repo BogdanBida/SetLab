@@ -18,35 +18,32 @@ import setlab.cores.BinRelCore;
 
 public class MainWindowController implements Initializable {
     
-    public static HashMap<String,SetObj> MapOfSets = new HashMap<>();
+    public static HashMap<String, SetObj> MapOfSets = new HashMap<>();
     
     @FXML
     private Tab tab_set;
-
+    
     @FXML
     private ListView<?> set_listView;
     
     @FXML
     private TextArea set_area;
-
+    
     @FXML
     private TextField set_field;
     
     @FXML
     private Tab tab_binRel;
-
+    
     @FXML
     private Tab tab_comb;
     
-    
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
     }
     
     @FXML
-    public void getCommand(){
+    public void getCommand() {
         if (!set_field.getText().isEmpty()) {
             
         }
