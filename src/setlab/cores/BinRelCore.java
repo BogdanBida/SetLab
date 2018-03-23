@@ -59,11 +59,34 @@ public class BinRelCore {
         return SetCore.Union(D(r), E(r));
     }
     
+    public static BinRel Ident(BinRel r) {
+        return new BinRel("Ia");
+    }
+    
     public static BinRel Reverse(BinRel r) {
         return new BinRel("invR");
     }
     
     public static BinRel Composer(BinRel r) {
         return new BinRel("CombR");
+    }
+    
+    public static boolean Refelex(BinRel r) {
+        return true;
+    }
+    public static boolean AntiRefelex(BinRel r) {
+        return true;
+    }
+    public static boolean Simetry(BinRel r) {
+        return true;
+    }
+    public static boolean AntiSimetry(BinRel r) {
+        return true;
+    }
+    public static boolean Asimetry(BinRel r) {
+        return true;
+    }
+    public static boolean Transity(BinRel r) {
+        return true;
     }
 }
