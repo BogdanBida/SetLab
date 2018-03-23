@@ -1,7 +1,7 @@
 package setlab.cores;
 
 import java.util.*;
-import setlab.ReversPolish;
+import setlab.calculations.ReversPolish;
 
 public class SetCore {
 
@@ -35,15 +35,15 @@ public class SetCore {
 
         @Override
         public String toString() {
-            StringBuilder res = new StringBuilder(this.name + " = [ ");
+            StringBuilder res = new StringBuilder(this.name + " = {");
             Iterator t = this.iterator();
             if (!t.hasNext()) {
-                return "[]";
+                return "{}";
             }
             for (;;) {
                 res.append(t.next());
                 if (!t.hasNext()) {
-                    return res.append("]").toString();
+                    return res.append("}").toString();
                 }
                 res.append(",").append(" ");
             }

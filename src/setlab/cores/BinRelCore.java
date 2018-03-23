@@ -2,6 +2,7 @@ package setlab.cores;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import setlab.cores.SetCore.SetObj;
@@ -52,6 +53,13 @@ public class BinRelCore {
             this.addAll(a);
         }
 
+        public BinRel(String name, String line) {
+            this.name = name;
+            for (String s : getElementFromLine(line)) {
+                this.add(new BinEl(s));
+            }
+        }
+
         private ArrayList<String> getElementFromLine(String line) {
             ArrayList<String> list = new ArrayList<>();
 
@@ -73,11 +81,20 @@ public class BinRelCore {
 
             return list;
         }
-
-        public BinRel(String name, String line) {
-            this.name = name;
-            for (String s : getElementFromLine(line)) {
-                this.add(new BinEl(s));
+        
+        @Override
+        public String toString() {
+            StringBuilder res = new StringBuilder(this.name + " = {");
+            Iterator t = this.iterator();
+            if (!t.hasNext()) {
+                return "{}";
+            }
+            for (;;) {
+                res.append(t.next());
+                if (!t.hasNext()) {
+                    return res.append("}").toString();
+                }
+                res.append(",").append(" ");
             }
         }
 
@@ -88,7 +105,6 @@ public class BinRelCore {
         for (BinEl b : r) {
             res.add(b.x);
         }
-
         return res;
     }
 
@@ -131,15 +147,16 @@ public class BinRelCore {
     }
 
     public static boolean AntiRefelex(BinRel r) {
-        return Intersect(Ident(O(r)), r).isEmpty(); 
+        return Intersect(Ident(O(r)), r).isEmpty();
     }
 
     public static boolean Simetry(BinRel r) {
         return r.equals(Reverse(r));
+
     }
 
     public static boolean AntiSimetry(BinRel r) {
-        return isSubBinRel(Intersect(r, Reverse(r)),r);
+        return isSubBinRel(Intersect(r, Reverse(r)), r);
     }
 
     public static boolean Asimetry(BinRel r) {
@@ -147,7 +164,7 @@ public class BinRelCore {
     }
 
     public static boolean Transity(BinRel r) {
-        
+
         return true;
     }
 
@@ -173,6 +190,7 @@ public class BinRelCore {
     public static BinRel SymmetricDiff(BinRel a, BinRel b) {
         return Union(Diff(a, b), Diff(b, a));
     }
+
     // ---------------------------------------------- OPERATION EQUALS ---
     public static boolean isSubBinRel(BinRel a, BinRel b) {
         return b.containsAll(a);

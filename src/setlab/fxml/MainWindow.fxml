@@ -61,7 +61,7 @@
                               <HBox alignment="CENTER" prefHeight="28.0" prefWidth="209.0" spacing="2.0">
                                  <children>
                                     <Button fx:id="comb_infoAccept_yesBtn" mnemonicParsing="false" prefHeight="31.0" prefWidth="95.0" text="Да" />
-                                    <Button fx:id="comb_infoAccept_backBtn" mnemonicParsing="false" text="Назад" />
+                                    <Button fx:id="comb_infoAccept_backBtn" mnemonicParsing="false" prefHeight="31.0" text="Назад" />
                                     <Button fx:id="comb_infoAccept_noBtn" mnemonicParsing="false" prefHeight="31.0" prefWidth="95.0" text="Нет" />
                                  </children>
                               </HBox>

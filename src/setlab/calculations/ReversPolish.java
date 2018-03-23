@@ -1,4 +1,4 @@
-package setlab;
+package setlab.calculations;
 
 import java.util.ArrayList;
 import java.util.HashMap;
