@@ -1,6 +1,7 @@
-package setlab;
+package Cores;
 
 import java.util.*;
+import setlab.ReversPolish;
 
 public class SetCore {
 
