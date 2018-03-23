@@ -17,17 +17,17 @@ import setlab.cores.SetCore.SetObj;
 
 public class MainWindowController implements Initializable {
     
-    public static HashMap<String,SetObj> MapOfSets = new HashMap<>();
+    public static HashMap<String, SetObj> MapOfSets = new HashMap<>();
     
     @FXML
     private Tab tab_set;
-
+    
     @FXML
     private ListView<?> set_listView;
     
     @FXML
     private TextArea set_area;
-
+    
     @FXML
     private TextField set_field;
     
@@ -58,7 +58,7 @@ public class MainWindowController implements Initializable {
     }
     
     @FXML
-    public void getCommand(){
+    public void getCommand() {
         if (!set_field.getText().isEmpty()) {
             
         }

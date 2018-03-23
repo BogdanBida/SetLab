@@ -71,6 +71,10 @@ public class SetCore {
     public static SetObj SymmetricDiff(SetObj a, SetObj b) {
         return Union(Diff(a, b), Diff(b, a));
     }
+    // ---------------------------------------------- OPERATION EQUALS ---
+    public static boolean isSubSet(SetObj a, SetObj b) {
+        return b.containsAll(a);
+    }
     // ------------------------------------------- METHODS OF CREATING --- 
     public static SetObj createSetOnSeq(String name, String f, String max) {
         SetObj Res = new SetObj(name);
