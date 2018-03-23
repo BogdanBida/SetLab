@@ -16,6 +16,12 @@ public class SetLab extends Application {
         Scene scene = new Scene(root);
 
         primaryStage.setTitle("SetLab v.0.1 alpha");
+        
+        primaryStage.setResizable(false);
+        
+        primaryStage.setWidth(670);
+        primaryStage.setHeight(50 + 440);
+        
         primaryStage.setScene(scene);
         primaryStage.show();
     }
