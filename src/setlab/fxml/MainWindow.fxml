@@ -7,8 +7,49 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="setlab.controller.MainWindowController">
+<AnchorPane id="AnchorPane" prefHeight="440.0" prefWidth="670.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="setlab.controller.MainWindowController">
     <stylesheets>
-        <URL value="@../css/mainwindow.css"/>
+        <URL value="@../css/mainwindow.css" />
     </stylesheets>
+   <children>
+      <MenuBar prefHeight="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Файл">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#closeProgram" text="Закрыть" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Помощь">
+            <items>
+              <MenuItem mnemonicParsing="false" text="О программе" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <TabPane prefHeight="396.0" prefWidth="663.0" rotateGraphic="true" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+        <tabs>
+          <Tab fx:id="tab_set" text="Множества">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="set_field" layoutX="73.0" layoutY="323.0" prefHeight="31.0" prefWidth="322.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="210.0" />
+                        <ListView fx:id="set_listView" layoutX="400.0" layoutY="7.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                        <TextArea fx:id="set_area" layoutX="5.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="5.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab fx:id="tab_binRel" text="Бинарные отношения">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+            <Tab fx:id="tab_comb" text="Комбинаторика">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
 </AnchorPane>
