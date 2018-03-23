@@ -7,8 +7,8 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import Cores.SetCore;
-import Cores.SetCore.SetObj;
+import setlab.cores.SetCore;
+import setlab.cores.SetCore.SetObj;
 
 public class MainWindowController implements Initializable {
     

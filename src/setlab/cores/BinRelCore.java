@@ -1,7 +1,9 @@
-package Cores;
+package setlab.cores;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import setlab.cores.SetCore;
+import setlab.cores.SetCore.SetObj;
 
 public class BinRelCore {
 
@@ -41,10 +43,27 @@ public class BinRelCore {
         
         public BinRel(String name, String line) {
             this.name = name;
-            for (String i : getElementFromLine(line)) {
-                this.add(new BinEl(i));
+            for (String s : getElementFromLine(line)) {
+                this.add(new BinEl(s));
             }
         }
     }
-
+    
+    public static SetObj D(BinRel r) {
+        return new SetObj("D");
+    }
+    public static SetObj E(BinRel r) {
+        return new SetObj("D");
+    }
+    public static SetObj O(BinRel r) {
+        return SetCore.Union(D(r), E(r));
+    }
+    
+    public static BinRel Reverse(BinRel r) {
+        return new BinRel("invR");
+    }
+    
+    public static BinRel Composer(BinRel r) {
+        return new BinRel("CombR");
+    }
 }

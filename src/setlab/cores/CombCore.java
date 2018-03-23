@@ -1,4 +1,4 @@
-package Cores;
+package setlab.cores;
 
 import java.math.BigInteger;
 
