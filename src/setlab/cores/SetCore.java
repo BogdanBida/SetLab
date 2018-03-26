@@ -32,6 +32,10 @@ public class SetCore {
             this.name = set.name;
             this.addAll(set);
         }
+        
+        public void changeName(String newName) {
+            this.name = newName;
+        }
 
         @Override
         public String toString() {

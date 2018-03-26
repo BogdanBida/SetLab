@@ -55,9 +55,9 @@ public class BinRelCore {
 
         public BinRel(String name, String line) {
             this.name = name;
-            for (String s : getElementFromLine(line)) {
+            getElementFromLine(line).forEach((s) -> {
                 this.add(new BinEl(s));
-            }
+            });
         }
 
         private ArrayList<String> getElementFromLine(String line) {
@@ -81,7 +81,11 @@ public class BinRelCore {
 
             return list;
         }
-        
+
+        public void changeName(String newName) {
+            this.name = newName;
+        }
+
         @Override
         public String toString() {
             StringBuilder res = new StringBuilder(this.name + " = {");
@@ -101,44 +105,46 @@ public class BinRelCore {
     }
 
     public static SetObj D(BinRel r) {
-        SetObj res = new SetObj("D");
-        for (BinEl b : r) {
+        SetObj res = new SetObj("D(" + r.name + ")");
+        r.forEach((b) -> {
             res.add(b.x);
-        }
+        });
         return res;
     }
 
     public static SetObj E(BinRel r) {
-        SetObj res = new SetObj("E");
-        for (BinEl b : r) {
+        SetObj res = new SetObj("E(" + r.name + ")");
+        r.forEach((b) -> {
             res.add(b.y);
-        }
+        });
 
         return res;
     }
 
     public static SetObj O(BinRel r) {
-        return SetCore.Union(D(r), E(r));
+        SetObj Res = SetCore.Union(D(r), E(r));
+        Res.changeName("O(" + r.name + ")");
+        return Res;
     }
 
     public static BinRel Ident(SetObj a) {
         BinRel res = new BinRel("Ia");
-        for (String xy : a) {
+        a.forEach((xy) -> {
             res.add(new BinEl(xy, xy));
-        }
+        });
         return res;
     }
 
     public static BinRel Reverse(BinRel r) {
-        BinRel res = new BinRel("invR");
-        for (BinEl b : r) {
+        BinRel res = new BinRel("inv");
+        r.forEach((b) -> {
             res.add(new BinEl(b.getY(), b.getX()));
-        }
+        });
         return res;
     }
 
     public static BinRel Composer(BinRel r) {
-        return new BinRel("CombR");
+        return new BinRel("Composer");
     }
 
     // ------------------------------------------------- INTERNALS ---
@@ -165,7 +171,7 @@ public class BinRelCore {
 
     public static boolean Transity(BinRel r) {
 
-        return true;
+        return false;
     }
 
     // ------------------------------------------------ OPERATIONS ---
@@ -193,6 +199,6 @@ public class BinRelCore {
 
     // ---------------------------------------------- OPERATION EQUALS ---
     public static boolean isSubBinRel(BinRel a, BinRel b) {
-        return b.containsAll(a);
+        return a.containsAll(b);
     }
 }
