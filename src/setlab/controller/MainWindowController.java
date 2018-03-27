@@ -122,7 +122,9 @@ public class MainWindowController implements Initializable {
             }
         });
         // ---------------------------------------------------------------------
-
+        
+        
+        
     }
 
     @FXML
@@ -151,7 +153,7 @@ public class MainWindowController implements Initializable {
         res.append("\n");
         res.append(BinRelCore.Transity(A));
         res.append("\n");
-        binrel_area.setText(res.toString());
+        binrel_area.setText(res.toString() + "∪ ∩ / ∆");
     }
 
     @FXML
@@ -177,5 +179,6 @@ public class MainWindowController implements Initializable {
             датой созданий - текущей датой (Пример: 25.03.2018 - 01.01.2020)
             почтой и.т.д.
         - Найти иконки для бинарных отношений
+        - Сделать кнопки операций для множеств: ∪ ∩ / ∆
      */
 }
