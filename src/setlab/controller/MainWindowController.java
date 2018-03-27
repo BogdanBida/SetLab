@@ -15,11 +15,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
 import javafx.scene.web.WebView;
-
-import setlab.cores.SetCore.SetObj;
 import setlab.cores.BinRelCore;
 import setlab.cores.BinRelCore.BinRel;
-import setlab.cores.CombCore;
+import setlab.cores.SetCore.SetObj;
 
 public class MainWindowController implements Initializable {
 
