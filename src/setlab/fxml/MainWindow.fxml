@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.web.*?>
 <?import java.lang.*?>
@@ -39,14 +38,14 @@
                         <HBox layoutX="5.0" layoutY="339.0" spacing="2.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="210.0">
                            <children>
                               <TextField fx:id="set_field" layoutX="73.0" layoutY="323.0" prefHeight="32.0" prefWidth="265.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="280.0" />
-                              <Button fx:id="set_op_union" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" text="∪">
+                              <Button fx:id="set_op_union" focusTraversable="false" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" text="∪">
                                  <HBox.margin>
                                     <Insets left="3.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button fx:id="set_op_inter" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" text="∩" />
-                              <Button fx:id="set_op_diff" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" text="/" />
-                              <Button fx:id="set_op_symmdiff" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" text="∆" />
+                              <Button fx:id="set_op_inter" focusTraversable="false" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" text="∩" />
+                              <Button fx:id="set_op_diff" focusTraversable="false" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" text="/" />
+                              <Button fx:id="set_op_symmdiff" focusTraversable="false" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" text="∆" />
                               <Button layoutX="398.0" layoutY="343.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="55.0" text="Ввод" AnchorPane.bottomAnchor="5.0" />
                            </children>
                         </HBox>
@@ -60,11 +59,11 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextArea fx:id="binrel_area" prefHeight="319.0" prefWidth="435.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="230.0" AnchorPane.topAnchor="5.0" />
-                        <HBox prefHeight="32.0" prefWidth="435.0" spacing="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="230.0">
+                        <TextArea fx:id="binrel_area" prefHeight="325.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="235.0" AnchorPane.topAnchor="5.0" />
+                        <HBox spacing="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="236.0">
                            <children>
                               <TextField fx:id="binrel_field" prefHeight="32.0" prefWidth="360.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="360.0" />
-                              <Button fx:id="binrel_analysis" layoutX="309.0" layoutY="343.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="70.0" text="Анализ" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="309.0" />
+                              <Button fx:id="binrel_analysis" layoutX="309.0" layoutY="343.0" mnemonicParsing="false" onMouseClicked="#binrel_getCommand" prefHeight="32.0" prefWidth="64.0" text="Анализ" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="309.0" />
                            </children>
                         </HBox>
                         <VBox alignment="CENTER" layoutX="445.0" layoutY="5.0" prefHeight="200.0" prefWidth="220.0" AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="445.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">

@@ -13,6 +13,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.web.WebView;
 import setlab.cores.BinRelCore;
@@ -84,25 +85,51 @@ public class MainWindowController implements Initializable {
         //----------------------------------------------------------- SET ------
         set_op_union.setOnMouseClicked((event) -> {
             if (event.getButton() == MouseButton.PRIMARY) {
-                set_field.setText(set_field.getText() + "∪");
+                String t = set_field.getText(), leftRes, rigthRes;
+                int pos = set_field.getCaretPosition();
+                leftRes = t.substring(0, pos);
+                rigthRes = t.substring(pos);
+                set_field.setText(leftRes + "∪" + rigthRes);
+                set_field.positionCaret(pos + 1);
             }
         });
         set_op_inter.setOnMouseClicked((event) -> {
-           if (event.getButton() == MouseButton.PRIMARY) {
-               set_field.setText(set_field.getText() + "∩");
-           } 
+            if (event.getButton() == MouseButton.PRIMARY) {
+                String t = set_field.getText(), leftRes, rigthRes;
+                int pos = set_field.getCaretPosition();
+                leftRes = t.substring(0, pos);
+                rigthRes = t.substring(pos);
+                set_field.setText(leftRes + "∩" + rigthRes);
+                set_field.positionCaret(pos + 1);
+            }
         });
         set_op_diff.setOnMouseClicked((event) -> {
-           if (event.getButton() == MouseButton.PRIMARY) {
-               set_field.setText(set_field.getText() + "/");
-           } 
+            if (event.getButton() == MouseButton.PRIMARY) {
+                String t = set_field.getText(), leftRes, rigthRes;
+                int pos = set_field.getCaretPosition();
+                leftRes = t.substring(0, pos);
+                rigthRes = t.substring(pos);
+                set_field.setText(leftRes + "/" + rigthRes);
+                set_field.positionCaret(pos + 1);
+            }
         });
         set_op_symmdiff.setOnMouseClicked((event) -> {
-           if (event.getButton() == MouseButton.PRIMARY) {
-               set_field.setText(set_field.getText() + "∆");
-           } 
+            if (event.getButton() == MouseButton.PRIMARY) {
+                String t = set_field.getText(), leftRes, rigthRes;
+                int pos = set_field.getCaretPosition();
+                leftRes = t.substring(0, pos);
+                rigthRes = t.substring(pos);
+                set_field.setText(leftRes + "∆" + rigthRes);
+                set_field.positionCaret(pos + 1);
+            }
         });
         //----------------------------------------------------- BIN REL --------
+
+        binrel_field.setOnKeyPressed((event) -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                binrel_getCommand();
+            }
+        });
 
         //--------------------------------------------------- COMBINATORICS ----
         string.addListener((observable, oldValue, newValue) -> {
@@ -214,9 +241,18 @@ public class MainWindowController implements Initializable {
     }
 
     @FXML
-    public void getCommand() {
+    public void set_getCommand() {
         if (!set_field.getText().isEmpty()) {
 
+        }
+    }
+
+    @FXML
+    public void binrel_getCommand() {
+        if (!binrel_field.getText().isEmpty()) {
+            String command = binrel_field.getText();
+            binrel_area.setText(SintaxBinRel.get(command));
+            binrel_field.setText("");
         }
     }
 
