@@ -65,7 +65,7 @@
                                  <children>
                                     <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@icon/checkmark.png" />
+                                          <Image url="@icon/dismiss.png" />
                                        </image>
                                     </ImageView>
                                     <Label text="Рефлексивность" />
@@ -78,7 +78,7 @@
                                  <children>
                                     <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@icon/checkmark.png" />
+                                          <Image url="@icon/dismiss.png" />
                                        </image>
                                     </ImageView>
                                     <Label text="Антирефлексивность" />
@@ -91,7 +91,7 @@
                                  <children>
                                     <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@icon/checkmark.png" />
+                                          <Image url="@icon/dismiss.png" />
                                        </image>
                                     </ImageView>
                                     <Label text="Симметричность" />
@@ -104,7 +104,7 @@
                                  <children>
                                     <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@icon/checkmark.png" />
+                                          <Image url="@icon/dismiss.png" />
                                        </image>
                                     </ImageView>
                                     <Label text="Антисимметричность" />
@@ -117,7 +117,7 @@
                                  <children>
                                     <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@icon/checkmark.png" />
+                                          <Image url="@icon/dismiss.png" />
                                        </image>
                                     </ImageView>
                                     <Label text="Асимметричность" />
@@ -130,7 +130,7 @@
                                  <children>
                                     <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@icon/checkmark.png" />
+                                          <Image url="@icon/dismiss.png" />
                                        </image>
                                     </ImageView>
                                     <Label text="Транзитивность" />
@@ -149,7 +149,7 @@
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <WebView fx:id="comb_webView" layoutX="14.0" layoutY="14.0" prefHeight="71.0" prefWidth="380.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
-                        <VBox alignment="CENTER" layoutX="396.0" layoutY="14.0" prefHeight="185.0" prefWidth="260.0" spacing="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
+                        <VBox alignment="CENTER" layoutX="396.0" layoutY="14.0" prefHeight="185.0" prefWidth="260.0" spacing="5.0" style="-fx-border-color: #DDDDDD;" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
                            <children>
                               <WebView fx:id="comb_infoAcceptWebView" prefHeight="200.0" prefWidth="200.0" />
                               <HBox alignment="CENTER" prefHeight="28.0" prefWidth="209.0" spacing="2.0">
@@ -158,6 +158,9 @@
                                     <Button fx:id="comb_infoAccept_backBtn" mnemonicParsing="false" onMouseClicked="#commandBack" prefHeight="31.0" text="Назад" />
                                     <Button fx:id="comb_infoAccept_noBtn" mnemonicParsing="false" onMouseClicked="#commandNope" prefHeight="31.0" prefWidth="95.0" text="Нет" />
                                  </children>
+                                 <VBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </VBox.margin>
                               </HBox>
                            </children>
                         </VBox>
