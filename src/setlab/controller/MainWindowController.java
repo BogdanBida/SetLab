@@ -21,7 +21,6 @@ import setlab.cores.BinRelCore;
 import setlab.cores.BinRelCore.BinRel;
 import setlab.cores.CombCore;
 
-
 public class MainWindowController implements Initializable {
 
     public static HashMap<String, SetObj> MapOfSets = new HashMap<>();
@@ -40,28 +39,28 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private Button set_op_union;
-    
+
     @FXML
     private Button set_op_inter;
-    
+
     @FXML
     private Button set_op_diff;
-    
+
     @FXML
     private Button set_op_symmdiff;
-    
+
     @FXML
     private Tab tab_binRel;
-    
+
     @FXML
     private TextArea binrel_area;
 
     @FXML
     private TextField binrel_field;
-            
+
     @FXML
     private Button analisis;
-            
+
     @FXML
     private Tab tab_comb;
 
@@ -86,28 +85,27 @@ public class MainWindowController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         //----------------------------------------------------------- SET ------
         set_op_union.setOnMouseClicked((event) -> {
+            if (event.getButton() == MouseButton.PRIMARY) {
+                set_field.setText(set_field.getText() + "∪");
+            }
+        });
+        set_op_inter.setOnMouseClicked((event) -> {
            if (event.getButton() == MouseButton.PRIMARY) {
-              // set_field.setText(set_field.getText() + "∪");
-               System.out.println("2");
+               set_field.setText(set_field.getText() + "∩");
            } 
         });
-//        set_op_inter.setOnMouseClicked((event) -> {
-//           if (event.getButton() == MouseButton.PRIMARY) {
-//               set_field.setText(set_field.getText() + "∩");
-//           } 
-//        });
-//        set_op_diff.setOnMouseClicked((event) -> {
-//           if (event.getButton() == MouseButton.PRIMARY) {
-//               set_field.setText(set_field.getText() + "/");
-//           } 
-//        });
-//        set_op_symmdiff.setOnMouseClicked((event) -> {
-//           if (event.getButton() == MouseButton.PRIMARY) {
-//               set_field.setText(set_field.getText() + "∆");
-//           } 
-//        });
+        set_op_diff.setOnMouseClicked((event) -> {
+           if (event.getButton() == MouseButton.PRIMARY) {
+               set_field.setText(set_field.getText() + "/");
+           } 
+        });
+        set_op_symmdiff.setOnMouseClicked((event) -> {
+           if (event.getButton() == MouseButton.PRIMARY) {
+               set_field.setText(set_field.getText() + "∆");
+           } 
+        });
         //----------------------------------------------------- BIN REL --------
-        
+
         //--------------------------------------------------- COMBINATORICS ----
         string.addListener((observable, oldValue, newValue) -> {
             String massage = "";
@@ -245,7 +243,7 @@ public class MainWindowController implements Initializable {
     public void commandNope() {
         String temp = string.getValue();
         temp = temp + ";nope";
-        
+
         string.set(temp);
     }
 
