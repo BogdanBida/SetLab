@@ -13,8 +13,13 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseButton;
 import javafx.scene.web.WebView;
+
 import setlab.cores.SetCore.SetObj;
+import setlab.cores.BinRelCore;
+import setlab.cores.BinRelCore.BinRel;
+import setlab.cores.CombCore;
 
 public class MainWindowController implements Initializable {
 
@@ -33,7 +38,28 @@ public class MainWindowController implements Initializable {
     private TextField set_field;
 
     @FXML
+    private Button set_op_union;
+
+    @FXML
+    private Button set_op_inter;
+
+    @FXML
+    private Button set_op_diff;
+
+    @FXML
+    private Button set_op_symmdiff;
+
+    @FXML
     private Tab tab_binRel;
+
+    @FXML
+    private TextArea binrel_area;
+
+    @FXML
+    private TextField binrel_field;
+
+    @FXML
+    private Button analisis;
 
     @FXML
     private Tab tab_comb;
@@ -57,7 +83,30 @@ public class MainWindowController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //----------------------------------------------------------- SET ------
+        set_op_union.setOnMouseClicked((event) -> {
+            if (event.getButton() == MouseButton.PRIMARY) {
+                set_field.setText(set_field.getText() + "∪");
+            }
+        });
+        set_op_inter.setOnMouseClicked((event) -> {
+           if (event.getButton() == MouseButton.PRIMARY) {
+               set_field.setText(set_field.getText() + "∩");
+           } 
+        });
+        set_op_diff.setOnMouseClicked((event) -> {
+           if (event.getButton() == MouseButton.PRIMARY) {
+               set_field.setText(set_field.getText() + "/");
+           } 
+        });
+        set_op_symmdiff.setOnMouseClicked((event) -> {
+           if (event.getButton() == MouseButton.PRIMARY) {
+               set_field.setText(set_field.getText() + "∆");
+           } 
+        });
+        //----------------------------------------------------- BIN REL --------
 
+        //--------------------------------------------------- COMBINATORICS ----
         string.addListener((observable, oldValue, newValue) -> {
             String massage = "";
             switch (string.getValue()) {
@@ -134,6 +183,36 @@ public class MainWindowController implements Initializable {
             String html = "<html><h4>" + massage + "</h4></html>";
             comb_infoAcceptWebView.getEngine().loadContent(html);
         });
+        // ---------------------------------------------------------------------
+    }
+
+    @FXML
+    public void analisisBinRel() {
+        BinRel A = new BinRel("A", "((2,1) (4,2) (1,3) (2,3))");
+        StringBuilder res = new StringBuilder(A + "\n");
+        res.append(BinRelCore.D(A));
+        res.append("\n");
+        res.append(BinRelCore.E(A));
+        res.append("\n");
+        res.append(BinRelCore.O(A));
+        res.append("\n");
+        res.append(BinRelCore.Ident(BinRelCore.O(A)));
+        res.append("\n");
+        res.append(BinRelCore.Reverse(A));
+        res.append("\n ___ \n");
+        res.append(BinRelCore.Refelex(A));
+        res.append("\n");
+        res.append(BinRelCore.AntiRefelex(A));
+        res.append("\n");
+        res.append(BinRelCore.Simetry(A));
+        res.append("\n");
+        res.append(BinRelCore.AntiSimetry(A));
+        res.append("\n");
+        res.append(BinRelCore.Asimetry(A));
+        res.append("\n");
+        res.append(BinRelCore.Transity(A));
+        res.append("\n");
+        binrel_area.setText(res.toString());
     }
 
     @FXML
@@ -156,14 +235,14 @@ public class MainWindowController implements Initializable {
     public void commandYeah() {
         String temp = string.getValue();
         temp = temp + ";yeah";
-        
+
         string.set(temp);
     }
 
     @FXML
     public void commandNope() {
         String temp = string.getValue();
-        temp = temp + ";yeah";
+        temp = temp + ";nope";
 
         string.set(temp);
     }
@@ -181,4 +260,12 @@ public class MainWindowController implements Initializable {
         System.exit(0);
     }
 
+    /*
+        - Запрет на ввод текста в поля вывода
+        - Пункут меню "о программе" модальное окно с авторами, версией
+            датой созданий - текущей датой (Пример: 25.03.2018 - 01.01.2020)
+            почтой и.т.д.
+        - Найти иконки для бинарных отношений
+        - Сделать кнопки операций для множеств: ∪ ∩ / ∆ \
+     */
 }
