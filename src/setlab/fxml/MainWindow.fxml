@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.web.*?>
 <?import java.lang.*?>
@@ -34,9 +35,17 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <HBox layoutX="5.0" layoutY="339.0" spacing="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="210.0">
+                        <HBox layoutX="5.0" layoutY="339.0" spacing="2.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="210.0">
                            <children>
-                              <TextField fx:id="set_field" layoutX="73.0" layoutY="323.0" prefHeight="32.0" prefWidth="395.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="280.0" />
+                              <TextField fx:id="set_field" layoutX="73.0" layoutY="323.0" prefHeight="32.0" prefWidth="265.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="280.0" />
+                              <Button fx:id="set_op_union" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" text="∪">
+                                 <HBox.margin>
+                                    <Insets left="3.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="set_op_inter" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" text="∩" />
+                              <Button fx:id="set_op_diff" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" text="/" />
+                              <Button fx:id="set_op_symmdiff" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" text="∆" />
                               <Button layoutX="398.0" layoutY="343.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="55.0" text="Ввод" AnchorPane.bottomAnchor="5.0" />
                            </children>
                         </HBox>
@@ -54,29 +63,25 @@
                         <HBox spacing="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="236.0">
                            <children>
                               <TextField fx:id="binrel_field" prefHeight="32.0" prefWidth="360.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="360.0" />
-                              <Button fx:id="binrel_analysis" layoutX="309.0" layoutY="343.0" mnemonicParsing="false" onAction="#analisisBinRel" prefHeight="32.0" prefWidth="64.0" text="Анализ" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="309.0" />
+                              <Button fx:id="binrel_analysis" layoutX="309.0" layoutY="343.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="64.0" text="Анализ" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="309.0" />
                            </children>
                         </HBox>
                      </children></AnchorPane>
             </content>
           </Tab>
-            <Tab fx:id="tab_comb" text="Комбинаторика">
+            <Tab fx:id="tab_comb" onSelectionChanged="#commandStart" text="Комбинаторика">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <WebView fx:id="comb_webView" layoutX="14.0" layoutY="14.0" prefHeight="71.0" prefWidth="380.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
                         <VBox alignment="CENTER" layoutX="396.0" layoutY="14.0" prefHeight="185.0" prefWidth="260.0" spacing="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
                            <children>
-                              <TextArea fx:id="comb_infoAccept" editable="false" prefHeight="140.0" prefWidth="209.0" wrapText="true" VBox.vgrow="NEVER">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </TextArea>
+                              <WebView fx:id="comb_infoAcceptWebView" prefHeight="200.0" prefWidth="200.0" />
                               <HBox alignment="CENTER" prefHeight="28.0" prefWidth="209.0" spacing="2.0">
                                  <children>
-                                    <Button fx:id="comb_infoAccept_yesBtn" mnemonicParsing="false" prefHeight="31.0" prefWidth="91.0" text="Да" />
-                                    <Button fx:id="comb_infoAccept_backBtn" mnemonicParsing="false" prefHeight="31.0" text="Назад" />
-                                    <Button fx:id="comb_infoAccept_noBtn" mnemonicParsing="false" prefHeight="31.0" prefWidth="95.0" text="Нет" />
+                                    <Button fx:id="comb_infoAccept_yesBtn" mnemonicParsing="false" onMouseClicked="#commandYeah" prefHeight="31.0" prefWidth="91.0" text="Да" />
+                                    <Button fx:id="comb_infoAccept_backBtn" mnemonicParsing="false" onMouseClicked="#commandBack" prefHeight="31.0" text="Назад" />
+                                    <Button fx:id="comb_infoAccept_noBtn" mnemonicParsing="false" onMouseClicked="#commandNope" prefHeight="31.0" prefWidth="95.0" text="Нет" />
                                  </children>
                               </HBox>
                            </children>
