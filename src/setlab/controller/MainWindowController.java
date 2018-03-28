@@ -274,7 +274,7 @@ public class MainWindowController implements Initializable {
             binrel_field.setText("");
         }
     }
-
+    
     @FXML
     public void Manual() throws IOException {
     }
