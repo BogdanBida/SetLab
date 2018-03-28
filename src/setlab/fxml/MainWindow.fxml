@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.web.*?>
@@ -61,7 +62,10 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <TextArea fx:id="binrel_area" prefHeight="325.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="235.0" AnchorPane.topAnchor="5.0" />
+                                <TextArea fx:id="binrel_area" prefHeight="325.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="235.0" AnchorPane.topAnchor="5.0">
+                           <font>
+                              <Font size="16.0" />
+                           </font></TextArea>
                                 <HBox spacing="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="236.0">
                                     <children>
                                         <TextField fx:id="binrel_field" prefHeight="32.0" prefWidth="360.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="360.0" />

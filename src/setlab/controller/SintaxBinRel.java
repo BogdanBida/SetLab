@@ -4,16 +4,24 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import setlab.cores.BinRelCore;
 import setlab.cores.BinRelCore.BinRel;
+import setlab.cores.SetCore;
 
 public class SintaxBinRel {
 
     public static ObservableList<Boolean> anLine = FXCollections.observableArrayList();
 
     public static String get(String command) {
-        StringBuilder res = new StringBuilder(">> ");
+        StringBuilder res = new StringBuilder("\n >> ");
         String[] line = command.replaceAll(" ", "").split("=");
         BinRel R = new BinRel(line[0], line[1]);
-        res.append(R.toString());
+        SetCore.SetObj O = BinRelCore.O(R);
+        res.append(R.toString()).append("\n").append(" >> ");
+        res.append(BinRelCore.D(R).toString()).append("\n").append(" >> ");
+        res.append(BinRelCore.E(R).toString()).append("\n").append(" >> ");
+        res.append(O.toString()).append("\n").append(" >> ");
+        res.append(BinRelCore.Ident(O).toString()).append("\n").append(" >> ");
+        res.append(BinRelCore.Reverse(R).toString()).append("\n").append(" >> ");
+        res.append(BinRelCore.Composer(R).toString()).append("\n");
 
         anLine.add(BinRelCore.Refelex(R));
         anLine.add(BinRelCore.AntiRefelex(R));

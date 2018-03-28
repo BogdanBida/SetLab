@@ -136,7 +136,7 @@ public class BinRelCore {
     }
 
     public static BinRel Reverse(BinRel r) {
-        BinRel res = new BinRel("inv");
+        BinRel res = new BinRel(r.name + "^(-1)");
         r.forEach((b) -> {
             res.add(new BinEl(b.getY(), b.getX()));
         });
@@ -144,7 +144,7 @@ public class BinRelCore {
     }
 
     public static BinRel Composer(BinRel r) {
-        return new BinRel("Composer");
+        return new BinRel(r.name + "o" + r.name);
     }
 
     // ------------------------------------------------- INTERNALS ---
