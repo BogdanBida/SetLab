@@ -128,6 +128,7 @@ public class MainWindowController implements Initializable {
         binrel_field.setOnKeyPressed((event) -> {
             if (event.getCode() == KeyCode.ENTER) {
                 binrel_getCommand();
+               // = SintaxBinRel.anLine.get(0);
             }
         });
 

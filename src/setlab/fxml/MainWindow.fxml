@@ -9,172 +9,176 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 
 <AnchorPane id="AnchorPane" prefHeight="440.0" prefWidth="670.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="setlab.controller.MainWindowController">
     <stylesheets>
         <URL value="@../css/mainwindow.css" />
     </stylesheets>
-   <children>
-      <MenuBar prefHeight="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="Файл">
-            <items>
-              <MenuItem mnemonicParsing="false" onAction="#closeProgram" text="Закрыть" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Помощь">
-            <items>
-              <MenuItem mnemonicParsing="false" text="О программе" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-      <TabPane prefHeight="396.0" prefWidth="663.0" rotateGraphic="true" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
-        <tabs>
-          <Tab fx:id="tab_set" text="Множества">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <HBox layoutX="5.0" layoutY="339.0" spacing="2.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="210.0">
-                           <children>
-                              <TextField fx:id="set_field" layoutX="73.0" layoutY="323.0" prefHeight="32.0" prefWidth="265.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="280.0" />
-                              <Button fx:id="set_op_union" focusTraversable="false" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" text="∪">
-                                 <HBox.margin>
-                                    <Insets left="3.0" />
-                                 </HBox.margin>
-                              </Button>
-                              <Button fx:id="set_op_inter" focusTraversable="false" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" text="∩" />
-                              <Button fx:id="set_op_diff" focusTraversable="false" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" text="/" />
-                              <Button fx:id="set_op_symmdiff" focusTraversable="false" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" text="∆" />
-                              <Button layoutX="398.0" layoutY="343.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="55.0" text="Ввод" AnchorPane.bottomAnchor="5.0" />
-                           </children>
-                        </HBox>
-                        <ListView fx:id="set_listView" layoutX="400.0" layoutY="7.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="465.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
-                        <TextArea fx:id="set_area" layoutX="5.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="5.0" />
-                     </children>
-                  </AnchorPane>
-            </content>
-          </Tab>
-          <Tab fx:id="tab_binRel" text="Бинарные отношения">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <TextArea fx:id="binrel_area" prefHeight="325.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="235.0" AnchorPane.topAnchor="5.0" />
-                        <HBox spacing="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="236.0">
-                           <children>
-                              <TextField fx:id="binrel_field" prefHeight="32.0" prefWidth="360.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="360.0" />
-                              <Button fx:id="binrel_analysis" layoutX="309.0" layoutY="343.0" mnemonicParsing="false" onMouseClicked="#binrel_getCommand" prefHeight="32.0" prefWidth="64.0" text="Анализ" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="309.0" />
-                           </children>
-                        </HBox>
-                        <VBox alignment="CENTER" layoutX="445.0" layoutY="5.0" prefHeight="200.0" prefWidth="220.0" AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="445.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
-                           <children>
-                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
-                                 <children>
-                                    <ImageView fx:id="ImageViewReflex" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@icon/dismiss.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Label text="Рефлексивность" />
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                                 </VBox.margin>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
-                                 <children>
-                                    <ImageView fx:id="ImageViewAntiReflex" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@icon/dismiss.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Label text="Антирефлексивность" />
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                                 </VBox.margin>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
-                                 <children>
-                                    <ImageView fx:id="ImageViewBidirect" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@icon/dismiss.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Label text="Симметричность" />
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                                 </VBox.margin>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
-                                 <children>
-                                    <ImageView fx:id="ImageViewAntiBidirect" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@icon/dismiss.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Label text="Антисимметричность" />
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                                 </VBox.margin>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
-                                 <children>
-                                    <ImageView fx:id="ImageViewAsBidirect" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@icon/dismiss.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Label text="Асимметричность" />
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                                 </VBox.margin>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
-                                 <children>
-                                    <ImageView fx:id="ImageViewTransitive" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@icon/dismiss.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Label text="Транзитивность" />
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                                 </VBox.margin>
-                              </HBox>
-                           </children>
-                        </VBox>
-                     </children></AnchorPane>
-            </content>
-          </Tab>
-            <Tab fx:id="tab_comb" onSelectionChanged="#commandStart" text="Комбинаторика">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <WebView fx:id="comb_webView" layoutX="14.0" layoutY="14.0" prefHeight="71.0" prefWidth="380.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
-                        <VBox alignment="CENTER" layoutX="396.0" layoutY="14.0" prefHeight="185.0" prefWidth="260.0" spacing="5.0" style="-fx-border-color: #DDDDDD;" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
-                           <children>
-                              <WebView fx:id="comb_infoAcceptWebView" prefHeight="200.0" prefWidth="200.0" />
-                              <HBox alignment="CENTER" prefHeight="28.0" prefWidth="209.0" spacing="2.0">
-                                 <children>
-                                    <Button fx:id="comb_infoAccept_yesBtn" mnemonicParsing="false" onMouseClicked="#commandYeah" prefHeight="31.0" prefWidth="91.0" text="Да" />
-                                    <Button fx:id="comb_infoAccept_backBtn" mnemonicParsing="false" onMouseClicked="#commandBack" prefHeight="31.0" text="Назад" />
-                                    <Button fx:id="comb_infoAccept_noBtn" mnemonicParsing="false" onMouseClicked="#commandNope" prefHeight="31.0" prefWidth="95.0" text="Нет" />
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                 </VBox.margin>
-                              </HBox>
-                           </children>
-                        </VBox>
-                     </children></AnchorPane>
-               </content>
-            </Tab>
-        </tabs>
-      </TabPane>
-   </children>
+    <children>
+        <MenuBar prefHeight="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="Файл">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#closeProgram" text="Закрыть" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Помощь">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="О программе" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <TabPane prefHeight="396.0" prefWidth="663.0" rotateGraphic="true" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+            <tabs>
+                <Tab fx:id="tab_set" text="Множества">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <HBox layoutX="5.0" layoutY="339.0" spacing="2.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="210.0">
+                                    <children>
+                                        <TextField fx:id="set_field" layoutX="73.0" layoutY="323.0" prefHeight="32.0" prefWidth="265.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="280.0" />
+                                        <Button fx:id="set_op_union" focusTraversable="false" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" text="∪">
+                                            <HBox.margin>
+                                                <Insets left="3.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button fx:id="set_op_inter" focusTraversable="false" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" text="∩" />
+                                        <Button fx:id="set_op_diff" focusTraversable="false" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" text="/" />
+                                        <Button fx:id="set_op_symmdiff" focusTraversable="false" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" text="∆" />
+                                        <Button layoutX="398.0" layoutY="343.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="55.0" text="Ввод" AnchorPane.bottomAnchor="5.0" />
+                                    </children>
+                                </HBox>
+                                <ListView fx:id="set_listView" layoutX="400.0" layoutY="7.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="465.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                <TextArea fx:id="set_area" layoutX="5.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="5.0" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab fx:id="tab_binRel" text="Бинарные отношения">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <TextArea fx:id="binrel_area" prefHeight="325.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="235.0" AnchorPane.topAnchor="5.0" />
+                                <HBox spacing="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="236.0">
+                                    <children>
+                                        <TextField fx:id="binrel_field" prefHeight="32.0" prefWidth="360.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="360.0" />
+                                        <Button fx:id="binrel_analysis" layoutX="309.0" layoutY="343.0" mnemonicParsing="false" onMouseClicked="#binrel_getCommand" prefHeight="32.0" prefWidth="64.0" text="Анализ" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="309.0" />
+                                    </children>
+                                </HBox>
+                                <VBox alignment="CENTER" layoutX="445.0" layoutY="5.0" prefHeight="200.0" prefWidth="220.0" AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="445.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                    <children>
+                                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                                            <children>
+                                                <ImageView fx:id="ImageViewReflex" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@icon/dismiss.png" />
+                                                    </image>
+                                                </ImageView>
+                                                <Label text="Рефлексивность" />
+                                            </children>
+                                            <VBox.margin>
+                                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                            </VBox.margin>
+                                        </HBox>
+                                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                                            <children>
+                                                <ImageView fx:id="ImageViewAntiReflex" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@icon/dismiss.png" />
+                                                    </image>
+                                                </ImageView>
+                                                <Label text="Антирефлексивность" />
+                                            </children>
+                                            <VBox.margin>
+                                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                            </VBox.margin>
+                                        </HBox>
+                                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                                            <children>
+                                                <ImageView fx:id="ImageViewBidirect" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@icon/dismiss.png" />
+                                                    </image>
+                                                </ImageView>
+                                                <Label text="Симметричность" />
+                                            </children>
+                                            <VBox.margin>
+                                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                            </VBox.margin>
+                                        </HBox>
+                                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                                            <children>
+                                                <ImageView fx:id="ImageViewAntiBidirect" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@icon/dismiss.png" />
+                                                    </image>
+                                                </ImageView>
+                                                <Label text="Антисимметричность" />
+                                            </children>
+                                            <VBox.margin>
+                                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                            </VBox.margin>
+                                        </HBox>
+                                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                                            <children>
+                                                <ImageView fx:id="ImageViewAsBidirect" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@icon/dismiss.png" />
+                                                    </image>
+                                                </ImageView>
+                                                <Label text="Асимметричность" />
+                                            </children>
+                                            <VBox.margin>
+                                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                            </VBox.margin>
+                                        </HBox>
+                                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                                            <children>
+                                                <ImageView fx:id="ImageViewTransitive" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@icon/dismiss.png" />
+                                                    </image>
+                                                </ImageView>
+                                                <Label text="Транзитивность" />
+                                            </children>
+                                            <VBox.margin>
+                                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                            </VBox.margin>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab fx:id="tab_comb" onSelectionChanged="#commandStart" text="Комбинаторика">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <WebView fx:id="comb_webView" layoutX="14.0" layoutY="14.0" prefHeight="71.0" prefWidth="380.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                <VBox alignment="CENTER" layoutX="396.0" layoutY="14.0" prefHeight="185.0" prefWidth="260.0" spacing="5.0" style="-fx-border-color: #DDDDDD;" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
+                                    <children>
+                                        <WebView fx:id="comb_infoAcceptWebView" prefHeight="200.0" prefWidth="200.0" />
+                                        <HBox alignment="CENTER" prefHeight="28.0" prefWidth="209.0" spacing="2.0">
+                                            <children>
+                                                <Button fx:id="comb_infoAccept_yesBtn" mnemonicParsing="false" onMouseClicked="#commandYeah" prefHeight="31.0" prefWidth="91.0" text="Да" />
+                                                <Button fx:id="comb_infoAccept_backBtn" mnemonicParsing="false" onMouseClicked="#commandBack" prefHeight="31.0" text="Назад" />
+                                                <Button fx:id="comb_infoAccept_noBtn" mnemonicParsing="false" onMouseClicked="#commandNope" prefHeight="31.0" prefWidth="95.0" text="Нет" />
+                                            </children>
+                                            <VBox.margin>
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                            </VBox.margin>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
 </AnchorPane>
