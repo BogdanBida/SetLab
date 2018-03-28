@@ -13,6 +13,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.web.WebView;
@@ -59,6 +60,24 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private Button analisis;
+
+    @FXML
+    private ImageView ImageViewReflex;
+
+    @FXML
+    private ImageView ImageViewAntiReflex;
+
+    @FXML
+    private ImageView ImageViewBidirect;
+    
+    @FXML
+    private ImageView ImageViewAntiBidirect;
+    
+    @FXML
+    private ImageView ImageViewAsBidirect;
+    
+    @FXML
+    private ImageView ImageViewTransitive;
 
     @FXML
     private Tab tab_comb;
