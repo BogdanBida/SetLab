@@ -47,9 +47,13 @@ public class ReversePolish_Set {
         
         for (String s : input) {
             if (mapOfSets.containsKey(s)) { // -------- is set
-
+                A.add(mapOfSets.get(s));
             } else if (operations.containsKey(s)) { // ------- is operation
-
+                if (B.isEmpty()) {
+                    B.add(s);
+                } else {
+                    
+                }
             } else {
                 return "Sintax error: was not finded '" + s + "'";
             }
