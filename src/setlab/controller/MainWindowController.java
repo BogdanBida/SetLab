@@ -9,7 +9,10 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -22,11 +25,14 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.web.WebView;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import setlab.cores.SetCore.SetObj;
 
 public class MainWindowController implements Initializable {
 
     public static HashMap<String, SetObj> MapOfSets = new HashMap<>();
+    private static byte comb_typeFunc;
 
     @FXML
     private Tab tab_set;
@@ -107,7 +113,7 @@ public class MainWindowController implements Initializable {
     private Button comb_infoAccept_backBtn;
 
     @FXML
-    private WebView comp_webviewFormula;
+    private WebView comb_webviewFormula;
 
     @FXML
     private TextField comb_fieldN;
@@ -151,7 +157,15 @@ public class MainWindowController implements Initializable {
     }
 
     @FXML
-    public void Manual() throws IOException {
+    public void comb_getCommand() {
+        if (true) {
+            if (false) {
+                String[] k;
+                String m;
+            } else {
+                String n, m;
+            }
+        }
     }
 
     @FXML
@@ -245,7 +259,7 @@ public class MainWindowController implements Initializable {
         comb_infoAccept_yesBtn.disableProperty().bind(listener);
         comb_inputPane.disableProperty().bind(listener.not());
         comb_infoAccept_backBtn.disableProperty().bind(listenerBack);
-        
+
         string.addListener((observable, oldValue, newValue) -> {
             String massage = "";
 
@@ -269,11 +283,13 @@ public class MainWindowController implements Initializable {
                     massage = "Перестановки без повторений из n элементов";
                     listenerBack.set(false);
                     listener.set(true);
+                    comb_typeFunc = 1;
                     break;
                 case "start;yeah;yeah;yeah":
                     massage = "Перестановки с повторениями из n элементов по m с заданой спецификацией";
                     listenerBack.set(false);
                     listener.set(true);
+                    comb_typeFunc = 2;
                     break;
                 case "start;yeah;nope":
                     massage = "Есть ли в КК повторения элементов?";
@@ -284,11 +300,13 @@ public class MainWindowController implements Initializable {
                     massage = "Размещения с повторениями из n элементов по m";
                     listenerBack.set(false);
                     listener.set(true);
+                    comb_typeFunc = 3;
                     break;
                 case "start;yeah;nope;nope":
                     massage = "Размещения без повторений из n элементов по m";
                     listenerBack.set(false);
                     listener.set(true);
+                    comb_typeFunc = 4;
                     break;
                 case "start;nope":
                     massage = "Есть ли в КК повторения элементов?";
@@ -299,19 +317,44 @@ public class MainWindowController implements Initializable {
                     massage = "Сочетания с повторениями из n элементов по m";
                     listenerBack.set(false);
                     listener.set(true);
+                    comb_typeFunc = 5;
                     break;
                 case "start;nope;nope":
                     massage = "Сочетания без повторений из n элементов по m";
                     listenerBack.set(false);
                     listener.set(true);
+                    comb_typeFunc = 6;
                     break;
                 default:
                     System.out.println("Ошибка почему-то");
             }
 
-            String html = "<html><h4>" + massage + "</h4></html>";
+            String html = "<html><br><br><center>" + massage + "</center></html>";
             comb_infoAcceptWebView.getEngine().loadContent(html);
+
+            String mainHtml = "<html></html>";
+            comb_webView.getEngine().loadContent(mainHtml);
+
         });
+
+        comb_webView.getEngine().setUserStyleSheetLocation("data:,body { font: 16px Candara; }");
+        comb_infoAcceptWebView.getEngine().setUserStyleSheetLocation("data:,body { font: 16px Candara; }");
+        comb_infoAcceptWebView.setContextMenuEnabled(false);
+        comb_webView.setContextMenuEnabled(false);
+        comb_webviewFormula.setContextMenuEnabled(false);
+        // comb_infoAcceptWebView.set
+    }
+
+    @FXML
+    public void manual(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/setlab/fxml/ManualWindow.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setTitle("SetLab Manual");
+        stage.setResizable(true);
+        stage.initModality(Modality.NONE);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -324,7 +367,5 @@ public class MainWindowController implements Initializable {
         - Пункут меню "о программе" модальное окно с авторами, версией
             датой созданий - текущей датой (Пример: 25.03.2018 - 01.01.2020)
             почтой и.т.д.
-        - Найти иконки для бинарных отношений
-        - Сделать кнопки операций для множеств: ∪ ∩ / ∆ \
      */
 }

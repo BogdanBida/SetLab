@@ -7,6 +7,9 @@
                 background-color: #202020;
                 color: #d0d0d0;
             } 
+            a { 
+                text-decoration: none;
+            } 
             table {
                 background-color: #303030;
             }
@@ -14,32 +17,60 @@
                 padding: 3px;
                 padding-left: 8px;
             }
+            #navigator {
+                padding: 15px;
+                background-color: #404040;
+                text-align: right;
+            }
+            .chapter {
+                text-align: center;
+            }
         </style>
-        
+
         <title>Manual  SetLab v.0.1</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body>
+    <body link="#f0f0f0" alink="e0d0d0" vlink="#f0f0f0">
         <h1 style="text-align: center;">Справочник</h1> <br>
         <div class="infobox">
+            <div id="navigator">
+                <a href="#set">Перейти к блоку 1</a><br>
+                <a href="#binrel">Перейти к блоку 2</a><br>
+                <a href="#comb">Перейти к блоку 3</a><br>
+            </div>
+            <br><br><br>
 
-            <table width="90%" bgcolor="#c0c0c0" border="1px" style="margin-left: 5%">
-                <tr>
-                    <td>..</td>
-                    <td>..</td>
-                </tr>
-        </table>
+            <a name="set"></a>
+            <h2 class="chapter">Множества</h2>
+            <br><br><br><br><br><br>
+            <br><br><br><br><br><br>
+            
+            <a name="binrel"></a>
+            <h2 class="chapter">Бинарные Отношения</h2>
+            <br><br><br><br><br><br>
+            <br><br><br><br><br><br>
+            
+            <a name="comb"></a>
+            <h2 class="chapter">Комбинаторика</h2>
+            <br><br><br><br><br><br>
+            <br><br><br><br><br><br>
+            
+            <div id="navigator">
+                <a href="#set">Перейти к блоку 1</a><br>
+                <a href="#binrel">Перейти к блоку 2</a><br>
+                <a href="#comb">Перейти к блоку 3</a><br>
+            </div><br><br>
 
-        	<br>
-        	<div class="footer" style="text-align: center;">
-            	Авторы: <br>
-            	Студенты ХНЭУ им. С. Кузнеца<br>
-            	- Богдан Бида (bogdanbida.ua@gmail.com) <br>
-            	- Эдуард Белоусов (edikbelousov@gmail.com)<br>
+            <br>
+            <div class="footer" style="text-align: center;">
+                Авторы: <br>
+                Студенты ХНЭУ им. С. Кузнеца<br>
+                Богдан Бида, Эдуард Белоусов<br>
+                (bogdanbida.ua@gmail.com),(edikbelousov@gmail.com) <br>
                 SetLab v.0.1 (demo)<br>
-            	24.3.2018<br>
-        	</div>
+                29.3.2018<br>
+            </div>
         </div>
     </body>
 </html>

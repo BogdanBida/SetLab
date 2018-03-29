@@ -29,7 +29,7 @@
                 <Menu mnemonicParsing="false" text="Помощь">
                     <items>
                         <MenuItem mnemonicParsing="false" text="О программе" />
-                        <MenuItem mnemonicParsing="false" text="Справка" />
+                        <MenuItem mnemonicParsing="false" onAction="#manual" text="Справка" />
                     </items>
                 </Menu>
             </menus>
@@ -202,7 +202,7 @@
                                 </VBox>
                         <VBox alignment="CENTER" layoutX="470.0" layoutY="161.0" prefHeight="159.0" prefWidth="260.0" spacing="4.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="200.0">
                            <children>
-                              <WebView fx:id="comp_webviewFormula" prefHeight="125.0" prefWidth="260.0" />
+                              <WebView fx:id="comb_webviewFormula" prefHeight="125.0" prefWidth="260.0" />
                               <HBox fx:id="comb_inputPane" alignment="CENTER" prefHeight="32.0" prefWidth="260.0" spacing="4.0">
                                  <children>
                                     <TextField fx:id="comb_fieldN" alignment="CENTER" prefHeight="31.0" prefWidth="100.0" promptText="n" />
