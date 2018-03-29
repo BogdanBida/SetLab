@@ -5,10 +5,12 @@ import java.util.HashMap;
 import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import setlab.controller.MainWindowController;
+import setlab.cores.SetCore.SetObj;
 
 public class ReversePolish_Set {
 
-    public static float get(String command) {
+    public static String get(String command) {
         ArrayList<String> input = getTokens(command);
         return calc(input);
     }
@@ -30,7 +32,8 @@ public class ReversePolish_Set {
         return res;
     }
 
-    private static float calc(ArrayList<String> input) {
+    private static String calc(ArrayList<String> input) {
+        HashMap<String, SetObj> mapOfSets = MainWindowController.MapOfSets;
         HashMap<String, Integer> operations;
         operations = new HashMap<>();
         operations.put("∪", 1);
@@ -38,15 +41,21 @@ public class ReversePolish_Set {
         operations.put("∆", 1);
         operations.put("∩", 2);
 
-        Stack<Integer> A = new Stack<>();
+        Stack<SetObj> A = new Stack<>();
         Stack<String> B = new Stack<>();
+        SetObj Res = new SetObj("Res");
         
         for (String s : input) {
-            
-            
-            
+            if (mapOfSets.containsKey(s)) { // -------- is set
+
+            } else if (operations.containsKey(s)) { // ------- is operation
+
+            } else {
+                return "Sintax error: was not finded '" + s + "'";
+            }
+
         }
 
-        return 0f;
+        return Res.toString();
     }
 }

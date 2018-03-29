@@ -263,6 +263,18 @@ public class MainWindowController implements Initializable {
     }
 
     @FXML
+    public void comb_getCommand() {
+        if (true) {
+            if (false) {
+                String[] k;
+                String m;
+            } else {
+                String n,m;
+            }
+        }
+    }
+
+    @FXML
     public void Manual() throws IOException {
     }
 
