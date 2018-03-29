@@ -11,7 +11,7 @@ public class SintaxBinRel {
     public static ObservableList<Boolean> anLine = FXCollections.observableArrayList();
 
     public static String get(String command) {
-        StringBuilder res = new StringBuilder("\n >> ");
+        StringBuilder res = new StringBuilder(" >> ");
         String[] line = command.replaceAll(" ", "").split("=");
         BinRel R = new BinRel(line[0], line[1]);
         SetCore.SetObj O = BinRelCore.O(R);

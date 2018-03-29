@@ -150,7 +150,7 @@ public class BinRelCore {
     }
 
     public static BinRel Reverse(BinRel r) {
-        BinRel res = new BinRel(r.name + "^(-1)");
+        BinRel res = new BinRel(r.name + "^-1"); // add teg of stage
         r.forEach((b) -> {
             res.add(new BinEl(b.getY(), b.getX()));
         });

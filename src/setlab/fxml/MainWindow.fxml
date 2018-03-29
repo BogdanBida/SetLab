@@ -29,6 +29,7 @@
           <Menu mnemonicParsing="false" text="Помощь">
             <items>
               <MenuItem mnemonicParsing="false" text="О программе" />
+                  <MenuItem mnemonicParsing="false" text="Справка" />
             </items>
           </Menu>
         </menus>

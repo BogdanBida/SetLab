@@ -253,7 +253,11 @@ public class MainWindowController implements Initializable {
     public void binrel_getCommand() {
         if (!binrel_field.getText().isEmpty()) {
             String command = binrel_field.getText();
-            binrel_area.setText(SintaxBinRel.get(command));
+            if (command.equals("clear")) {
+                binrel_area.setText("");
+            } else {
+                binrel_area.setText(binrel_area.getText() + "\n" + SintaxBinRel.get(command));
+            }
             binrel_field.setText("");
         }
     }
