@@ -40,6 +40,12 @@ public class ReversePolish_Set {
 
         Stack<Integer> A = new Stack<>();
         Stack<String> B = new Stack<>();
+        
+        for (String s : input) {
+            
+            
+            
+        }
 
         return 0f;
     }

@@ -29,6 +29,7 @@
                 <Menu mnemonicParsing="false" text="Помощь">
                     <items>
                         <MenuItem mnemonicParsing="false" text="О программе" />
+                        <MenuItem mnemonicParsing="false" text="Справка" />
                     </items>
                 </Menu>
             </menus>
@@ -74,11 +75,10 @@
                                 <HBox spacing="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="236.0">
                                     <children>
                                         <TextField fx:id="binrel_field" prefHeight="32.0" prefWidth="360.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="360.0" />
-                                        <Button fx:id="binrel_analysis" layoutX="309.0" layoutY="343.0" mnemonicParsing="false" onMouseClicked="#binrel_getCommand" prefHeight="32.0" prefWidth="70.0" text="Анализ" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="309.0">
-                                            <font>
-                                                <Font size="14.0" />
-                                            </font>
-                                        </Button>
+                                        <Button fx:id="binrel_analysis" layoutX="309.0" layoutY="343.0" mnemonicParsing="false" onMouseClicked="#binrel_getCommand" prefHeight="32.0" prefWidth="64.0" text="Анализ" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="309.0">
+                                 <font>
+                                    <Font size="12.0" />
+                                 </font></Button>
                                     </children>
                                 </HBox>
                                 <VBox alignment="CENTER" layoutX="445.0" layoutY="5.0" prefHeight="190.0" prefWidth="220.0" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="445.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="15.0">
@@ -200,6 +200,18 @@
                                         </HBox>
                                     </children>
                                 </VBox>
+                        <VBox alignment="CENTER" layoutX="470.0" layoutY="161.0" prefHeight="159.0" prefWidth="260.0" spacing="4.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="200.0">
+                           <children>
+                              <WebView fx:id="comp_webviewFormula" prefHeight="125.0" prefWidth="260.0" />
+                              <HBox fx:id="comb_inputPane" alignment="CENTER" prefHeight="32.0" prefWidth="260.0" spacing="4.0">
+                                 <children>
+                                    <TextField fx:id="comb_fieldN" alignment="CENTER" prefHeight="31.0" prefWidth="100.0" promptText="n" />
+                                    <TextField fx:id="comb_fieldM" alignment="CENTER" prefHeight="31.0" prefWidth="100.0" promptText="m" />
+                                    <Button fx:id="comb_btnEnter" mnemonicParsing="false" prefHeight="31.0" prefWidth="60.0" text="Ввод" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
                             </children>
                         </AnchorPane>
                     </content>
