@@ -8,13 +8,17 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.web.WebView;
 import setlab.cores.BinRelCore;
 import setlab.cores.BinRelCore.BinRel;
@@ -59,6 +63,30 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private Button analisis;
+
+    @FXML
+    private Canvas binrel_canvas;
+
+    @FXML
+    private StackPane binrel_paneCanvas;
+
+    @FXML
+    private ImageView ImageViewReflex;
+
+    @FXML
+    private ImageView ImageViewAntiReflex;
+
+    @FXML
+    private ImageView ImageViewBidirect;
+
+    @FXML
+    private ImageView ImageViewAntiBidirect;
+
+    @FXML
+    private ImageView ImageViewAsBidirect;
+
+    @FXML
+    private ImageView ImageViewTransitive;
 
     @FXML
     private Tab tab_comb;
@@ -128,9 +156,11 @@ public class MainWindowController implements Initializable {
         binrel_field.setOnKeyPressed((event) -> {
             if (event.getCode() == KeyCode.ENTER) {
                 binrel_getCommand();
-               // = SintaxBinRel.anLine.get(0);
+                // = SintaxBinRel.anLine.get(0);
             }
         });
+
+        binrel_paneCanvas.setStyle("-fx-background-color: #d0d0d0");
 
         //--------------------------------------------------- COMBINATORICS ----
         string.addListener((observable, oldValue, newValue) -> {
@@ -210,35 +240,6 @@ public class MainWindowController implements Initializable {
             comb_infoAcceptWebView.getEngine().loadContent(html);
         });
         // ---------------------------------------------------------------------
-    }
-
-    @FXML
-    public void analisisBinRel() {
-        BinRel A = new BinRel("A", "((2,1) (4,2) (1,3) (2,3))");
-        StringBuilder res = new StringBuilder(A + "\n");
-        res.append(BinRelCore.D(A));
-        res.append("\n");
-        res.append(BinRelCore.E(A));
-        res.append("\n");
-        res.append(BinRelCore.O(A));
-        res.append("\n");
-        res.append(BinRelCore.Ident(BinRelCore.O(A)));
-        res.append("\n");
-        res.append(BinRelCore.Reverse(A));
-        res.append("\n ___ \n");
-        res.append(BinRelCore.Refelex(A));
-        res.append("\n");
-        res.append(BinRelCore.AntiRefelex(A));
-        res.append("\n");
-        res.append(BinRelCore.Simetry(A));
-        res.append("\n");
-        res.append(BinRelCore.AntiSimetry(A));
-        res.append("\n");
-        res.append(BinRelCore.Asimetry(A));
-        res.append("\n");
-        res.append(BinRelCore.Transity(A));
-        res.append("\n");
-        binrel_area.setText(res.toString());
     }
 
     @FXML

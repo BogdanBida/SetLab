@@ -23,7 +23,7 @@ public class SintaxBinRel {
         res.append(BinRelCore.Reverse(R).toString()).append("\n").append(" >> ");
         res.append(BinRelCore.Composer(R).toString()).append("\n");
 
-        anLine.add(BinRelCore.Refelex(R));
+        anLine.add(BinRelCore.Refelex(R)); 
         anLine.add(BinRelCore.AntiRefelex(R));
         anLine.add(BinRelCore.Simetry(R));
         anLine.add(BinRelCore.AntiSimetry(R));

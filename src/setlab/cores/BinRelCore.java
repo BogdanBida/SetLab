@@ -102,6 +102,20 @@ public class BinRelCore {
             }
         }
 
+        public String getInner() {
+            StringBuilder res = new StringBuilder("{");
+            Iterator t = this.iterator();
+            if (!t.hasNext()) {
+                return "{}";
+            }
+            for (;;) {
+                res.append(t.next());
+                if (!t.hasNext()) {
+                    return res.append("}").toString();
+                }
+                res.append(",").append(" ");
+            }
+        }
     }
 
     public static SetObj D(BinRel r) {
