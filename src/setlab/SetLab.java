@@ -20,7 +20,7 @@ public class SetLab extends Application {
         primaryStage.setResizable(false);
         
         primaryStage.setWidth(670);
-        primaryStage.setHeight(50 + 440);
+        primaryStage.setHeight(70 + 440);
         
         primaryStage.setScene(scene);
         primaryStage.show();

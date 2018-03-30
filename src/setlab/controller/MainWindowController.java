@@ -16,6 +16,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Slider;
@@ -81,7 +83,7 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private StackPane binrel_paneCanvas;
-    
+
     @FXML
     private Slider binRel_sliderForCanvas;
 
@@ -206,7 +208,7 @@ public class MainWindowController implements Initializable {
     public void commandNope() {
         String temp = string.getValue();
         temp = temp + ";nope";
-        
+
         string.set(temp);
     }
 
@@ -217,7 +219,7 @@ public class MainWindowController implements Initializable {
 
         string.set(temp);
         comb_imageView.setImage(null);
-        
+
         comb_fieldM.setText("");
         comb_fieldN.setText("");
         comb_fieldM.setPromptText("");
@@ -411,7 +413,6 @@ public class MainWindowController implements Initializable {
 
         });
 
-       
         comb_webView.getEngine().setUserStyleSheetLocation("data:,body { font: 16px Candara; }");
         comb_infoAcceptWebView.getEngine().setUserStyleSheetLocation("data:,body { font: 16px Candara; }");
         comb_infoAcceptWebView.setContextMenuEnabled(false);
@@ -439,9 +440,9 @@ public class MainWindowController implements Initializable {
         imageFormula_pk = new Image(SetLab.class.getResourceAsStream("fxml/icon/formula_pk.png"));
     }
 
-    private void initializeFieldMask(){
+    private void initializeFieldMask() {
         Pattern patternForNumber = Pattern.compile("[\\d]{0,}");
-         
+
         comb_fieldM.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.isEmpty()) {
                 if (!Pattern.compile("[\\d]{0,}").matcher(newValue).matches()) {
@@ -449,7 +450,7 @@ public class MainWindowController implements Initializable {
                 }
             }
         });
-         
+
         comb_fieldN.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.isEmpty()) {
                 if (comb_fieldN.getPromptText() != "k" && !Pattern.compile("[\\d]{0,}").matcher(newValue).matches()) {
@@ -460,12 +461,26 @@ public class MainWindowController implements Initializable {
                 }
             }
         });
-        
 
     }
-    
+
     private void initializeFields() {
         comb_btnEnter.disableProperty().bind(comb_fieldM.disableProperty().get() ? comb_fieldN.textProperty().isEmpty() : comb_fieldN.textProperty().isEmpty().or(comb_fieldM.textProperty().isEmpty()));
+    }
+
+    @FXML
+    public void aboutProgram(ActionEvent actionEvent) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("О программе");
+        alert.setHeaderText("");
+        alert.setContentText("Авторы: \n"
+                + "\tСтуденты ХНЭУ им. С. Кузнеца\n"
+                + "\tБогдан Бида, Эдуард Белоусов\n"
+                + "\t(bogdanbida.ua@gmail.com),(edikbelousov@gmail.com)\n"
+                + "\tSetLab v.0.1 (demo)\n"
+                + "\t29.3.2018");
+
+        alert.showAndWait();
     }
 
     @FXML
