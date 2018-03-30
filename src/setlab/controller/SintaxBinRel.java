@@ -10,17 +10,15 @@ public class SintaxBinRel {
 
     public static ObservableList<Boolean> anLine = FXCollections.observableArrayList();
 
-    public static String get(String command) {
-        StringBuilder res = new StringBuilder(" >> ");
-        String[] line = command.replaceAll(" ", "").split("=");
-        BinRel R = new BinRel(line[0], line[1]);
+    public static String get(String command, BinRel R) {
+        StringBuilder res = new StringBuilder("\t");
         SetCore.SetObj O = BinRelCore.O(R);
-        res.append(R.toString()).append("\n").append(" >> ");
-        res.append(BinRelCore.D(R).toString()).append("\n").append(" >> ");
-        res.append(BinRelCore.E(R).toString()).append("\n").append(" >> ");
-        res.append(O.toString()).append("\n").append(" >> ");
-        res.append(BinRelCore.Ident(O).toString()).append("\n").append(" >> ");
-        res.append(BinRelCore.Reverse(R).toString()).append("\n").append(" >> ");
+        res.append(R.toString()).append("\n").append("\t");
+        res.append(BinRelCore.D(R).toString()).append("\n").append("\t");
+        res.append(BinRelCore.E(R).toString()).append("\n").append("\t");
+        res.append(O.toString()).append("\n").append("\t");
+        res.append(BinRelCore.Ident(O).toString()).append("\n").append("\t");
+        res.append(BinRelCore.Reverse(R).toString()).append("\n").append("\t");
         res.append(BinRelCore.Composer(R).toString()).append("\n");
 
         anLine.add(BinRelCore.Refelex(R)); 

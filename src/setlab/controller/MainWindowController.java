@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
@@ -24,9 +25,12 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Paint;
 import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import setlab.cores.BinRelCore;
+import setlab.cores.BinRelCore.BinRel;
 import setlab.cores.SetCore.SetObj;
 
 public class MainWindowController implements Initializable {
@@ -150,7 +154,13 @@ public class MainWindowController implements Initializable {
             if (command.equals("clear")) {
                 binrel_area.setText("");
             } else {
-                binrel_area.setText(binrel_area.getText() + "\n" + SintaxBinRel.get(command));
+                String[] line = command.replaceAll(" ", "").split("=");
+                BinRel R = new BinRel(line[0], line[1]);
+                GraphicsContext context = binrel_canvas.getGraphicsContext2D();
+                context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, R);
+
+                binrel_area.setText(binrel_area.getText() + "\n" + SintaxBinRel.get(command, R));
+
             }
             binrel_field.setText("");
         }
@@ -248,7 +258,10 @@ public class MainWindowController implements Initializable {
             }
         });
 
+        BinRel R = new BinRel("R", "((a,b),(c,d))");
         binrel_paneCanvas.setStyle("-fx-background-color: #d0d0d0");
+        GraphicsContext context = binrel_canvas.getGraphicsContext2D();
+        context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, R);
     }
 
     private void initializeComb() {
@@ -259,7 +272,7 @@ public class MainWindowController implements Initializable {
         comb_infoAccept_yesBtn.disableProperty().bind(listener);
         comb_inputPane.disableProperty().bind(listener.not());
         comb_infoAccept_backBtn.disableProperty().bind(listenerBack);
-
+        
         string.addListener((observable, oldValue, newValue) -> {
             String massage = "";
 
@@ -342,7 +355,7 @@ public class MainWindowController implements Initializable {
         comb_infoAcceptWebView.setContextMenuEnabled(false);
         comb_webView.setContextMenuEnabled(false);
         comb_webviewFormula.setContextMenuEnabled(false);
-        // comb_infoAcceptWebView.set
+
     }
 
     @FXML
