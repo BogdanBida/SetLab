@@ -371,7 +371,6 @@ public class MainWindowController implements Initializable {
         comb_infoAcceptWebView.getEngine().setUserStyleSheetLocation("data:,body { font: 16px Candara; }");
         comb_infoAcceptWebView.setContextMenuEnabled(false);
         comb_webView.setContextMenuEnabled(false);
-        // comb_infoAcceptWebView.set
     }
 
     @FXML
