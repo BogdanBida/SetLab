@@ -39,9 +39,6 @@ import setlab.cores.SetCore.SetObj;
 
 public class MainWindowController implements Initializable {
 
-    public static HashMap<String, SetObj> MapOfSets = new HashMap<>();
-    private static byte comb_typeFunc;
-
     @FXML
     private Tab tab_set;
 
@@ -145,6 +142,9 @@ public class MainWindowController implements Initializable {
     @FXML
     private HBox comb_inputPane;
 
+    public static HashMap<String, SetObj> MapOfSets = new HashMap<>();
+    private static byte comb_typeFunc;
+    public static BinRel bufferedBinRel;
     SimpleStringProperty string = new SimpleStringProperty();
 
     @Override
@@ -171,10 +171,10 @@ public class MainWindowController implements Initializable {
                 binrel_area.setText("");
             } else {
                 String[] line = command.replaceAll(" ", "").split("=");
-                BinRel R = new BinRel(line[0], line[1]);
+                bufferedBinRel = new BinRel(line[0], line[1]);
                 GraphicsContext context = binrel_canvas.getGraphicsContext2D();
-                context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, R);
-                binrel_area.setText(binrel_area.getText() + "\n" + SintaxBinRel.get(command, R));
+                context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, bufferedBinRel);
+                binrel_area.setText(binrel_area.getText() + "\n" + SintaxBinRel.get(command, bufferedBinRel));
             }
         }
     }
@@ -270,6 +270,11 @@ public class MainWindowController implements Initializable {
     }
 
     private void initializeBinRel() {
+        binRel_sliderForCanvas.valueProperty().addListener((observable, oldValue, newValue) -> {
+            binRel_sliderForCanvas.valueProperty().set(Math.round(binRel_sliderForCanvas.valueProperty().doubleValue()));
+            System.out.println(binRel_sliderForCanvas.getValue());
+        });
+
         binrel_field.setOnKeyPressed((event) -> {
             if (event.getCode() == KeyCode.ENTER) {
                 binrel_getCommand();
@@ -277,10 +282,10 @@ public class MainWindowController implements Initializable {
             }
         });
 
-        BinRel R = new BinRel("R", "((a,b),(c,d))");
+        bufferedBinRel = new BinRel("R", "((a,b),(c,d))");
         binrel_paneCanvas.setStyle("-fx-background-color: #d0d0d0");
         GraphicsContext context = binrel_canvas.getGraphicsContext2D();
-        context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, R);
+        context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, bufferedBinRel);
         binrel_canvas.setScaleX(1);
         binrel_canvas.setScaleY(1);
     }
