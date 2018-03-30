@@ -169,11 +169,8 @@ public class MainWindowController implements Initializable {
                 BinRel R = new BinRel(line[0], line[1]);
                 GraphicsContext context = binrel_canvas.getGraphicsContext2D();
                 context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, R);
-
                 binrel_area.setText(binrel_area.getText() + "\n" + SintaxBinRel.get(command, R));
-
             }
-            binrel_field.setText("");
         }
     }
 
@@ -274,6 +271,8 @@ public class MainWindowController implements Initializable {
         binrel_paneCanvas.setStyle("-fx-background-color: #d0d0d0");
         GraphicsContext context = binrel_canvas.getGraphicsContext2D();
         context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, R);
+        binrel_canvas.setScaleX(1);
+        binrel_canvas.setScaleY(1);
     }
 
     private void initializeComb() {
@@ -284,7 +283,7 @@ public class MainWindowController implements Initializable {
         comb_infoAccept_yesBtn.disableProperty().bind(listener);
         comb_inputPane.disableProperty().bind(listener.not());
         comb_infoAccept_backBtn.disableProperty().bind(listenerBack);
-        
+
         string.addListener((observable, oldValue, newValue) -> {
             String massage = "";
 
@@ -407,11 +406,11 @@ public class MainWindowController implements Initializable {
         imageFormula_pk = new Image(SetLab.class.getResourceAsStream("fxml/icon/formula_pk.png"));
     }
 
-    private void initializeFields(){
-        
+    private void initializeFields() {
+
         comb_btnEnter.disableProperty().bind(comb_fieldM.textProperty().isEmpty().or(comb_fieldN.textProperty().isEmpty()));
     }
-    
+
     @FXML
     public void closeProgram(ActionEvent actionEvent) {
         System.exit(0);
