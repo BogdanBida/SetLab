@@ -202,7 +202,11 @@
                                 </VBox>
                         <VBox alignment="CENTER" layoutX="470.0" layoutY="161.0" prefHeight="159.0" prefWidth="260.0" spacing="4.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="200.0">
                            <children>
-                              <WebView fx:id="comb_webviewFormula" prefHeight="125.0" prefWidth="260.0" />
+                              <HBox alignment="CENTER" prefHeight="125.0" prefWidth="260.0">
+                                 <children>
+                                    <ImageView fx:id="comb_imageView" fitHeight="125.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true" smooth="false" />
+                                 </children>
+                              </HBox>
                               <HBox fx:id="comb_inputPane" alignment="CENTER" prefHeight="32.0" prefWidth="260.0" spacing="4.0">
                                  <children>
                                     <TextField fx:id="comb_fieldN" alignment="CENTER" prefHeight="31.0" prefWidth="100.0" promptText="n" />

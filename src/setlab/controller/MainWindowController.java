@@ -30,6 +30,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import setlab.SetLab;
 import setlab.cores.BinRelCore.BinRel;
 import setlab.cores.SetCore.SetObj;
 import setlab.SetLab;

@@ -27,7 +27,7 @@ public class BinRel_GraphicsGraphCore {
             float x = (float) (X0 + Math.cos(angle * i) * r);
             float y = (float) (Y0 + Math.sin(angle * i) * r);
             context.fillOval(x, y, 4, 4);
-            context.fillText(elements[i - 1], x - 8, y - 8);
+            context.fillText(elements[i - 1], x - 2, y - 8);
         }
 
         return context;
