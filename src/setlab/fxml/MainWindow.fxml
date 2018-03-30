@@ -42,7 +42,7 @@
                             <children>
                                 <HBox layoutX="5.0" layoutY="339.0" spacing="2.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="210.0">
                                     <children>
-                                        <TextField fx:id="set_field" layoutX="73.0" layoutY="323.0" prefHeight="32.0" prefWidth="253.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="280.0" />
+                                        <TextField fx:id="set_field" focusTraversable="false" layoutX="73.0" layoutY="323.0" prefHeight="32.0" prefWidth="253.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="280.0" />
                                         <Button fx:id="set_op_union" focusTraversable="false" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" text="∪">
                                             <HBox.margin>
                                                 <Insets left="3.0" />
@@ -58,11 +58,11 @@
                                             </font>
                                         </Button>
                                         <Button fx:id="set_op_symmdiff" focusTraversable="false" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" text="∆" />
-                                        <Button layoutX="398.0" layoutY="343.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="55.0" text="Ввод" AnchorPane.bottomAnchor="5.0" />
+                                        <Button focusTraversable="false" layoutX="398.0" layoutY="343.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="55.0" text="Ввод" AnchorPane.bottomAnchor="5.0" />
                                     </children>
                                 </HBox>
-                                <ListView fx:id="set_listView" layoutX="400.0" layoutY="7.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="465.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
-                                <TextArea fx:id="set_area" layoutX="5.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="5.0" />
+                                <ListView fx:id="set_listView" focusTraversable="false" layoutX="400.0" layoutY="7.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="465.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                <TextArea fx:id="set_area" editable="false" focusTraversable="false" layoutX="5.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="5.0" />
                             </children>
                         </AnchorPane>
                     </content>
@@ -71,17 +71,17 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <TextArea fx:id="binrel_area" prefHeight="325.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="235.0" AnchorPane.topAnchor="5.0" />
-                                <HBox spacing="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="236.0">
+                                <TextArea fx:id="binrel_area" editable="false" focusTraversable="false" prefHeight="325.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="5.0" />
+                                <HBox spacing="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="250.0">
                                     <children>
-                                        <TextField fx:id="binrel_field" prefHeight="32.0" prefWidth="360.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="360.0" />
-                                        <Button fx:id="binrel_analysis" layoutX="309.0" layoutY="343.0" mnemonicParsing="false" onMouseClicked="#binrel_getCommand" prefHeight="32.0" prefWidth="64.0" text="Анализ" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="309.0">
+                                        <TextField fx:id="binrel_field" focusTraversable="false" prefHeight="32.0" prefWidth="360.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="360.0" />
+                                        <Button fx:id="binrel_analysis" focusTraversable="false" layoutX="309.0" layoutY="343.0" mnemonicParsing="false" onMouseClicked="#binrel_getCommand" prefHeight="32.0" prefWidth="64.0" text="Анализ" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="309.0">
                                  <font>
                                     <Font size="12.0" />
                                  </font></Button>
                                     </children>
                                 </HBox>
-                                <VBox alignment="CENTER" layoutX="445.0" layoutY="5.0" prefHeight="190.0" prefWidth="220.0" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="445.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="15.0">
+                                <VBox alignment="CENTER" layoutX="445.0" layoutY="5.0" prefHeight="190.0" prefWidth="220.0" style="-fx-border-color: #DDDDDD;" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="425.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                     <children>
                                         <HBox alignment="CENTER_LEFT" prefHeight="90.0" prefWidth="200.0" spacing="5.0">
                                             <children>
@@ -162,16 +162,24 @@
                                             </VBox.margin>
                                         </HBox>
                                     </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
                                 </VBox>
-                                <StackPane fx:id="binrel_paneCanvas" layoutX="455.0" layoutY="223.0" prefHeight="150.0" prefWidth="215.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
-                                    <children>
-                                        <Canvas fx:id="binrel_canvas" focusTraversable="true" height="150.0" width="215.0">
-                                            <StackPane.margin>
-                                                <Insets />
-                                            </StackPane.margin>
-                                        </Canvas>
-                                    </children>
-                                </StackPane>
+                        <HBox layoutX="443.0" layoutY="206.0" prefHeight="161.0" prefWidth="240.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="425.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="200.0">
+                           <children>
+                                      <StackPane fx:id="binrel_paneCanvas" layoutX="455.0" layoutY="223.0" prefHeight="150.0" prefWidth="215.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                                          <children>
+                                              <Canvas fx:id="binrel_canvas" height="150.0" width="215.0">
+                                                  <StackPane.margin>
+                                                      <Insets />
+                                                  </StackPane.margin>
+                                              </Canvas>
+                                          </children>
+                                      </StackPane>
+                              <Slider fx:id="binRel_sliderForCanvas" majorTickUnit="60.0" max="180.0" min="-180.0" orientation="VERTICAL" prefHeight="161.0" prefWidth="41.0" />
+                           </children>
+                        </HBox>
                             </children>
                         </AnchorPane>
                     </content>
@@ -182,17 +190,17 @@
                             <children>
                                 <VBox layoutX="5.0" layoutY="5.0" style="-fx-border-color: #DDDDDD;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="280.0" AnchorPane.topAnchor="5.0">
                                     <children>
-                                        <WebView fx:id="comb_webView" layoutX="14.0" layoutY="14.0" prefHeight="366.0" prefWidth="380.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                        <WebView fx:id="comb_webView" focusTraversable="false" layoutX="14.0" layoutY="14.0" prefHeight="366.0" prefWidth="380.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
                                     </children>
                                 </VBox>
                                 <VBox alignment="CENTER" layoutX="396.0" layoutY="14.0" prefHeight="185.0" prefWidth="260.0" spacing="5.0" style="-fx-border-color: #DDDDDD;" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
                                     <children>
-                                        <WebView fx:id="comb_infoAcceptWebView" prefHeight="200.0" prefWidth="200.0" />
-                                        <HBox alignment="CENTER" prefHeight="28.0" prefWidth="209.0" spacing="2.0">
+                                        <WebView fx:id="comb_infoAcceptWebView" focusTraversable="false" prefHeight="200.0" prefWidth="200.0" />
+                                        <HBox alignment="CENTER" prefHeight="31.0" prefWidth="254.0" spacing="2.0">
                                             <children>
-                                                <Button fx:id="comb_infoAccept_yesBtn" mnemonicParsing="false" onMouseClicked="#commandYeah" prefHeight="31.0" prefWidth="91.0" text="Да" />
-                                                <Button fx:id="comb_infoAccept_backBtn" mnemonicParsing="false" onMouseClicked="#commandBack" prefHeight="31.0" text="Назад" />
-                                                <Button fx:id="comb_infoAccept_noBtn" mnemonicParsing="false" onMouseClicked="#commandNope" prefHeight="31.0" prefWidth="95.0" text="Нет" />
+                                                <Button fx:id="comb_infoAccept_yesBtn" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#commandYeah" prefHeight="31.0" prefWidth="91.0" text="Да" />
+                                                <Button fx:id="comb_infoAccept_backBtn" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#commandBack" prefHeight="31.0" text="Назад" />
+                                                <Button fx:id="comb_infoAccept_noBtn" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#commandNope" prefHeight="31.0" prefWidth="95.0" text="Нет" />
                                             </children>
                                             <VBox.margin>
                                                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -200,19 +208,22 @@
                                         </HBox>
                                     </children>
                                 </VBox>
-                        <VBox alignment="CENTER" layoutX="470.0" layoutY="161.0" prefHeight="159.0" prefWidth="260.0" spacing="4.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="200.0">
+                        <VBox alignment="CENTER" layoutX="470.0" layoutY="161.0" prefHeight="159.0" prefWidth="260.0" spacing="4.0" style="-fx-border-color: #DDDDDD;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="200.0">
                            <children>
-                              <HBox alignment="CENTER" prefHeight="125.0" prefWidth="260.0">
+                              <HBox alignment="CENTER" prefHeight="119.0" prefWidth="260.0">
                                  <children>
                                     <ImageView fx:id="comb_imageView" fitHeight="125.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true" smooth="false" />
                                  </children>
                               </HBox>
-                              <HBox fx:id="comb_inputPane" alignment="CENTER" prefHeight="32.0" prefWidth="260.0" spacing="4.0">
+                              <HBox fx:id="comb_inputPane" alignment="CENTER" prefHeight="21.0" prefWidth="254.0" spacing="4.0">
                                  <children>
-                                    <TextField fx:id="comb_fieldN" alignment="CENTER" prefHeight="31.0" prefWidth="100.0" promptText="n" />
-                                    <TextField fx:id="comb_fieldM" alignment="CENTER" prefHeight="31.0" prefWidth="100.0" promptText="m" />
-                                    <Button fx:id="comb_btnEnter" mnemonicParsing="false" prefHeight="31.0" prefWidth="60.0" text="Ввод" />
+                                    <TextField fx:id="comb_fieldN" alignment="CENTER" focusTraversable="false" prefHeight="31.0" prefWidth="100.0" />
+                                    <TextField fx:id="comb_fieldM" alignment="CENTER" focusTraversable="false" prefHeight="31.0" prefWidth="100.0" />
+                                    <Button fx:id="comb_btnEnter" focusTraversable="false" mnemonicParsing="false" prefHeight="31.0" prefWidth="60.0" text="Ввод" />
                                  </children>
+                                 <VBox.margin>
+                                    <Insets bottom="4.0" left="2.0" right="2.0" top="2.0" />
+                                 </VBox.margin>
                               </HBox>
                            </children>
                         </VBox>
