@@ -144,6 +144,7 @@ public class MainWindowController implements Initializable {
         initializeBinRel();
         initializeComb();
         initializaImage();
+        initializeFields();
     }
 
     @FXML
@@ -394,6 +395,11 @@ public class MainWindowController implements Initializable {
         imageFormula_pk = new Image(SetLab.class.getResourceAsStream("fxml/icon/formula_pk.png"));
     }
 
+    private void initializeFields(){
+        
+        comb_btnEnter.disableProperty().bind(comb_fieldM.textProperty().isEmpty().or(comb_fieldN.textProperty().isEmpty()));
+    }
+    
     @FXML
     public void closeProgram(ActionEvent actionEvent) {
         System.exit(0);
