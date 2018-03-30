@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -17,6 +18,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Slider;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -26,14 +28,12 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Paint;
 import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import setlab.SetLab;
 import setlab.cores.BinRelCore.BinRel;
 import setlab.cores.SetCore.SetObj;
-import setlab.SetLab;
 
 public class MainWindowController implements Initializable {
 
@@ -81,6 +81,9 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private StackPane binrel_paneCanvas;
+    
+    @FXML
+    private Slider binRel_sliderForCanvas;
 
     @FXML
     private ImageView ImageViewReflex;
@@ -206,7 +209,7 @@ public class MainWindowController implements Initializable {
     public void commandNope() {
         String temp = string.getValue();
         temp = temp + ";nope";
-
+        
         string.set(temp);
     }
 
@@ -217,6 +220,11 @@ public class MainWindowController implements Initializable {
 
         string.set(temp);
         comb_imageView.setImage(null);
+        
+        comb_fieldM.setText("");
+        comb_fieldN.setText("");
+        comb_fieldM.setPromptText("");
+        comb_fieldN.setPromptText("");
     }
 
     private void initializeSet() {
@@ -284,7 +292,7 @@ public class MainWindowController implements Initializable {
         comb_infoAccept_yesBtn.disableProperty().bind(listener);
         comb_inputPane.disableProperty().bind(listener.not());
         comb_infoAccept_backBtn.disableProperty().bind(listenerBack);
-        
+
         string.addListener((observable, oldValue, newValue) -> {
             String massage = "";
 
@@ -311,6 +319,10 @@ public class MainWindowController implements Initializable {
                     comb_imageView.setFitHeight(imageFormula_p.getHeight());
                     comb_imageView.setFitWidth(imageFormula_p.getWidth());
                     comb_imageView.setImage(imageFormula_p);
+                    comb_fieldN.setPromptText("n");
+                    comb_fieldM.setPromptText("");
+                    initializeFieldMask();
+                    comb_fieldM.setDisable(true);
                     comb_typeFunc = 1;
                     break;
                 case "start;yeah;yeah;yeah":
@@ -320,6 +332,10 @@ public class MainWindowController implements Initializable {
                     comb_imageView.setFitHeight(imageFormula_pk.getHeight());
                     comb_imageView.setFitWidth(imageFormula_pk.getWidth());
                     comb_imageView.setImage(imageFormula_pk);
+                    comb_fieldN.setPromptText("k");
+                    comb_fieldM.setPromptText("m");
+                    initializeFieldMask();
+                    comb_fieldM.setDisable(false);
                     comb_typeFunc = 2;
                     break;
                 case "start;yeah;nope":
@@ -334,6 +350,10 @@ public class MainWindowController implements Initializable {
                     comb_imageView.setFitHeight(imageFormula_amn.getHeight());
                     comb_imageView.setFitWidth(imageFormula_amn.getWidth());
                     comb_imageView.setImage(imageFormula_amn);
+                    comb_fieldN.setPromptText("n");
+                    comb_fieldM.setPromptText("m");
+                    initializeFieldMask();
+                    comb_fieldM.setDisable(false);
                     comb_typeFunc = 3;
                     break;
                 case "start;yeah;nope;nope":
@@ -343,6 +363,10 @@ public class MainWindowController implements Initializable {
                     comb_imageView.setFitHeight(imageFormula_a_mn.getHeight());
                     comb_imageView.setFitWidth(imageFormula_a_mn.getWidth());
                     comb_imageView.setImage(imageFormula_a_mn);
+                    comb_fieldN.setPromptText("n");
+                    comb_fieldM.setPromptText("m");
+                    initializeFieldMask();
+                    comb_fieldM.setDisable(false);
                     comb_typeFunc = 4;
                     break;
                 case "start;nope":
@@ -357,6 +381,10 @@ public class MainWindowController implements Initializable {
                     comb_imageView.setFitHeight(imageFormula_cmn.getHeight());
                     comb_imageView.setFitWidth(imageFormula_cmn.getWidth());
                     comb_imageView.setImage(imageFormula_cmn);
+                    comb_fieldN.setPromptText("n");
+                    comb_fieldM.setPromptText("m");
+                    initializeFieldMask();
+                    comb_fieldM.setDisable(false);
                     comb_typeFunc = 5;
                     break;
                 case "start;nope;nope":
@@ -366,12 +394,16 @@ public class MainWindowController implements Initializable {
                     comb_imageView.setFitHeight(imageFormula_c_mn.getHeight());
                     comb_imageView.setFitWidth(imageFormula_c_mn.getWidth());
                     comb_imageView.setImage(imageFormula_c_mn);
+                    comb_fieldN.setPromptText("n");
+                    comb_fieldM.setPromptText("m");
+                    initializeFieldMask();
+                    comb_fieldM.setDisable(false);
                     comb_typeFunc = 6;
                     break;
                 default:
                     System.out.println("Ошибка почему-то");
             }
-
+            initializeFields();
             String html = "<html><br><br><center>" + massage + "</center></html>";
             comb_infoAcceptWebView.getEngine().loadContent(html);
 
@@ -380,6 +412,7 @@ public class MainWindowController implements Initializable {
 
         });
 
+       
         comb_webView.getEngine().setUserStyleSheetLocation("data:,body { font: 16px Candara; }");
         comb_infoAcceptWebView.getEngine().setUserStyleSheetLocation("data:,body { font: 16px Candara; }");
         comb_infoAcceptWebView.setContextMenuEnabled(false);
@@ -407,11 +440,35 @@ public class MainWindowController implements Initializable {
         imageFormula_pk = new Image(SetLab.class.getResourceAsStream("fxml/icon/formula_pk.png"));
     }
 
-    private void initializeFields(){
+    private void initializeFieldMask(){
+        Pattern patternForNumber = Pattern.compile("[\\d]{0,}");
+         
+        comb_fieldM.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.isEmpty()) {
+                if (!Pattern.compile("[\\d]{0,}").matcher(newValue).matches()) {
+                    comb_fieldM.setText(oldValue);
+                }
+            }
+        });
+         
+        comb_fieldN.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.isEmpty()) {
+                if (comb_fieldN.getPromptText() != "k" && !Pattern.compile("[\\d]{0,}").matcher(newValue).matches()) {
+                    comb_fieldN.setText(oldValue);
+                }
+                if (comb_fieldN.getPromptText() == "k" && !Pattern.compile("[\\d]{1,}[[,]{0,1}[\\d]{0,}]{0,}").matcher(newValue).matches() || Pattern.compile("[,]{2}").matcher(newValue).find()) {
+                    comb_fieldN.setText(oldValue);
+                }
+            }
+        });
         
-        comb_btnEnter.disableProperty().bind(comb_fieldM.textProperty().isEmpty().or(comb_fieldN.textProperty().isEmpty()));
+
     }
     
+    private void initializeFields() {
+        comb_btnEnter.disableProperty().bind(comb_fieldM.disableProperty().get() ? comb_fieldN.textProperty().isEmpty() : comb_fieldN.textProperty().isEmpty().or(comb_fieldM.textProperty().isEmpty()));
+    }
+
     @FXML
     public void closeProgram(ActionEvent actionEvent) {
         System.exit(0);
