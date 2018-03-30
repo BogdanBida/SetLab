@@ -37,9 +37,6 @@ import setlab.cores.SetCore.SetObj;
 
 public class MainWindowController implements Initializable {
 
-    public static HashMap<String, SetObj> MapOfSets = new HashMap<>();
-    private static byte comb_typeFunc;
-
     @FXML
     private Tab tab_set;
 
@@ -81,7 +78,7 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private StackPane binrel_paneCanvas;
-    
+
     @FXML
     private Slider binRel_sliderForCanvas;
 
@@ -143,6 +140,9 @@ public class MainWindowController implements Initializable {
     @FXML
     private HBox comb_inputPane;
 
+    public static HashMap<String, SetObj> MapOfSets = new HashMap<>();
+    private static byte comb_typeFunc;
+    public static BinRel bufferedBinRel;
     SimpleStringProperty string = new SimpleStringProperty();
 
     @Override
@@ -169,10 +169,10 @@ public class MainWindowController implements Initializable {
                 binrel_area.setText("");
             } else {
                 String[] line = command.replaceAll(" ", "").split("=");
-                BinRel R = new BinRel(line[0], line[1]);
+                bufferedBinRel = new BinRel(line[0], line[1]);
                 GraphicsContext context = binrel_canvas.getGraphicsContext2D();
-                context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, R);
-                binrel_area.setText(binrel_area.getText() + "\n" + SintaxBinRel.get(command, R));
+                context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, bufferedBinRel);
+                binrel_area.setText(binrel_area.getText() + "\n" + SintaxBinRel.get(command, bufferedBinRel));
             }
         }
     }
@@ -206,7 +206,7 @@ public class MainWindowController implements Initializable {
     public void commandNope() {
         String temp = string.getValue();
         temp = temp + ";nope";
-        
+
         string.set(temp);
     }
 
@@ -217,7 +217,7 @@ public class MainWindowController implements Initializable {
 
         string.set(temp);
         comb_imageView.setImage(null);
-        
+
         comb_fieldM.setText("");
         comb_fieldN.setText("");
         comb_fieldM.setPromptText("");
@@ -268,6 +268,11 @@ public class MainWindowController implements Initializable {
     }
 
     private void initializeBinRel() {
+        binRel_sliderForCanvas.valueProperty().addListener((observable, oldValue, newValue) -> {
+            binRel_sliderForCanvas.valueProperty().set(Math.round(binRel_sliderForCanvas.valueProperty().doubleValue()));
+            System.out.println(binRel_sliderForCanvas.getValue());
+        });
+
         binrel_field.setOnKeyPressed((event) -> {
             if (event.getCode() == KeyCode.ENTER) {
                 binrel_getCommand();
@@ -275,10 +280,10 @@ public class MainWindowController implements Initializable {
             }
         });
 
-        BinRel R = new BinRel("R", "((a,b),(c,d))");
+        bufferedBinRel = new BinRel("R", "((a,b),(c,d))");
         binrel_paneCanvas.setStyle("-fx-background-color: #d0d0d0");
         GraphicsContext context = binrel_canvas.getGraphicsContext2D();
-        context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, R);
+        context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, bufferedBinRel);
         binrel_canvas.setScaleX(1);
         binrel_canvas.setScaleY(1);
     }
@@ -411,7 +416,6 @@ public class MainWindowController implements Initializable {
 
         });
 
-       
         comb_webView.getEngine().setUserStyleSheetLocation("data:,body { font: 16px Candara; }");
         comb_infoAcceptWebView.getEngine().setUserStyleSheetLocation("data:,body { font: 16px Candara; }");
         comb_infoAcceptWebView.setContextMenuEnabled(false);
@@ -439,9 +443,9 @@ public class MainWindowController implements Initializable {
         imageFormula_pk = new Image(SetLab.class.getResourceAsStream("fxml/icon/formula_pk.png"));
     }
 
-    private void initializeFieldMask(){
+    private void initializeFieldMask() {
         Pattern patternForNumber = Pattern.compile("[\\d]{0,}");
-         
+
         comb_fieldM.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.isEmpty()) {
                 if (!Pattern.compile("[\\d]{0,}").matcher(newValue).matches()) {
@@ -449,7 +453,7 @@ public class MainWindowController implements Initializable {
                 }
             }
         });
-         
+
         comb_fieldN.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.isEmpty()) {
                 if (comb_fieldN.getPromptText() != "k" && !Pattern.compile("[\\d]{0,}").matcher(newValue).matches()) {
@@ -460,10 +464,9 @@ public class MainWindowController implements Initializable {
                 }
             }
         });
-        
 
     }
-    
+
     private void initializeFields() {
         comb_btnEnter.disableProperty().bind(comb_fieldM.disableProperty().get() ? comb_fieldN.textProperty().isEmpty() : comb_fieldN.textProperty().isEmpty().or(comb_fieldM.textProperty().isEmpty()));
     }
