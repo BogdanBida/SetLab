@@ -19,6 +19,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
@@ -27,6 +28,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import setlab.SetLab;
 import setlab.cores.SetCore.SetObj;
 
 public class MainWindowController implements Initializable {
@@ -101,7 +103,17 @@ public class MainWindowController implements Initializable {
     private WebView comb_webView;
 
     @FXML
+    private ImageView comb_imageView;
+
+    @FXML
     private WebView comb_infoAcceptWebView;
+
+    private Image imageFormula_a_mn;
+    private Image imageFormula_amn;
+    private Image imageFormula_c_mn;
+    private Image imageFormula_cmn;
+    private Image imageFormula_p;
+    private Image imageFormula_pk;
 
     @FXML
     private Button comb_infoAccept_noBtn;
@@ -111,9 +123,6 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private Button comb_infoAccept_backBtn;
-
-    @FXML
-    private WebView comb_webviewFormula;
 
     @FXML
     private TextField comb_fieldN;
@@ -134,6 +143,7 @@ public class MainWindowController implements Initializable {
         initializeSet();
         initializeBinRel();
         initializeComb();
+        initializaImage();
     }
 
     @FXML
@@ -195,6 +205,7 @@ public class MainWindowController implements Initializable {
         temp = temp.substring(0, temp.length() - 5);
 
         string.set(temp);
+        comb_imageView.setImage(null);
     }
 
     private void initializeSet() {
@@ -283,12 +294,18 @@ public class MainWindowController implements Initializable {
                     massage = "Перестановки без повторений из n элементов";
                     listenerBack.set(false);
                     listener.set(true);
+                    comb_imageView.setFitHeight(imageFormula_p.getHeight());
+                    comb_imageView.setFitWidth(imageFormula_p.getWidth());
+                    comb_imageView.setImage(imageFormula_p);
                     comb_typeFunc = 1;
                     break;
                 case "start;yeah;yeah;yeah":
                     massage = "Перестановки с повторениями из n элементов по m с заданой спецификацией";
                     listenerBack.set(false);
                     listener.set(true);
+                    comb_imageView.setFitHeight(imageFormula_pk.getHeight());
+                    comb_imageView.setFitWidth(imageFormula_pk.getWidth());
+                    comb_imageView.setImage(imageFormula_pk);
                     comb_typeFunc = 2;
                     break;
                 case "start;yeah;nope":
@@ -300,12 +317,18 @@ public class MainWindowController implements Initializable {
                     massage = "Размещения с повторениями из n элементов по m";
                     listenerBack.set(false);
                     listener.set(true);
+                    comb_imageView.setFitHeight(imageFormula_amn.getHeight());
+                    comb_imageView.setFitWidth(imageFormula_amn.getWidth());
+                    comb_imageView.setImage(imageFormula_amn);
                     comb_typeFunc = 3;
                     break;
                 case "start;yeah;nope;nope":
                     massage = "Размещения без повторений из n элементов по m";
                     listenerBack.set(false);
                     listener.set(true);
+                    comb_imageView.setFitHeight(imageFormula_a_mn.getHeight());
+                    comb_imageView.setFitWidth(imageFormula_a_mn.getWidth());
+                    comb_imageView.setImage(imageFormula_a_mn);
                     comb_typeFunc = 4;
                     break;
                 case "start;nope":
@@ -317,12 +340,18 @@ public class MainWindowController implements Initializable {
                     massage = "Сочетания с повторениями из n элементов по m";
                     listenerBack.set(false);
                     listener.set(true);
+                    comb_imageView.setFitHeight(imageFormula_cmn.getHeight());
+                    comb_imageView.setFitWidth(imageFormula_cmn.getWidth());
+                    comb_imageView.setImage(imageFormula_cmn);
                     comb_typeFunc = 5;
                     break;
                 case "start;nope;nope":
                     massage = "Сочетания без повторений из n элементов по m";
                     listenerBack.set(false);
                     listener.set(true);
+                    comb_imageView.setFitHeight(imageFormula_c_mn.getHeight());
+                    comb_imageView.setFitWidth(imageFormula_c_mn.getWidth());
+                    comb_imageView.setImage(imageFormula_c_mn);
                     comb_typeFunc = 6;
                     break;
                 default:
@@ -341,7 +370,6 @@ public class MainWindowController implements Initializable {
         comb_infoAcceptWebView.getEngine().setUserStyleSheetLocation("data:,body { font: 16px Candara; }");
         comb_infoAcceptWebView.setContextMenuEnabled(false);
         comb_webView.setContextMenuEnabled(false);
-        comb_webviewFormula.setContextMenuEnabled(false);
         // comb_infoAcceptWebView.set
     }
 
@@ -355,6 +383,15 @@ public class MainWindowController implements Initializable {
         stage.initModality(Modality.NONE);
         stage.setScene(scene);
         stage.show();
+    }
+
+    private void initializaImage() {
+        imageFormula_a_mn = new Image(SetLab.class.getResourceAsStream("fxml/icon/formula_a_mn.png"));
+        imageFormula_amn = new Image(SetLab.class.getResourceAsStream("fxml/icon/formula_amn.png"));
+        imageFormula_c_mn = new Image(SetLab.class.getResourceAsStream("fxml/icon/formula_c_mn.png"));
+        imageFormula_cmn = new Image(SetLab.class.getResourceAsStream("fxml/icon/formula_cmn.png"));
+        imageFormula_p = new Image(SetLab.class.getResourceAsStream("fxml/icon/formula_p.png"));
+        imageFormula_pk = new Image(SetLab.class.getResourceAsStream("fxml/icon/formula_pk.png"));
     }
 
     @FXML
