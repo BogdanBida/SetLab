@@ -172,11 +172,8 @@ public class MainWindowController implements Initializable {
                 BinRel R = new BinRel(line[0], line[1]);
                 GraphicsContext context = binrel_canvas.getGraphicsContext2D();
                 context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, R);
-
                 binrel_area.setText(binrel_area.getText() + "\n" + SintaxBinRel.get(command, R));
-
             }
-            binrel_field.setText("");
         }
     }
 
@@ -282,6 +279,8 @@ public class MainWindowController implements Initializable {
         binrel_paneCanvas.setStyle("-fx-background-color: #d0d0d0");
         GraphicsContext context = binrel_canvas.getGraphicsContext2D();
         context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, R);
+        binrel_canvas.setScaleX(1);
+        binrel_canvas.setScaleY(1);
     }
 
     private void initializeComb() {
