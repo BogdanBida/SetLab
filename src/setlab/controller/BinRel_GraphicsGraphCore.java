@@ -1,6 +1,7 @@
 package setlab.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Paint;
@@ -10,10 +11,10 @@ import setlab.cores.SetCore.SetObj;
 
 public class BinRel_GraphicsGraphCore {
 
-    private final static int X0 = 98;
-    private final static int Y0 = 75;
-    private final static int r = 50;
-    private static float angleImage = 30f;
+    private final static int X0 = 105;
+    private final static int Y0 = 70;
+    private static int r = 50;
+    public static float angleImage = 0f;
 
     // --------------- class of Elements ---
     private static class Figure {
@@ -29,21 +30,26 @@ public class BinRel_GraphicsGraphCore {
             this.y2 = y2;
         }
     }
+    
+    public static void setAngle(float angle) {
+        angleImage = (float) (angle*Math.PI / 180);
+    }
 
     public static GraphicsContext getContext(Canvas c, BinRel R) {
         GraphicsContext context = c.getGraphicsContext2D();
         context.clearRect(0, 0, 215, 150);
-        context.setFill(Paint.valueOf("#ff0000"));
+        context.setFill(Paint.valueOf("#6495ED"));
+        context.setStroke(Paint.valueOf("#1E90FF"));
 
         SetObj set = BinRelCore.O(R);
         String[] elements = set.toArray(new String[set.size()]);
         int n = elements.length;
+        final float angle = (float) (2 * Math.PI / n);
 
         ArrayList<Figure> listFigure = new ArrayList<>();
-        float angle = (float) (2 * Math.PI / n);
         for (int i = 1; i <= n; i++) {
-            float x = (float) (Math.cos(angle * i) * r);
-            float y = (float) (Math.sin(angle * i) * r);
+            float x = (float) (Math.cos(angleImage + angle * i) * r);
+            float y = (float) (Math.sin(angleImage + angle * i) * r);
             float x2 = X0 + x * 1.3f;
             float y2 = 5 + Y0 + y * 1.3f;
             x += X0;
@@ -53,8 +59,11 @@ public class BinRel_GraphicsGraphCore {
 
         for (Figure t : listFigure) {
             context.fillText(t.name, t.x2, t.y2);
-            context.fillOval(t.x, t.y, 4, 4);
+            context.strokeOval(t.x, t.y, 5, 5);
         }
+//        for (BinRelCore.BinEl t : R) {
+//            t.getX()
+//        }
         return context;
     }
 

@@ -145,6 +145,7 @@ public class MainWindowController implements Initializable {
     public static HashMap<String, SetObj> MapOfSets = new HashMap<>();
     private static byte comb_typeFunc;
     public static BinRel bufferedBinRel;
+    private GraphicsContext context;
     SimpleStringProperty string = new SimpleStringProperty();
 
     @Override
@@ -270,24 +271,55 @@ public class MainWindowController implements Initializable {
     }
 
     private void initializeBinRel() {
-        binRel_sliderForCanvas.valueProperty().addListener((observable, oldValue, newValue) -> {
-            binRel_sliderForCanvas.valueProperty().set(Math.round(binRel_sliderForCanvas.valueProperty().doubleValue()));
-            System.out.println(binRel_sliderForCanvas.getValue());
-        });
+        bufferedBinRel = new BinRel("R", "((a,b),(c,d),(e,f))");
+        binrel_paneCanvas.setStyle("-fx-background-color: #585858");
+        context = binrel_canvas.getGraphicsContext2D();
+        context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, bufferedBinRel);
 
+        binRel_sliderForCanvas.valueProperty().addListener((observable, oldValue, newValue) -> {
+            double value = binRel_sliderForCanvas.valueProperty().doubleValue();
+            binRel_sliderForCanvas.valueProperty().set(Math.round(value / 5) * 5);
+            BinRel_GraphicsGraphCore.setAngle((float) binRel_sliderForCanvas.getValue());
+            context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, bufferedBinRel);
+        });
+        // Reset angle
+        binRel_sliderForCanvas.setOnMouseClicked((event) -> {
+            if (event.getButton() == MouseButton.SECONDARY) {
+                binRel_sliderForCanvas.valueProperty().set(0);
+            }
+        });
+        // Scroll of slider
+        binRel_sliderForCanvas.setOnScroll((event) -> {
+            binRel_sliderForCanvas.valueProperty().set(binRel_sliderForCanvas.valueProperty().intValue() + event.getDeltaY() / 8);
+        });
+        // Zoom on Canvas
+        binrel_canvas.setOnScroll((event) -> {
+            double x = binrel_canvas.getScaleX();
+            double y = binrel_canvas.getScaleY();
+            if (x <= 0.8 && y <= 0.8) {
+                x = 0.8;
+                y = 0.8;
+            }
+            if (x >= 2 && y >= 2) {
+                x = 2;
+                y = 2;
+            }
+            binrel_canvas.setScaleX(x + event.getDeltaY() / 800);
+            binrel_canvas.setScaleY(y + event.getDeltaY() / 800);
+        });
+        // Reset zoom of canvas
+        binrel_canvas.setOnMouseClicked((event) -> {
+            if (event.getButton() == MouseButton.SECONDARY) {
+                binrel_canvas.setScaleX(1);
+                binrel_canvas.setScaleY(1);
+            }
+        });
         binrel_field.setOnKeyPressed((event) -> {
             if (event.getCode() == KeyCode.ENTER) {
                 binrel_getCommand();
                 // = SintaxBinRel.anLine.get(0);
             }
         });
-
-        bufferedBinRel = new BinRel("R", "((a,b),(c,d))");
-        binrel_paneCanvas.setStyle("-fx-background-color: #d0d0d0");
-        GraphicsContext context = binrel_canvas.getGraphicsContext2D();
-        context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, bufferedBinRel);
-        binrel_canvas.setScaleX(1);
-        binrel_canvas.setScaleY(1);
     }
 
     private void initializeComb() {

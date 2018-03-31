@@ -9,7 +9,7 @@ import setlab.cores.SetCore.SetObj;
 
 public class BinRelCore {
 
-    private static class BinEl {
+    public static class BinEl {
 
         String x, y;
 
