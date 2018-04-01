@@ -143,10 +143,10 @@ public class MainWindowController implements Initializable {
     private HBox comb_inputPane;
 
     public static HashMap<String, SetObj> MapOfSets = new HashMap<>();
-    private static byte comb_typeFunc;
     public static BinRel bufferedBinRel;
     private GraphicsContext context;
     SimpleStringProperty string = new SimpleStringProperty();
+    private static byte comb_typeFunc;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -160,7 +160,7 @@ public class MainWindowController implements Initializable {
     @FXML
     public void set_getCommand() {
         if (!set_field.getText().isEmpty()) {
-
+            set_area.setText(set_area.getText() + SintaxSet.get(set_field.getText()));
         }
     }
 
@@ -175,7 +175,7 @@ public class MainWindowController implements Initializable {
                 bufferedBinRel = new BinRel(line[0], line[1]);
                 GraphicsContext context = binrel_canvas.getGraphicsContext2D();
                 context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, bufferedBinRel);
-                binrel_area.setText(binrel_area.getText() + "\n" + SintaxBinRel.get(command, bufferedBinRel));
+                binrel_area.setText(binrel_area.getText() + SintaxBinRel.get(command, bufferedBinRel));
             }
         }
     }
@@ -190,41 +190,6 @@ public class MainWindowController implements Initializable {
                 String n, m;
             }
         }
-    }
-
-    @FXML
-    public void commandStart() {
-        string.set("start");
-    }
-
-    @FXML
-    public void commandYeah() {
-        String temp = string.getValue();
-        temp = temp + ";yeah";
-
-        string.set(temp);
-    }
-
-    @FXML
-    public void commandNope() {
-        String temp = string.getValue();
-        temp = temp + ";nope";
-
-        string.set(temp);
-    }
-
-    @FXML
-    public void commandBack() {
-        String temp = string.getValue();
-        temp = temp.substring(0, temp.length() - 5);
-
-        string.set(temp);
-        comb_imageView.setImage(null);
-
-        comb_fieldM.setText("");
-        comb_fieldN.setText("");
-        comb_fieldM.setPromptText("");
-        comb_fieldN.setPromptText("");
     }
 
     private void initializeSet() {
@@ -271,7 +236,7 @@ public class MainWindowController implements Initializable {
     }
 
     private void initializeBinRel() {
-        bufferedBinRel = new BinRel("R", "((a,b),(c,d),(e,f))");
+        bufferedBinRel = new BinRel("R", "((1,2),(3,4)");
         binrel_paneCanvas.setStyle("-fx-background-color: #585858");
         context = binrel_canvas.getGraphicsContext2D();
         context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, bufferedBinRel);
@@ -294,24 +259,14 @@ public class MainWindowController implements Initializable {
         });
         // Zoom on Canvas
         binrel_canvas.setOnScroll((event) -> {
-            double x = binrel_canvas.getScaleX();
-            double y = binrel_canvas.getScaleY();
-            if (x <= 0.8 && y <= 0.8) {
-                x = 0.8;
-                y = 0.8;
-            }
-            if (x >= 2 && y >= 2) {
-                x = 2;
-                y = 2;
-            }
-            binrel_canvas.setScaleX(x + event.getDeltaY() / 800);
-            binrel_canvas.setScaleY(y + event.getDeltaY() / 800);
+            BinRel_GraphicsGraphCore.changeZoom((float) (event.getDeltaY() / 40));
+            context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, bufferedBinRel);
         });
         // Reset zoom of canvas
         binrel_canvas.setOnMouseClicked((event) -> {
             if (event.getButton() == MouseButton.SECONDARY) {
-                binrel_canvas.setScaleX(1);
-                binrel_canvas.setScaleY(1);
+                BinRel_GraphicsGraphCore.resetZoom();
+                context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, bufferedBinRel);
             }
         });
         binrel_field.setOnKeyPressed((event) -> {
@@ -457,15 +412,38 @@ public class MainWindowController implements Initializable {
     }
 
     @FXML
-    public void manual(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/setlab/fxml/ManualWindow.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setTitle("SetLab Manual");
-        stage.setResizable(true);
-        stage.initModality(Modality.NONE);
-        stage.setScene(scene);
-        stage.show();
+    public void commandStart() {
+        string.set("start");
+    }
+
+    @FXML
+    public void commandYeah() {
+        String temp = string.getValue();
+        temp = temp + ";yeah";
+
+        string.set(temp);
+    }
+
+    @FXML
+    public void commandNope() {
+        String temp = string.getValue();
+        temp = temp + ";nope";
+
+        string.set(temp);
+    }
+
+    @FXML
+    public void commandBack() {
+        String temp = string.getValue();
+        temp = temp.substring(0, temp.length() - 5);
+
+        string.set(temp);
+        comb_imageView.setImage(null);
+
+        comb_fieldM.setText("");
+        comb_fieldN.setText("");
+        comb_fieldM.setPromptText("");
+        comb_fieldN.setPromptText("");
     }
 
     private void initializaImage() {
@@ -503,6 +481,18 @@ public class MainWindowController implements Initializable {
 
     private void initializeFields() {
         comb_btnEnter.disableProperty().bind(comb_fieldM.disableProperty().get() ? comb_fieldN.textProperty().isEmpty() : comb_fieldN.textProperty().isEmpty().or(comb_fieldM.textProperty().isEmpty()));
+    }
+
+    @FXML
+    public void manual(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/setlab/fxml/ManualWindow.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setTitle("SetLab Manual");
+        stage.setResizable(true);
+        stage.initModality(Modality.NONE);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML

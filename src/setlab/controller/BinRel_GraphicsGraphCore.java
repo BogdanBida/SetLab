@@ -34,6 +34,21 @@ public class BinRel_GraphicsGraphCore {
     public static void setAngle(float angle) {
         angleImage = (float) (angle*Math.PI / 180);
     }
+    
+    public static void changeZoom(float zoom) {
+        r += zoom;
+        if (r <= 25) {
+            r = 25;
+            return;
+        } else if (r >= 100) {
+           r = 100;
+           return;
+        }
+    }
+    
+    public static void resetZoom() {
+        r = 50;
+    }
 
     public static GraphicsContext getContext(Canvas c, BinRel R) {
         GraphicsContext context = c.getGraphicsContext2D();
@@ -50,8 +65,8 @@ public class BinRel_GraphicsGraphCore {
         for (int i = 1; i <= n; i++) {
             float x = (float) (Math.cos(angleImage + angle * i) * r);
             float y = (float) (Math.sin(angleImage + angle * i) * r);
-            float x2 = X0 + x * 1.3f;
-            float y2 = 5 + Y0 + y * 1.3f;
+            float x2 = -2 + X0 + x * 1.3f;
+            float y2 = 6 + Y0 + y * 1.3f;
             x += X0;
             y += Y0;
             listFigure.add(new Figure(elements[i - 1], x, y, x2, y2));
@@ -64,6 +79,10 @@ public class BinRel_GraphicsGraphCore {
 //        for (BinRelCore.BinEl t : R) {
 //            t.getX()
 //        }
+        context.fillText(Math.round(angleImage*180/Math.PI) + "°", 5, c.getHeight() - 5);
+        context.fillText("n = " + n, 5, 12);
+        
+        
         return context;
     }
 

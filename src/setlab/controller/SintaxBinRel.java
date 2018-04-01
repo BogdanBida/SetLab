@@ -27,6 +27,8 @@ public class SintaxBinRel {
         anLine.add(BinRelCore.AntiSimetry(R));
         anLine.add(BinRelCore.Asimetry(R));
         anLine.add(BinRelCore.Transity(R));
+        
+        res.append("\n");
         return res.toString();
     }
 }
