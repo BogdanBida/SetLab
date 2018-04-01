@@ -114,6 +114,8 @@ public class MainWindowController implements Initializable {
     @FXML
     private WebView comb_infoAcceptWebView;
 
+    private Image imageYeah;
+    private Image imageNope;
     private Image imageFormula_a_mn;
     private Image imageFormula_amn;
     private Image imageFormula_c_mn;
@@ -144,6 +146,7 @@ public class MainWindowController implements Initializable {
 
     public static HashMap<String, SetObj> MapOfSets = new HashMap<>();
     public static BinRel bufferedBinRel;
+    private HashMap<Integer, ImageView> MapOfImageView = new HashMap<>();
     private GraphicsContext context;
     SimpleStringProperty string = new SimpleStringProperty();
     private static byte comb_typeFunc;
@@ -155,6 +158,7 @@ public class MainWindowController implements Initializable {
         initializeComb();
         initializaImage();
         initializeFields();
+        initializeMapOfImageView();
     }
 
     @FXML
@@ -176,6 +180,9 @@ public class MainWindowController implements Initializable {
                 GraphicsContext context = binrel_canvas.getGraphicsContext2D();
                 context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, bufferedBinRel);
                 binrel_area.setText(binrel_area.getText() + SintaxBinRel.get(command, bufferedBinRel));
+                for (int i = 0; i < SintaxBinRel.anLine.size(); i++) {
+                    setImageToTable(i, SintaxBinRel.anLine.get(i));
+                }
             }
         }
     }
@@ -453,6 +460,9 @@ public class MainWindowController implements Initializable {
         imageFormula_cmn = new Image(SetLab.class.getResourceAsStream("fxml/icon/formula_cmn.png"));
         imageFormula_p = new Image(SetLab.class.getResourceAsStream("fxml/icon/formula_p.png"));
         imageFormula_pk = new Image(SetLab.class.getResourceAsStream("fxml/icon/formula_pk.png"));
+        
+        imageYeah = new Image(SetLab.class.getResourceAsStream("fxml/icon/accept.png"));
+        imageNope = new Image(SetLab.class.getResourceAsStream("fxml/icon/dismiss.png"));
     }
 
     private void initializeFieldMask() {
@@ -482,7 +492,24 @@ public class MainWindowController implements Initializable {
     private void initializeFields() {
         comb_btnEnter.disableProperty().bind(comb_fieldM.disableProperty().get() ? comb_fieldN.textProperty().isEmpty() : comb_fieldN.textProperty().isEmpty().or(comb_fieldM.textProperty().isEmpty()));
     }
+    
+    private void initializeMapOfImageView(){
+        MapOfImageView.put(0, ImageViewReflex);
+        MapOfImageView.put(1, ImageViewAntiReflex);
+        MapOfImageView.put(2, ImageViewBidirect);
+        MapOfImageView.put(3, ImageViewAntiBidirect);
+        MapOfImageView.put(4, ImageViewAsBidirect);
+        MapOfImageView.put(5, ImageViewTransitive);
+    }
 
+    private void setImageToTable(int i, boolean b){
+        if (b) {
+            MapOfImageView.get(i).setImage(imageYeah);
+        } else {
+            MapOfImageView.get(i).setImage(imageNope);
+        }
+    }
+    
     @FXML
     public void manual(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/setlab/fxml/ManualWindow.fxml"));
