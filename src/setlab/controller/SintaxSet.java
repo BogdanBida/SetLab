@@ -6,6 +6,9 @@ public class SintaxSet {
     public static String get(String command) {
         StringBuilder res = new StringBuilder(">");
         
+        //if create
+        res.append(getNewSet(command));
+        
         res.append("\n");
         return res.toString();
     }

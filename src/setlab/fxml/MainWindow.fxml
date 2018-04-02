@@ -170,7 +170,7 @@
                            <children>
                                       <StackPane fx:id="binrel_paneCanvas" layoutX="455.0" layoutY="223.0" prefHeight="150.0" prefWidth="215.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
                                           <children>
-                                              <Canvas fx:id="binrel_canvas" height="150.0" width="215.0">
+                                              <Canvas fx:id="binrel_canvas" height="160.0" width="215.0">
                                                   <StackPane.margin>
                                                       <Insets />
                                                   </StackPane.margin>

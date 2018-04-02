@@ -67,9 +67,7 @@ public class BinRelCore {
             }
             return true;
         }
-        
-        
-        
+
     }
 
     public static class BinRel extends HashSet<BinEl> {
@@ -118,22 +116,6 @@ public class BinRelCore {
             this.name = newName;
         }
 
-        @Override
-        public String toString() {
-            StringBuilder res = new StringBuilder(this.name + " = {");
-            Iterator t = this.iterator();
-            if (!t.hasNext()) {
-                return "{}";
-            }
-            for (;;) {
-                res.append(t.next());
-                if (!t.hasNext()) {
-                    return res.append("}").toString();
-                }
-                res.append(",").append(" ");
-            }
-        }
-        
         public String getInner() {
             StringBuilder res = new StringBuilder("{");
             Iterator t = this.iterator();
@@ -148,7 +130,26 @@ public class BinRelCore {
                 res.append(",").append(" ");
             }
         }
-        
+
+        @Override
+        public String toString() {
+            StringBuilder res = new StringBuilder(this.name + " = {");
+            Iterator t = this.iterator();
+            if (this.isEmpty()) {
+                return this.name + " = Ø";
+            }
+            if (!t.hasNext()) {
+                return "{}";
+            }
+            for (;;) {
+                res.append(t.next());
+                if (!t.hasNext()) {
+                    return res.append("}").toString();
+                }
+                res.append(",").append(" ");
+            }
+        }
+
         @Override
         public boolean equals(Object obj) {
             HashSet<BinEl> a = (HashSet) this;
@@ -159,14 +160,12 @@ public class BinRelCore {
             }
             while (it.hasNext()) {
                 if (!b.contains(it.next())) {
-                    System.out.println("not contain");
                     return false;
                 }
             }
             return true;
         }
-        
-        
+
     }
 
     public static SetObj D(BinRel r) {
@@ -209,9 +208,20 @@ public class BinRelCore {
         return res;
     }
 
-    public static BinRel Composer(BinRel r) {
-        BinRel res = new BinRel(r.name + "∘" + r.name);
-        res.addAll(r);
+    public static BinRel Composer(BinRel a, BinRel b) {
+        BinRel res = new BinRel(a.name + "∘" + b.name);
+        Iterator<BinEl> ia, ib;
+        ia = a.iterator();
+        while (ia.hasNext()) {
+            ib = b.iterator();
+            BinEl elA = ia.next();
+            while (ib.hasNext()) {
+                BinEl elB = ib.next();
+                if (elA.y.equals(elB.x)) {
+                    res.add(new BinEl(elA.x, elB.y));
+                }
+            }
+        }
         return res;
     }
 
@@ -226,7 +236,6 @@ public class BinRelCore {
 
     public static boolean Simetry(BinRel r) {
         BinRel b = Reverse(r);
-        System.out.println(r.toString() + " --- " + b.toString());
         return r.equals(b);
 
     }
@@ -240,7 +249,10 @@ public class BinRelCore {
     }
 
     public static boolean Transity(BinRel r) {
-
+        BinRel composer = Composer(r, r);
+        if (composer.isEmpty() || isSubBinRel(composer, r)) {
+            return true;
+        }
         return false;
     }
 

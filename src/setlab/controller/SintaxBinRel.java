@@ -12,14 +12,14 @@ public class SintaxBinRel {
     public static boolean[] internals = new boolean[6];
 
     public static String get(String command, BinRel R) {
-        StringBuilder res = new StringBuilder("\t");
+        StringBuilder res = new StringBuilder("\n\t");
         res.append(R.toString()).append("\n").append("\t");
         res.append(BinRelCore.D(R).toString()).append("\n").append("\t");
         res.append(BinRelCore.E(R).toString()).append("\n").append("\t");
         res.append(BinRelCore.O(R).toString()).append("\n").append("\t");
         res.append(BinRelCore.Ident(R).toString()).append("\n").append("\t");
         res.append(BinRelCore.Reverse(R).toString()).append("\n").append("\t");
-        res.append(BinRelCore.Composer(R).toString()).append("\n");
+        res.append(BinRelCore.Composer(R,R).toString()).append("\n");
 
         internals[0] = BinRelCore.Refelex(R); 
         internals[1] = BinRelCore.AntiReflex(R);

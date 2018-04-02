@@ -13,8 +13,8 @@ import setlab.cores.SetCore.SetObj;
 public class BinRel_GraphicsGraphCore {
 
     private final static int X0 = 105;
-    private final static int Y0 = 70;
-    private static int r = 50;
+    private final static int Y0 = 78;
+    private static int r = 48;
     public static float angleImage = 0f;
 
     // --------------- class of Elements ---
@@ -48,12 +48,12 @@ public class BinRel_GraphicsGraphCore {
     }
 
     public static void resetZoom() {
-        r = 50;
+        r = 48;
     }
 
     public static GraphicsContext getContext(Canvas c, BinRel R) {
         GraphicsContext context = c.getGraphicsContext2D();
-        context.clearRect(0, 0, 215, 150);
+        context.clearRect(0, 0, 215, 160);
         context.setFill(Paint.valueOf("#6495ED"));
         context.setStroke(Paint.valueOf("#1E90FF"));
 
@@ -97,7 +97,7 @@ public class BinRel_GraphicsGraphCore {
         }
 
         context.fillText(Math.round(angleImage * 180 / Math.PI) + "°", 5, c.getHeight() - 5);
-        context.fillText("n = " + n, 5, 12);
+        context.fillText("n = " + n, 5, 14);
 
         return context;
     }
