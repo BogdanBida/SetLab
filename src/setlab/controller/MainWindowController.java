@@ -253,7 +253,6 @@ public class MainWindowController implements Initializable {
     }
     
     private void initializeBinRel() {
-        System.out.println(BinRelCore.Intersect(new BinRel("R", "((1,2),(2,3))"), new BinRel("A","((2,3),(4,5))")).toString());
         bufferedBinRel = new BinRel("R", "((1,2),(3,4)");
         binrel_paneCanvas.setStyle("-fx-background-color: #585858");
         context = binrel_canvas.getGraphicsContext2D();

@@ -3,6 +3,7 @@ package setlab.cores;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import setlab.cores.SetCore.SetObj;
@@ -38,6 +39,37 @@ public class BinRelCore {
             return "(" + x + "," + y + ")";
         }
 
+        @Override
+        public int hashCode() {
+            int hash = 7;
+            hash = 67 * hash + Objects.hashCode(this.x);
+            hash = 67 * hash + Objects.hashCode(this.y);
+            return hash;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null) {
+                return false;
+            }
+            if (getClass() != obj.getClass()) {
+                return false;
+            }
+            final BinEl other = (BinEl) obj;
+            if (!Objects.equals(this.x, other.x)) {
+                return false;
+            }
+            if (!Objects.equals(this.y, other.y)) {
+                return false;
+            }
+            return true;
+        }
+        
+        
+        
     }
 
     public static class BinRel extends HashSet<BinEl> {
@@ -101,7 +133,7 @@ public class BinRelCore {
                 res.append(",").append(" ");
             }
         }
-
+        
         public String getInner() {
             StringBuilder res = new StringBuilder("{");
             Iterator t = this.iterator();
@@ -116,6 +148,25 @@ public class BinRelCore {
                 res.append(",").append(" ");
             }
         }
+        
+        @Override
+        public boolean equals(Object obj) {
+            HashSet<BinEl> a = (HashSet) this;
+            HashSet<BinEl> b = (HashSet) obj;
+            Iterator<BinEl> it = a.iterator();
+            if (a.size() != b.size()) {
+                return false;
+            }
+            while (it.hasNext()) {
+                if (!b.contains(it.next())) {
+                    System.out.println("not contain");
+                    return false;
+                }
+            }
+            return true;
+        }
+        
+        
     }
 
     public static SetObj D(BinRel r) {
@@ -174,11 +225,10 @@ public class BinRelCore {
     }
 
     public static boolean Simetry(BinRel r) {
-        HashSet<String> a = (HashSet) r;
-        HashSet<String> b = (HashSet) Reverse(r);
-        System.out.println(a.toString() + " --- " + b.toString());
-        return a.equals(b);
-        
+        BinRel b = Reverse(r);
+        System.out.println(r.toString() + " --- " + b.toString());
+        return r.equals(b);
+
     }
 
     public static boolean AntiSimetry(BinRel r) {
