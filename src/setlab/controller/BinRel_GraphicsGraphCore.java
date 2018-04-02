@@ -6,6 +6,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Paint;
 import setlab.cores.BinRelCore;
+import setlab.cores.BinRelCore.BinEl;
 import setlab.cores.BinRelCore.BinRel;
 import setlab.cores.SetCore.SetObj;
 
@@ -30,22 +31,22 @@ public class BinRel_GraphicsGraphCore {
             this.y2 = y2;
         }
     }
-    
+
     public static void setAngle(float angle) {
-        angleImage = (float) (angle*Math.PI / 180);
+        angleImage = (float) (angle * Math.PI / 180);
     }
-    
+
     public static void changeZoom(float zoom) {
         r += zoom;
         if (r <= 25) {
             r = 25;
             return;
         } else if (r >= 100) {
-           r = 100;
-           return;
+            r = 100;
+            return;
         }
     }
-    
+
     public static void resetZoom() {
         r = 50;
     }
@@ -65,24 +66,39 @@ public class BinRel_GraphicsGraphCore {
         for (int i = 1; i <= n; i++) {
             float x = (float) (Math.cos(angleImage + angle * i) * r);
             float y = (float) (Math.sin(angleImage + angle * i) * r);
-            float x2 = -2 + X0 + x * 1.3f;
-            float y2 = 6 + Y0 + y * 1.3f;
+            float x2 = -2 + X0 + x * 1.4f;
+            float y2 = 6 + Y0 + y * 1.4f;
             x += X0;
             y += Y0;
             listFigure.add(new Figure(elements[i - 1], x, y, x2, y2));
         }
 
+        HashMap<String, Figure> mapFigure = new HashMap<>();
         for (Figure t : listFigure) {
             context.fillText(t.name, t.x2, t.y2);
-            context.strokeOval(t.x, t.y, 5, 5);
+            context.strokeOval(t.x, t.y, 6, 6);
+            
+            mapFigure.put(t.name, t);
         }
-//        for (BinRelCore.BinEl t : R) {
-//            t.getX()
-//        }
-        context.fillText(Math.round(angleImage*180/Math.PI) + "°", 5, c.getHeight() - 5);
+
+        BinEl[] listBinEl = R.toArray(new BinEl[R.size()]);
+
+        for (int i = 0; i < R.size(); i++) {
+            BinEl t = listBinEl[i];
+            Figure a = mapFigure.get(t.getX());
+            Figure b = mapFigure.get(t.getY());
+            if (a.equals(b)) {
+                context.setFill(Paint.valueOf("#75A6FE"));
+                context.strokeOval(a.x - 3, a.y - 3, 12, 12);
+                context.setFill(Paint.valueOf("#1E90FF"));
+            } else {
+                context.strokeLine(a.x + 3, a.y + 3, b.x + 3, b.y + 3);
+            }
+        }
+
+        context.fillText(Math.round(angleImage * 180 / Math.PI) + "°", 5, c.getHeight() - 5);
         context.fillText("n = " + n, 5, 12);
-        
-        
+
         return context;
     }
 

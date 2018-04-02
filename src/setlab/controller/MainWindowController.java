@@ -34,86 +34,87 @@ import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import setlab.SetLab;
+import setlab.cores.BinRelCore;
 import setlab.cores.BinRelCore.BinRel;
 import setlab.cores.SetCore.SetObj;
 
 public class MainWindowController implements Initializable {
-
+    
     @FXML
     private Tab tab_set;
-
+    
     @FXML
     private ListView<?> set_listView;
-
+    
     @FXML
     private TextArea set_area;
-
+    
     @FXML
     private TextField set_field;
-
+    
     @FXML
     private Button set_op_union;
-
+    
     @FXML
     private Button set_op_inter;
-
+    
     @FXML
     private Button set_op_diff;
-
+    
     @FXML
     private Button set_op_symmdiff;
-
+    
     @FXML
     private Tab tab_binRel;
-
+    
     @FXML
     private TextArea binrel_area;
-
+    
     @FXML
     private TextField binrel_field;
-
+    
     @FXML
     private Button analisis;
-
+    
     @FXML
     private Canvas binrel_canvas;
-
+    
     @FXML
     private StackPane binrel_paneCanvas;
-
+    
     @FXML
     private Slider binRel_sliderForCanvas;
-
+    
     @FXML
     private ImageView ImageViewReflex;
-
+    
     @FXML
     private ImageView ImageViewAntiReflex;
-
+    
     @FXML
     private ImageView ImageViewBidirect;
-
+    
     @FXML
     private ImageView ImageViewAntiBidirect;
-
+    
     @FXML
     private ImageView ImageViewAsBidirect;
-
+    
     @FXML
     private ImageView ImageViewTransitive;
-
+    
     @FXML
     private Tab tab_comb;
-
+    
     @FXML
     private WebView comb_webView;
-
+    
     @FXML
     private ImageView comb_imageView;
-
+    
     @FXML
     private WebView comb_infoAcceptWebView;
-
+    
     private Image imageYeah;
     private Image imageNope;
     private Image imageFormula_a_mn;
@@ -122,35 +123,35 @@ public class MainWindowController implements Initializable {
     private Image imageFormula_cmn;
     private Image imageFormula_p;
     private Image imageFormula_pk;
-
+    
     @FXML
     private Button comb_infoAccept_noBtn;
-
+    
     @FXML
     private Button comb_infoAccept_yesBtn;
-
+    
     @FXML
     private Button comb_infoAccept_backBtn;
-
+    
     @FXML
     private TextField comb_fieldN;
-
+    
     @FXML
     private TextField comb_fieldM;
-
+    
     @FXML
     private Button comb_btnEnter;
-
+    
     @FXML
     private HBox comb_inputPane;
-
+    
     public static HashMap<String, SetObj> MapOfSets = new HashMap<>();
     public static BinRel bufferedBinRel;
     private HashMap<Integer, ImageView> MapOfImageView = new HashMap<>();
     private GraphicsContext context;
     SimpleStringProperty string = new SimpleStringProperty();
     private static byte comb_typeFunc;
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         initializeSet();
@@ -160,33 +161,42 @@ public class MainWindowController implements Initializable {
         initializeFields();
         initializeMapOfImageView();
     }
-
+    
     @FXML
     public void set_getCommand() {
         if (!set_field.getText().isEmpty()) {
             set_area.setText(set_area.getText() + SintaxSet.get(set_field.getText()));
         }
     }
-
+    
     @FXML
     public void binrel_getCommand() {
         if (!binrel_field.getText().isEmpty()) {
             String command = binrel_field.getText();
             if (command.equals("clear")) {
                 binrel_area.setText("");
+            } else if (command.equals("penta")) {
+                bufferedBinRel = new BinRel("Penta", "((1,4),(2,5),(3,1),(4,2),(5,3))");
+                GraphicsContext context = binrel_canvas.getGraphicsContext2D();
+                context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, bufferedBinRel);
+            } else if (command.equals("madness")) {
+                bufferedBinRel = new BinRel("padness", "((1,1)(1,2),(1,3),(1,4),(1,5),(1,6),(2,2),(2,3),(2,4),(2,5),(2,6),(3,3),(3,4),(3,5),(3,6),(4,4),(4,5),(4,6),(5,5),(5,6),(6,6),(6,7),(7,7),(7,5),(7,4),(7,3),(7,2),(7,1),(8,7),(8,6),(8,5),(8,4),(8,3),(8,2),(8,1),(9,8),(9,7),(9,6),(9,5),(9,4),(9,3),(9,2),(9,1),(10,9),(10,8),(10,7),(10,6),(10,5),(10,4),(10,3),(10,2),(10,1))");
+                GraphicsContext context = binrel_canvas.getGraphicsContext2D();
+                context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, bufferedBinRel);
             } else {
                 String[] line = command.replaceAll(" ", "").split("=");
                 bufferedBinRel = new BinRel(line[0], line[1]);
                 GraphicsContext context = binrel_canvas.getGraphicsContext2D();
                 context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, bufferedBinRel);
-                binrel_area.setText(binrel_area.getText() + SintaxBinRel.get(command, bufferedBinRel));
-                for (int i = 0; i < SintaxBinRel.anLine.size(); i++) {
-                    setImageToTable(i, SintaxBinRel.anLine.get(i));
+                binrel_area.setText(SintaxBinRel.get(command, bufferedBinRel));
+                
+                for (int i = 0; i < SintaxBinRel.internals.length; i++) {
+                    setImageToTable(i, SintaxBinRel.internals[i]);
                 }
             }
         }
     }
-
+    
     @FXML
     public void comb_getCommand() {
         if (true) {
@@ -198,7 +208,7 @@ public class MainWindowController implements Initializable {
             }
         }
     }
-
+    
     private void initializeSet() {
         set_op_union.setOnMouseClicked((event) -> {
             if (event.getButton() == MouseButton.PRIMARY) {
@@ -241,13 +251,14 @@ public class MainWindowController implements Initializable {
             }
         });
     }
-
+    
     private void initializeBinRel() {
+        System.out.println(BinRelCore.Intersect(new BinRel("R", "((1,2),(2,3))"), new BinRel("A","((2,3),(4,5))")).toString());
         bufferedBinRel = new BinRel("R", "((1,2),(3,4)");
         binrel_paneCanvas.setStyle("-fx-background-color: #585858");
         context = binrel_canvas.getGraphicsContext2D();
         context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, bufferedBinRel);
-
+        
         binRel_sliderForCanvas.valueProperty().addListener((observable, oldValue, newValue) -> {
             double value = binRel_sliderForCanvas.valueProperty().doubleValue();
             binRel_sliderForCanvas.valueProperty().set(Math.round(value / 5) * 5);
@@ -283,19 +294,19 @@ public class MainWindowController implements Initializable {
             }
         });
     }
-
+    
     private void initializeComb() {
         BooleanProperty listener = new SimpleBooleanProperty();
         BooleanProperty listenerBack = new SimpleBooleanProperty();
-
+        
         comb_infoAccept_noBtn.disableProperty().bind(listener);
         comb_infoAccept_yesBtn.disableProperty().bind(listener);
         comb_inputPane.disableProperty().bind(listener.not());
         comb_infoAccept_backBtn.disableProperty().bind(listenerBack);
-
+        
         string.addListener((observable, oldValue, newValue) -> {
             String massage = "";
-
+            
             switch (string.getValue()) {
                 case "start":
                     massage = "Важен ли порядок расположения элементов в КК?";
@@ -406,53 +417,53 @@ public class MainWindowController implements Initializable {
             initializeFields();
             String html = "<html><br><br><center>" + massage + "</center></html>";
             comb_infoAcceptWebView.getEngine().loadContent(html);
-
+            
             String mainHtml = "<html></html>";
             comb_webView.getEngine().loadContent(mainHtml);
-
+            
         });
-
+        
         comb_webView.getEngine().setUserStyleSheetLocation("data:,body { font: 16px Candara; }");
         comb_infoAcceptWebView.getEngine().setUserStyleSheetLocation("data:,body { font: 16px Candara; }");
         comb_infoAcceptWebView.setContextMenuEnabled(false);
         comb_webView.setContextMenuEnabled(false);
     }
-
+    
     @FXML
     public void commandStart() {
         string.set("start");
     }
-
+    
     @FXML
     public void commandYeah() {
         String temp = string.getValue();
         temp = temp + ";yeah";
-
+        
         string.set(temp);
     }
-
+    
     @FXML
     public void commandNope() {
         String temp = string.getValue();
         temp = temp + ";nope";
-
+        
         string.set(temp);
     }
-
+    
     @FXML
     public void commandBack() {
         String temp = string.getValue();
         temp = temp.substring(0, temp.length() - 5);
-
+        
         string.set(temp);
         comb_imageView.setImage(null);
-
+        
         comb_fieldM.setText("");
         comb_fieldN.setText("");
         comb_fieldM.setPromptText("");
         comb_fieldN.setPromptText("");
     }
-
+    
     private void initializaImage() {
         imageFormula_a_mn = new Image(SetLab.class.getResourceAsStream("fxml/icon/formula_a_mn.png"));
         imageFormula_amn = new Image(SetLab.class.getResourceAsStream("fxml/icon/formula_amn.png"));
@@ -464,10 +475,10 @@ public class MainWindowController implements Initializable {
         imageYeah = new Image(SetLab.class.getResourceAsStream("fxml/icon/accept.png"));
         imageNope = new Image(SetLab.class.getResourceAsStream("fxml/icon/dismiss.png"));
     }
-
+    
     private void initializeFieldMask() {
         Pattern patternForNumber = Pattern.compile("[\\d]{0,}");
-
+        
         comb_fieldM.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.isEmpty()) {
                 if (!Pattern.compile("[\\d]{0,}").matcher(newValue).matches()) {
@@ -475,7 +486,7 @@ public class MainWindowController implements Initializable {
                 }
             }
         });
-
+        
         comb_fieldN.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.isEmpty()) {
                 if (comb_fieldN.getPromptText() != "k" && !Pattern.compile("[\\d]{0,}").matcher(newValue).matches()) {
@@ -486,14 +497,14 @@ public class MainWindowController implements Initializable {
                 }
             }
         });
-
+        
     }
-
+    
     private void initializeFields() {
         comb_btnEnter.disableProperty().bind(comb_fieldM.disableProperty().get() ? comb_fieldN.textProperty().isEmpty() : comb_fieldN.textProperty().isEmpty().or(comb_fieldM.textProperty().isEmpty()));
     }
     
-    private void initializeMapOfImageView(){
+    private void initializeMapOfImageView() {
         MapOfImageView.put(0, ImageViewReflex);
         MapOfImageView.put(1, ImageViewAntiReflex);
         MapOfImageView.put(2, ImageViewBidirect);
@@ -501,8 +512,8 @@ public class MainWindowController implements Initializable {
         MapOfImageView.put(4, ImageViewAsBidirect);
         MapOfImageView.put(5, ImageViewTransitive);
     }
-
-    private void setImageToTable(int i, boolean b){
+    
+    private void setImageToTable(int i, boolean b) {
         if (b) {
             MapOfImageView.get(i).setImage(imageYeah);
         } else {
@@ -521,7 +532,7 @@ public class MainWindowController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
+    
     @FXML
     public void aboutProgram(ActionEvent actionEvent) {
         Alert alert = new Alert(AlertType.INFORMATION);
@@ -533,10 +544,10 @@ public class MainWindowController implements Initializable {
                 + "\t(bogdanbida.ua@gmail.com),(edikbelousov@gmail.com)\n"
                 + "\tSetLab v.0.1 (demo)\n"
                 + "\t29.3.2018");
-
+        
         alert.showAndWait();
     }
-
+    
     @FXML
     public void closeProgram(ActionEvent actionEvent) {
         System.exit(0);

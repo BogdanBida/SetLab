@@ -141,8 +141,9 @@ public class BinRelCore {
         return Res;
     }
 
-    public static BinRel Ident(SetObj a) {
-        BinRel res = new BinRel("Ia");
+    public static BinRel Ident(BinRel r) {
+        SetObj a = O(r);
+        BinRel res = new BinRel("I_a");
         a.forEach((xy) -> {
             res.add(new BinEl(xy, xy));
         });
@@ -150,7 +151,7 @@ public class BinRelCore {
     }
 
     public static BinRel Reverse(BinRel r) {
-        BinRel res = new BinRel(r.name + "^-1"); // add teg of stage
+        BinRel res = new BinRel(r.name + "^−1"); // add teg of stage
         r.forEach((b) -> {
             res.add(new BinEl(b.getY(), b.getX()));
         });
@@ -158,21 +159,26 @@ public class BinRelCore {
     }
 
     public static BinRel Composer(BinRel r) {
-        return new BinRel(r.name + "o" + r.name);
+        BinRel res = new BinRel(r.name + "∘" + r.name);
+        res.addAll(r);
+        return res;
     }
 
     // ------------------------------------------------- INTERNALS ---
     public static boolean Refelex(BinRel r) {
-        return isSubBinRel(Ident(O(r)), r);
+        return isSubBinRel(Ident(r), r);
     }
 
-    public static boolean AntiRefelex(BinRel r) {
-        return Intersect(Ident(O(r)), r).isEmpty();
+    public static boolean AntiReflex(BinRel r) {
+        return Intersect(Ident(r), r).isEmpty();
     }
 
     public static boolean Simetry(BinRel r) {
-        return r.equals(Reverse(r));
-
+        HashSet<String> a = (HashSet) r;
+        HashSet<String> b = (HashSet) Reverse(r);
+        System.out.println(a.toString() + " --- " + b.toString());
+        return a.equals(b);
+        
     }
 
     public static boolean AntiSimetry(BinRel r) {
