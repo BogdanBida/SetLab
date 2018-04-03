@@ -1,24 +1,20 @@
 package setlab.cores;
 
-import java.io.File;
-import java.io.IOException;
 import java.math.BigInteger;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import org.w3c.dom.DOMException;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.xml.sax.SAXException;
 
 public class CombCore {
 
+    static private long time = 0;
+
     private static BigInteger Fact(int n) {
         BigInteger res = BigInteger.ONE;
+        long start = System.currentTimeMillis();
+
         for (int i = 1; i <= n; ++i) {
             res = res.multiply(BigInteger.valueOf(i));
         }
+
+        time += System.currentTimeMillis() - start;
         return res;
     }
 
@@ -49,6 +45,16 @@ public class CombCore {
 
     public static BigInteger C_mn(int n, int m) {
         return Fact(n + m - 1).divide(new BigInteger(String.valueOf(m)).multiply(new BigInteger(String.valueOf(n - 1))));
+    }
+
+    public static String getTime() {
+        long t = time;
+        time = 0;
+        if (t > 0) {
+            return "<br>&nbsp;&nbsp;&nbsp;&nbsp;Time: " + t + " ms";
+        } else {
+            return "";
+        }
     }
 
 }
