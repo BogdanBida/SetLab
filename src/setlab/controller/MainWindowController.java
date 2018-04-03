@@ -2,6 +2,7 @@ package setlab.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
@@ -201,13 +202,20 @@ public class MainWindowController implements Initializable {
 
     @FXML
     public void comb_getCommand() {
-        if (true) {
-            if (false) {
-                String[] k;
-                String m;
-            } else {
-                String n, m;
-            }
+        
+        int[] n = Arrays.stream(comb_fieldN.getText().split(",")).mapToInt(Integer::parseInt).toArray();
+        int m = "".equals(comb_fieldM.getText())? 0:Integer.valueOf(comb_fieldM.getText());
+        switch (comb_typeFunc) {
+            case 1:
+                m = 0;
+                comb_webView.getEngine().loadContent(CombSolutionCore.get(comb_typeFunc, n, m));
+                break;
+            case 2:
+                comb_webView.getEngine().loadContent(CombSolutionCore.get(comb_typeFunc, n, m));
+                break;
+            default:
+                comb_webView.getEngine().loadContent(CombSolutionCore.get(comb_typeFunc, n, m));
+                break;
         }
     }
 
@@ -255,7 +263,7 @@ public class MainWindowController implements Initializable {
     }
 
     private void initializeBinRel() {
-        bufferedBinRel = new BinRel("R", "((1,2),(3,4),(5,6),(7,8),(9,10))");
+        bufferedBinRel = new BinRel("R", "{}");
         binrel_paneCanvas.setStyle("-fx-background-color: #585858");
         context = binrel_canvas.getGraphicsContext2D();
         context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, bufferedBinRel);
@@ -289,6 +297,7 @@ public class MainWindowController implements Initializable {
                 context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, bufferedBinRel);
             }
         });
+        //
         binrel_field.setOnKeyPressed((event) -> {
             if (event.getCode() == KeyCode.ENTER) {
                 binrel_getCommand();
@@ -335,6 +344,7 @@ public class MainWindowController implements Initializable {
                     comb_fieldM.setPromptText("");
                     initializeFieldMask();
                     comb_fieldM.setDisable(true);
+
                     comb_typeFunc = 1;
                     break;
                 case "start;yeah;yeah;yeah":
@@ -421,7 +431,12 @@ public class MainWindowController implements Initializable {
 
             String mainHtml = "<html></html>";
             comb_webView.getEngine().loadContent(mainHtml);
+        });
 
+        comb_btnEnter.setOnMouseClicked((event) -> {
+            if (event.getButton() == MouseButton.PRIMARY) {
+                comb_getCommand();
+            }
         });
 
         comb_webView.getEngine().setUserStyleSheetLocation("data:,body { font: 16px Candara; }");
