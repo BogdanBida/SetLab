@@ -4,9 +4,12 @@ import setlab.cores.CombCore;
 
 public class CombSolutionCore {
 
+    private static StringBuilder res = new StringBuilder("<html>");
+    static {
+        res.append("");
+    }
     public static String get(int idFunction, int[] n, int m) {
-        StringBuilder res = new StringBuilder("<html>");
-        res.append("&nbsp;&nbsp;&nbsp;&nbsp;");
+        res.append("&nbsp;&nbsp;>> ");
         switch (idFunction) {
             case 1:
                 res.append(P(n[0]));
@@ -33,7 +36,7 @@ public class CombSolutionCore {
                 res.append(CombCore.getTime());
                 break;
         }
-        res.append("</html>");
+        res.append("<br><br>");
         return res.toString();
     }
 
@@ -50,7 +53,7 @@ public class CombSolutionCore {
     }
 
     public static String A_mn(int n, int m) {
-        return "A_mn";
+        return "_A<sub>m</sub><sup>n</sup>";
     }
 
     public static String Cmn(int n, int m) {

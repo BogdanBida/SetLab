@@ -202,20 +202,24 @@ public class MainWindowController implements Initializable {
 
     @FXML
     public void comb_getCommand() {
-        
-        int[] n = Arrays.stream(comb_fieldN.getText().split(",")).mapToInt(Integer::parseInt).toArray();
-        int m = "".equals(comb_fieldM.getText())? 0:Integer.valueOf(comb_fieldM.getText());
-        switch (comb_typeFunc) {
-            case 1:
-                m = 0;
-                comb_webView.getEngine().loadContent(CombSolutionCore.get(comb_typeFunc, n, m));
-                break;
-            case 2:
-                comb_webView.getEngine().loadContent(CombSolutionCore.get(comb_typeFunc, n, m));
-                break;
-            default:
-                comb_webView.getEngine().loadContent(CombSolutionCore.get(comb_typeFunc, n, m));
-                break;
+        if (comb_btnEnter.isDisable()) {
+            return;
+        } else {
+            int[] n = Arrays.stream(comb_fieldN.getText().split(",")).mapToInt(Integer::parseInt).toArray();
+            int m = "".equals(comb_fieldM.getText()) ? 0 : Integer.valueOf(comb_fieldM.getText());
+            switch (comb_typeFunc) {
+                case 1:
+                    m = 0;
+                    comb_webView.getEngine().loadContent(CombSolutionCore.get(comb_typeFunc, n, m) + "</html>");
+                    break;
+                case 2:
+                    comb_webView.getEngine().loadContent(CombSolutionCore.get(comb_typeFunc, n, m) + "</html>");
+                    break;
+                default:
+                    comb_webView.getEngine().loadContent(CombSolutionCore.get(comb_typeFunc, n, m) + "</html>");
+                    break;
+            }
+            // fall text
         }
     }
 
@@ -428,9 +432,6 @@ public class MainWindowController implements Initializable {
             initializeFields();
             String html = "<html><br><br><center>" + massage + "</center></html>";
             comb_infoAcceptWebView.getEngine().loadContent(html);
-
-            String mainHtml = "<html></html>";
-            comb_webView.getEngine().loadContent(mainHtml);
         });
 
         comb_btnEnter.setOnMouseClicked((event) -> {
@@ -438,9 +439,19 @@ public class MainWindowController implements Initializable {
                 comb_getCommand();
             }
         });
+        comb_fieldN.setOnKeyPressed((event) -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                comb_getCommand();
+            }
+        });
+        comb_fieldM.setOnKeyPressed((event) -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                comb_getCommand();
+            }
+        });
 
-        comb_webView.getEngine().setUserStyleSheetLocation("data:,body { font: 16px Candara; }");
-        comb_infoAcceptWebView.getEngine().setUserStyleSheetLocation("data:,body { font: 16px Candara; }");
+        comb_webView.getEngine().setUserStyleSheetLocation("data:,body { font: 16px Arial; }");
+        comb_infoAcceptWebView.getEngine().setUserStyleSheetLocation("data:,body { font: 16px Arial; }");
         comb_infoAcceptWebView.setContextMenuEnabled(false);
         comb_webView.setContextMenuEnabled(false);
     }
