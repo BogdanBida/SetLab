@@ -30,6 +30,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCharacterCombination;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
@@ -276,10 +277,8 @@ public class MainWindowController implements Initializable {
                 set_field.positionCaret(pos + 1);
             }
         });
-        // ------------------------------------- IN PROGRESS ---------------
-        set_field.setOnKeyPressed((event) -> {
-            if (event.getCode() == KeyCode.LEFT_PARENTHESIS) {
-                System.out.println("Works!");
+        set_field.setOnKeyTyped((event) -> {
+            if (event.getCharacter().equals("(")) {
                 String t = set_field.getText(), leftRes, rigthRes;
                 int pos = set_field.getCaretPosition();
                 leftRes = t.substring(0, pos);
