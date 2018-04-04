@@ -202,23 +202,18 @@ public class MainWindowController implements Initializable {
 
     @FXML
     public void comb_getCommand() {
-        if (comb_btnEnter.isDisable()) {
-            return;
-        } else {
+        if (!comb_btnEnter.isDisable()) {
             int[] n = Arrays.stream(comb_fieldN.getText().split(",")).mapToInt(Integer::parseInt).toArray();
             int m = "".equals(comb_fieldM.getText()) ? 0 : Integer.valueOf(comb_fieldM.getText());
             switch (comb_typeFunc) {
                 case 1:
                     m = 0;
-                    comb_webView.getEngine().loadContent(CombSolutionCore.get(comb_typeFunc, n, m) + "</html>");
-                    break;
-                case 2:
-                    comb_webView.getEngine().loadContent(CombSolutionCore.get(comb_typeFunc, n, m) + "</html>");
-                    break;
                 default:
                     comb_webView.getEngine().loadContent(CombSolutionCore.get(comb_typeFunc, n, m) + "</html>");
                     break;
             }
+            comb_fieldN.setText("");
+            comb_fieldM.setText("");
             // fall text
         }
     }
@@ -358,7 +353,7 @@ public class MainWindowController implements Initializable {
                     comb_imageView.setFitHeight(imageFormula_pk.getHeight());
                     comb_imageView.setFitWidth(imageFormula_pk.getWidth());
                     comb_imageView.setImage(imageFormula_pk);
-                    comb_fieldN.setPromptText("k");
+                    comb_fieldN.setPromptText("k1, k2 ... kn");
                     comb_fieldM.setPromptText("m");
                     initializeFieldMask();
                     comb_fieldM.setDisable(false);

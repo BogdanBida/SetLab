@@ -1,13 +1,16 @@
 package setlab.controller;
 
+import java.util.Arrays;
 import setlab.cores.CombCore;
 
 public class CombSolutionCore {
 
     private static StringBuilder res = new StringBuilder("<html>");
+
     static {
         res.append("");
     }
+
     public static String get(int idFunction, int[] n, int m) {
         res.append("&nbsp;&nbsp;>> ");
         switch (idFunction) {
@@ -45,22 +48,27 @@ public class CombSolutionCore {
     }
 
     public static String Pk(int[] k, int m) {
-        return "Pk";
+        return "P<sub>" + m + "</sub> + (" + Arrays.toString(k) + ") = "
+                + m + "!/(" + Arrays.toString(k) + ")!! = " + CombCore.Pmk(m, k);
     }
-
+    
     public static String Amn(int n, int m) {
-        return "Amn";
+        return "A(" + n + "," + m + ") = "
+                + n + "!/(" + (n - m) + ")! = " + CombCore.Amn(n, m);
     }
 
     public static String A_mn(int n, int m) {
-        return "_A<sub>m</sub><sup>n</sup>";
+        return "A_(" + n + "," + m + ") = "
+                + n + "<sup>" + m + "</sup> = " + CombCore.A_mn(n, m);
     }
 
     public static String Cmn(int n, int m) {
-        return "Cmn";
+        return "C(" + n + "," + m + ") = " + n + "!/(" + m + "!*(" + n + "-" + m + ")!) = "
+                + CombCore.Cmn(n, m);
     }
 
     public static String C_mn(int n, int m) {
-        return "C_mn";
+        return "C_(" + n + "," + m + ") = C(" + n + "+" + m + "-1," + m + ") = "
+                + Cmn(n+m-1,m);
     }
 }
