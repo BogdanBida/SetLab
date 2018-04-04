@@ -10,6 +10,8 @@ import java.util.regex.Pattern;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -46,7 +48,7 @@ public class MainWindowController implements Initializable {
     private Tab tab_set;
 
     @FXML
-    private ListView<?> set_listView;
+    private ListView<String> set_listView;
 
     @FXML
     private TextArea set_area;
@@ -56,7 +58,7 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private Button set_btnEnter;
-    
+
     @FXML
     private Button set_op_union;
 
@@ -151,6 +153,7 @@ public class MainWindowController implements Initializable {
     private HBox comb_inputPane;
 
     public static HashMap<String, SetObj> MapOfSets = new HashMap<>();
+    private static ObservableList obsList = FXCollections.observableArrayList();
     public static BinRel bufferedBinRel;
     private HashMap<Integer, ImageView> MapOfImageView = new HashMap<>();
     private GraphicsContext context;
@@ -170,14 +173,8 @@ public class MainWindowController implements Initializable {
     @FXML
     public void set_getCommand() {
         if (!set_field.getText().isEmpty()) {
-            Matcher matcher = Pattern.compile("([A-Za-z][A-Za-z0-9]{0,7})[\\s]{0,}[=][\\s]{0,}[(]([\\w]{1,}[[,][\\w]{1,}]{0,})[)]").matcher(set_field.getText());
-            if (matcher.matches()) {
-                String name = matcher.group(1);
-                String inner = matcher.group(2);
-                System.out.println(name);
-                System.out.println(inner);
-            }
             set_area.setText(set_area.getText() + SintaxSet.get(set_field.getText()));
+            set_field.setText("");
         }
     }
 
@@ -229,6 +226,8 @@ public class MainWindowController implements Initializable {
     }
 
     private void initializeSet() {
+        set_listView.setItems(obsList);
+
         set_field.setOnKeyPressed((event) -> {
             if (event.getCode() == KeyCode.ENTER) {
                 set_getCommand();
@@ -275,6 +274,18 @@ public class MainWindowController implements Initializable {
                 rigthRes = t.substring(pos);
                 set_field.setText(leftRes + "∆" + rigthRes);
                 set_field.positionCaret(pos + 1);
+            }
+        });
+        // ------------------------------------- IN PROGRESS ---------------
+        set_field.setOnKeyPressed((event) -> {
+            if (event.getCode() == KeyCode.LEFT_PARENTHESIS) {
+                System.out.println("Works!");
+                String t = set_field.getText(), leftRes, rigthRes;
+                int pos = set_field.getCaretPosition();
+                leftRes = t.substring(0, pos);
+                rigthRes = t.substring(pos);
+                set_field.setText(leftRes + ")" + rigthRes);
+                set_field.positionCaret(pos);
             }
         });
     }
@@ -559,6 +570,11 @@ public class MainWindowController implements Initializable {
         } else {
             MapOfImageView.get(i).setImage(imageNope);
         }
+    }
+
+    public static void addNewSet(SetObj newObj) {
+        MapOfSets.put(newObj.name, newObj);
+        obsList.add(newObj.name);
     }
 
     @FXML

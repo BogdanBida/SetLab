@@ -10,7 +10,7 @@ import setlab.cores.SetCore.SetObj;
 
 public class ReversePolish_Set {
 
-    public static String get(String command) {
+    public static SetObj get(String command) {
         ArrayList<String> input = getTokens(command);
         return calc(input);
     }
@@ -32,7 +32,7 @@ public class ReversePolish_Set {
         return res;
     }
 
-    private static String calc(ArrayList<String> input) {
+    private static SetObj calc(ArrayList<String> input) {
         HashMap<String, SetObj> mapOfSets = MainWindowController.MapOfSets;
         HashMap<String, Integer> operations;
         operations = new HashMap<>();
@@ -55,11 +55,10 @@ public class ReversePolish_Set {
                     
                 }
             } else {
-                return "Sintax error: was not finded '" + s + "'";
+                Res.setError("was not finded '" + s + "'");
+                return Res;
             }
-
         }
-
-        return Res.toString();
+        return Res;
     }
 }

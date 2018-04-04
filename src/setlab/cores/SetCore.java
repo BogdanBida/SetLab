@@ -8,7 +8,8 @@ public class SetCore {
     public static class SetObj extends HashSet<String> {
 
         public String name;
-
+        public String error;
+        
         public SetObj(String name) {
             this.name = name;
         }
@@ -36,9 +37,16 @@ public class SetCore {
         public void changeName(String newName) {
             this.name = newName;
         }
+        
+        public void setError(String error) {
+            this.error = error;
+        }
 
         @Override
         public String toString() {
+            if (error != null) {
+                return "Error: " + error + "\n";
+            }
             StringBuilder res = new StringBuilder(this.name + " = {");
             Iterator t = this.iterator();
             if (!t.hasNext()) {
@@ -52,6 +60,7 @@ public class SetCore {
                 res.append(",").append(" ");
             }
         }
+        
     }
     // --------------------------------------------------- OPERATIONS ---
     public static SetObj Union(SetObj a, SetObj b) {
