@@ -58,7 +58,7 @@
                                             </font>
                                         </Button>
                                         <Button fx:id="set_op_symmdiff" focusTraversable="false" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" text="∆" />
-                                        <Button focusTraversable="false" layoutX="398.0" layoutY="343.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="55.0" text="Ввод" AnchorPane.bottomAnchor="5.0" />
+                                        <Button fx:id="set_btnEnter" focusTraversable="false" layoutX="398.0" layoutY="343.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="55.0" text="Ввод" AnchorPane.bottomAnchor="5.0" />
                                     </children>
                                 </HBox>
                                 <ListView fx:id="set_listView" focusTraversable="false" layoutX="400.0" layoutY="7.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="465.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />

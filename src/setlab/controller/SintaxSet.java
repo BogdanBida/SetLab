@@ -1,27 +1,31 @@
 package setlab.controller;
-import setlab.controller.MainWindowController;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import setlab.cores.SetCore.SetObj;
 
 public class SintaxSet {
+
+    private static final String CREATE = "([A-Za-z][A-Za-z0-9]{0,7})[\\s]{0,}[=][\\s]{0,}[{]([\\w]{1,}[[,][\\w]{1,}]{0,})[}]";
+    private static final String EXPRESSION = "";
+
     public static String get(String command) {
         StringBuilder res = new StringBuilder(">");
-        
+
         //if create
-        res.append(getNewSet(command));
-        
+        Matcher matcher = Pattern.compile(CREATE).matcher(command);
+        if (matcher.matches()) {
+            res.append(getNewSet(matcher.group(1), matcher.group(2)));
+        }
+
         res.append("\n");
         return res.toString();
     }
-    
-    private final String CREATE = "^[\\s]{0,}([A-Za-z][A-Za-z0-9]{0,7})[\\s]{0,}[=]"
-            + "[(](.{1,})[)]";
-    private final String EXPRESSION = "";
-    
-    public static String getNewSet(String command) {
-        String[] line = command.replaceAll(" ", "").split("=");
-        SetObj NewSet = new SetObj(line[0], line[1]);
-        MainWindowController.MapOfSets.put(line[0], NewSet);
+
+    public static String getNewSet(String name, String inner) {
+        SetObj NewSet = new SetObj(name, inner);
+        MainWindowController.MapOfSets.put(name, NewSet);
         return NewSet.toString();
     }
-    
+
 }

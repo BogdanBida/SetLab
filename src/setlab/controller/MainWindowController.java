@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -53,6 +54,9 @@ public class MainWindowController implements Initializable {
     @FXML
     private TextField set_field;
 
+    @FXML
+    private Button set_btnEnter;
+    
     @FXML
     private Button set_op_union;
 
@@ -166,6 +170,13 @@ public class MainWindowController implements Initializable {
     @FXML
     public void set_getCommand() {
         if (!set_field.getText().isEmpty()) {
+            Matcher matcher = Pattern.compile("([A-Za-z][A-Za-z0-9]{0,7})[\\s]{0,}[=][\\s]{0,}[(]([\\w]{1,}[[,][\\w]{1,}]{0,})[)]").matcher(set_field.getText());
+            if (matcher.matches()) {
+                String name = matcher.group(1);
+                String inner = matcher.group(2);
+                System.out.println(name);
+                System.out.println(inner);
+            }
             set_area.setText(set_area.getText() + SintaxSet.get(set_field.getText()));
         }
     }
@@ -218,6 +229,14 @@ public class MainWindowController implements Initializable {
     }
 
     private void initializeSet() {
+        set_field.setOnKeyPressed((event) -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                set_getCommand();
+            }
+        });
+        set_btnEnter.setOnMouseClicked((event) -> {
+            set_getCommand();
+        });
         set_op_union.setOnMouseClicked((event) -> {
             if (event.getButton() == MouseButton.PRIMARY) {
                 String t = set_field.getText(), leftRes, rigthRes;
