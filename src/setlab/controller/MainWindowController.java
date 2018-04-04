@@ -36,7 +36,6 @@ import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import setlab.SetLab;
-import setlab.cores.BinRelCore;
 import setlab.cores.BinRelCore.BinRel;
 import setlab.cores.SetCore.SetObj;
 
@@ -183,7 +182,7 @@ public class MainWindowController implements Initializable {
                 GraphicsContext context = binrel_canvas.getGraphicsContext2D();
                 context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, bufferedBinRel);
             } else if (command.equals("madness")) {
-                bufferedBinRel = new BinRel("padness", "((1,1)(1,2),(1,3),(1,4),(1,5),(1,6),(2,2),(2,3),(2,4),(2,5),(2,6),(3,3),(3,4),(3,5),(3,6),(4,4),(4,5),(4,6),(5,5),(5,6),(6,6),(6,7),(7,7),(7,5),(7,4),(7,3),(7,2),(7,1),(8,7),(8,6),(8,5),(8,4),(8,3),(8,2),(8,1),(9,8),(9,7),(9,6),(9,5),(9,4),(9,3),(9,2),(9,1),(10,9),(10,8),(10,7),(10,6),(10,5),(10,4),(10,3),(10,2),(10,1))");
+                bufferedBinRel = new BinRel("madness", "((1,1)(1,2),(1,3),(1,4),(1,5),(1,6),(2,2),(2,3),(2,4),(2,5),(2,6),(3,3),(3,4),(3,5),(3,6),(4,4),(4,5),(4,6),(5,5),(5,6),(6,6),(6,7),(7,7),(7,5),(7,4),(7,3),(7,2),(7,1),(8,7),(8,6),(8,5),(8,4),(8,3),(8,2),(8,1),(9,8),(9,7),(9,6),(9,5),(9,4),(9,3),(9,2),(9,1),(10,9),(10,8),(10,7),(10,6),(10,5),(10,4),(10,3),(10,2),(10,1))");
                 GraphicsContext context = binrel_canvas.getGraphicsContext2D();
                 context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, bufferedBinRel);
             } else {
@@ -511,10 +510,10 @@ public class MainWindowController implements Initializable {
 
         comb_fieldN.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.isEmpty()) {
-                if (comb_fieldN.getPromptText() != "k" && !Pattern.compile("[\\d]{0,}").matcher(newValue).matches()) {
+                if (!"k1, k2 ... kn".equals(comb_fieldN.getPromptText()) && !Pattern.compile("[\\d]{0,}").matcher(newValue).matches()) {
                     comb_fieldN.setText(oldValue);
                 }
-                if (comb_fieldN.getPromptText() == "k" && !Pattern.compile("[\\d]{1,}[[,]{0,1}[\\d]{0,}]{0,}").matcher(newValue).matches() || Pattern.compile("[,]{2}").matcher(newValue).find()) {
+                if ("k1, k2 ... kn".equals(comb_fieldN.getPromptText()) && !Pattern.compile("[\\d]{1,}[[,]{0,1}[\\d]{0,}]{0,}").matcher(newValue).matches() || Pattern.compile("[,]{2}").matcher(newValue).find()) {
                     comb_fieldN.setText(oldValue);
                 }
             }
