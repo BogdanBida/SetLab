@@ -198,9 +198,13 @@
                                         <WebView fx:id="comb_infoAcceptWebView" focusTraversable="false" prefHeight="200.0" prefWidth="200.0" />
                                         <HBox alignment="CENTER" prefHeight="31.0" prefWidth="254.0" spacing="2.0">
                                             <children>
-                                                <Button fx:id="comb_infoAccept_yesBtn" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#commandYeah" prefHeight="31.0" prefWidth="91.0" text="Да" />
-                                                <Button fx:id="comb_infoAccept_backBtn" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#commandBack" prefHeight="31.0" text="Назад" />
-                                                <Button fx:id="comb_infoAccept_noBtn" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#commandNope" prefHeight="31.0" prefWidth="95.0" text="Нет" />
+                                                <Button fx:id="comb_infoAccept_yesBtn" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#commandYeah" prefHeight="31.0" prefWidth="75.0" text="Да" />
+                                                <Button fx:id="comb_infoAccept_backBtn" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#commandBack" prefHeight="31.0" prefWidth="61.0" text="Назад" />
+                                                <Button fx:id="comb_infoAccept_noBtn" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#commandNope" prefHeight="31.0" prefWidth="75.0" text="Нет" />
+                                    <ImageView fx:id="comb_imageViewReset" fitHeight="31.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                       <HBox.margin>
+                                          <Insets left="3.0" />
+                                       </HBox.margin></ImageView>
                                             </children>
                                             <VBox.margin>
                                                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
