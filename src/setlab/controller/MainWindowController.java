@@ -121,8 +121,12 @@ public class MainWindowController implements Initializable {
     private ImageView comb_imageView;
 
     @FXML
+    private ImageView comb_imageViewReset;
+    
+    @FXML
     private WebView comb_infoAcceptWebView;
 
+    private Image imageReset;
     private Image imageYeah;
     private Image imageNope;
     private Image imageFormula_a_mn;
@@ -163,12 +167,12 @@ public class MainWindowController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        initializaImage();
+        initializeMapOfImageView();
         initializeSet();
         initializeBinRel();
         initializeComb();
-        initializaImage();
         initializeFields();
-        initializeMapOfImageView();
     }
 
     @FXML
@@ -472,6 +476,15 @@ public class MainWindowController implements Initializable {
                 comb_getCommand();
             }
         });
+        
+        
+        comb_imageViewReset.setFitHeight(24);
+        comb_imageViewReset.setFitWidth(24);
+        comb_imageViewReset.setImage(imageReset);
+        comb_imageViewReset.setOnMouseClicked((event) -> {
+            string.set("start");
+            comb_imageView.setImage(null);
+        });
 
         comb_webView.getEngine().setUserStyleSheetLocation("data:,body { font: 16px Arial; }");
         comb_infoAcceptWebView.getEngine().setUserStyleSheetLocation("data:,body { font: 16px Arial; }");
@@ -522,6 +535,7 @@ public class MainWindowController implements Initializable {
         imageFormula_p = new Image(SetLab.class.getResourceAsStream("fxml/icon/formula_p.png"));
         imageFormula_pk = new Image(SetLab.class.getResourceAsStream("fxml/icon/formula_pk.png"));
 
+        imageReset = new Image(SetLab.class.getResourceAsStream("fxml/icon/reset.png"));
         imageYeah = new Image(SetLab.class.getResourceAsStream("fxml/icon/accept.png"));
         imageNope = new Image(SetLab.class.getResourceAsStream("fxml/icon/dismiss.png"));
     }
