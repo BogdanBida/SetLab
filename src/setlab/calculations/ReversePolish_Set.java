@@ -6,6 +6,7 @@ import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import setlab.controller.MainWindowController;
+import setlab.cores.SetCore;
 import setlab.cores.SetCore.SetObj;
 
 public class ReversePolish_Set {
@@ -44,15 +45,21 @@ public class ReversePolish_Set {
         Stack<SetObj> A = new Stack<>();
         Stack<String> B = new Stack<>();
         SetObj Res = new SetObj("Res");
-        
+
         for (String s : input) {
-            if (mapOfSets.containsKey(s)) { // -------- is set
+            if (mapOfSets.containsKey(s)) { // -------- is set (operand)
                 A.add(mapOfSets.get(s));
+                
             } else if (operations.containsKey(s)) { // ------- is operation
                 if (B.isEmpty()) {
-                    B.add(s);
+                    B.push(s);
                 } else {
-                    
+                    if (operations.get(s) <= operations.get(B.peek())) {
+                        SetObj b = A.pop();
+                        SetObj a = A.pop();
+                        A.push(Action(a, b, B.pop()));
+                    }
+                    B.push(s);
                 }
             } else {
                 Res.setError("was not finded '" + s + "'");
@@ -60,5 +67,21 @@ public class ReversePolish_Set {
             }
         }
         return Res;
+    }
+
+    private static SetObj Action(SetObj a, SetObj b, String op) {
+        switch (op) {
+            case "∪":
+                return SetCore.Union(a, b);
+            case "/":
+                return SetCore.Diff(a, b);
+            case "∆":
+                return SetCore.SymmetricDiff(a, b);
+            case "∩":
+                return SetCore.Intersect(a, b);
+            default:
+                System.err.print("unknown error in Action()");
+                return new SetObj("Error");
+        }
     }
 }
