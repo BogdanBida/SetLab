@@ -92,7 +92,8 @@ public class BinRel_GraphicsGraphCore {
                 context.strokeOval(a.x - 3, a.y - 3, 12, 12);
                 context.setFill(Paint.valueOf("#1E90FF"));
             } else {
-                makeLineWithArrow(context,angleImage,a.x + 3, a.y + 3, b.x + 3, b.y + 3);
+                double ang = 90; // it is angle of line (vector)
+                makeLineWithArrow(context,ang,a.x + 3, a.y + 3, b.x + 3, b.y + 3);
             }
         }
 
@@ -104,12 +105,13 @@ public class BinRel_GraphicsGraphCore {
     
     private static void makeLineWithArrow(GraphicsContext region, double angle, double startX, double startY, double endX, double endY){
         double radius = 12;
-        double a = 180;
-        double angle1 = a + 30 + angle;
-        double angle2 = a - 30 + angle;
+        double a = 60;
+        double b = 120;
+        double angle1 = b - a + angle;
+        double angle2 = -b + a + angle;
         
         region.strokeLine(startX, startY, endX, endY);
-//        region.strokeLine(endX, endY, radius * Math.cos(angle1) + endX, radius * Math.sin(angle1) + endY);
+        region.strokeLine(endX, endY, radius * Math.cos(angle1) + endX, radius * Math.sin(angle1) + endY);
         region.strokeLine(endX, endY, radius * Math.cos(angle2) + endX, radius * Math.sin(angle2) + endY);
     }
 

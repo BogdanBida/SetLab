@@ -12,13 +12,12 @@ import setlab.cores.SetCore.SetObj;
 public class ReversePolish_Set {
 
     public static SetObj get(String command) {
-        ArrayList<String> input = getTokens(command);
-        return calc(input);
+        return calc(getTokens(command));
     }
 
     private static ArrayList<String> getTokens(String line) {
         ArrayList<String> res = new ArrayList<>();
-        String pattern = "([\\s]{0,}(\\d{0,7})[\\s]{0,})|\\W";
+        String pattern = "([\\w]{0,}(\\d{0,7})[\\s]{0,})|[∪]|[/]";
         Pattern p = Pattern.compile(pattern);
 
         Matcher m = p.matcher(line);
@@ -30,6 +29,7 @@ public class ReversePolish_Set {
         } catch (Exception ex) {
             System.err.println("Ошибка getTokens() не найдено совпадение");
         }
+        System.out.println(res.toString());
         return res;
     }
 
@@ -49,7 +49,6 @@ public class ReversePolish_Set {
         for (String s : input) {
             if (mapOfSets.containsKey(s)) { // -------- is set (operand)
                 A.add(mapOfSets.get(s));
-                
             } else if (operations.containsKey(s)) { // ------- is operation
                 if (B.isEmpty()) {
                     B.push(s);
@@ -66,6 +65,16 @@ public class ReversePolish_Set {
                 return Res;
             }
         }
+        
+        while (A.size() > 1) {
+            if (B.size() < 1) {
+                System.err.println("Error: operation length < 1");
+            }
+            SetObj b = A.pop();
+            SetObj a = A.pop();
+            A.push(Action(a, b, B.pop()));
+        } 
+        
         return Res;
     }
 
