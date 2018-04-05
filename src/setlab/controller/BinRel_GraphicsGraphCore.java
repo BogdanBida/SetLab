@@ -92,8 +92,10 @@ public class BinRel_GraphicsGraphCore {
                 context.strokeOval(a.x - 3, a.y - 3, 12, 12);
                 context.setFill(Paint.valueOf("#1E90FF"));
             } else {
+                double x1 = a.x + 3, x2 = b.x + 3;
+                double y1 = a.y + 3, y2 = b.y + 3;
                 double ang = 90; // it is angle of line (vector)
-                makeLineWithArrow(context,ang,a.x + 3, a.y + 3, b.x + 3, b.y + 3);
+                makeLineWithArrow(context,ang,x1, y1, x2, y2);
             }
         }
 
