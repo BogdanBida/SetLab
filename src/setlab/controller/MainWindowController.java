@@ -193,16 +193,16 @@ public class MainWindowController implements Initializable {
             } else if (command.equals("penta")) {
                 bufferedBinRel = new BinRel("Penta", "((1,4),(2,5),(3,1),(4,2),(5,3))");
                 GraphicsContext context = binrel_canvas.getGraphicsContext2D();
-                context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, bufferedBinRel);
+                BinRel_GraphicsGraphCore.Render(binrel_canvas, bufferedBinRel);
             } else if (command.equals("madness")) {
                 bufferedBinRel = new BinRel("madness", "((1,1)(1,2),(1,3),(1,4),(1,5),(1,6),(2,2),(2,3),(2,4),(2,5),(2,6),(3,3),(3,4),(3,5),(3,6),(4,4),(4,5),(4,6),(5,5),(5,6),(6,6),(6,7),(7,7),(7,5),(7,4),(7,3),(7,2),(7,1),(8,7),(8,6),(8,5),(8,4),(8,3),(8,2),(8,1),(9,8),(9,7),(9,6),(9,5),(9,4),(9,3),(9,2),(9,1),(10,9),(10,8),(10,7),(10,6),(10,5),(10,4),(10,3),(10,2),(10,1))");
                 GraphicsContext context = binrel_canvas.getGraphicsContext2D();
-                context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, bufferedBinRel);
+                BinRel_GraphicsGraphCore.Render(binrel_canvas, bufferedBinRel);
             } else {
                 String[] line = command.replaceAll(" ", "").split("=");
                 bufferedBinRel = new BinRel(line[0], line[1]);
                 GraphicsContext context = binrel_canvas.getGraphicsContext2D();
-                context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, bufferedBinRel);
+                BinRel_GraphicsGraphCore.Render(binrel_canvas, bufferedBinRel);
                 binrel_area.setText(SintaxBinRel.get(command, bufferedBinRel));
 
                 for (int i = 0; i < SintaxBinRel.internals.length; i++) {
@@ -297,14 +297,14 @@ public class MainWindowController implements Initializable {
         bufferedBinRel = new BinRel("R", "{}");
         binrel_paneCanvas.setStyle("-fx-background-color: #585858");
         context = binrel_canvas.getGraphicsContext2D();
-        context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, bufferedBinRel);
+        BinRel_GraphicsGraphCore.Render(binrel_canvas, bufferedBinRel);
         binrel_area.setFont(Font.font(15));
 
         binRel_sliderForCanvas.valueProperty().addListener((observable, oldValue, newValue) -> {
             double value = binRel_sliderForCanvas.valueProperty().doubleValue();
             binRel_sliderForCanvas.valueProperty().set(Math.round(value / 5) * 5);
             BinRel_GraphicsGraphCore.setAngle((float) binRel_sliderForCanvas.getValue());
-            context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, bufferedBinRel);
+            BinRel_GraphicsGraphCore.Render(binrel_canvas, bufferedBinRel);
         });
         // Reset angle
         binRel_sliderForCanvas.setOnMouseClicked((event) -> {
@@ -319,13 +319,13 @@ public class MainWindowController implements Initializable {
         // Zoom on Canvas
         binrel_canvas.setOnScroll((event) -> {
             BinRel_GraphicsGraphCore.changeZoom((float) (event.getDeltaY() / 40));
-            context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, bufferedBinRel);
+            BinRel_GraphicsGraphCore.Render(binrel_canvas, bufferedBinRel);
         });
         // Reset zoom of canvas
         binrel_canvas.setOnMouseClicked((event) -> {
             if (event.getButton() == MouseButton.SECONDARY) {
                 BinRel_GraphicsGraphCore.resetZoom();
-                context = BinRel_GraphicsGraphCore.getContext(binrel_canvas, bufferedBinRel);
+                BinRel_GraphicsGraphCore.Render(binrel_canvas, bufferedBinRel);
             }
         });
         //

@@ -51,7 +51,7 @@ public class BinRel_GraphicsGraphCore {
         r = 48;
     }
 
-    public static GraphicsContext getContext(Canvas c, BinRel R) {
+    public static void Render(Canvas c, BinRel R) {
         GraphicsContext context = c.getGraphicsContext2D();
         context.clearRect(0, 0, 215, 160);
         context.setFill(Paint.valueOf("#6495ED"));
@@ -77,7 +77,7 @@ public class BinRel_GraphicsGraphCore {
         for (Figure t : listFigure) {
             context.fillText(t.name, t.x2, t.y2);
             context.strokeOval(t.x, t.y, 6, 6);
-            
+
             mapFigure.put(t.name, t);
         }
 
@@ -94,31 +94,25 @@ public class BinRel_GraphicsGraphCore {
             } else {
                 double x1 = a.x + 3, x2 = b.x + 3;
                 double y1 = a.y + 3, y2 = b.y + 3;
-                double ang = 90; // it is angle of line (vector)
-                makeLineWithArrow(context,ang,x1, y1, x2, y2);
+                makeLineWithArrow(context, 0x1, y1, x2, y2);
             }
         }
 
         context.fillText(Math.round(angleImage * 180 / Math.PI) + "°", 5, c.getHeight() - 5);
         context.fillText("n = " + n, 5, 14);
 
-        return context;
-    }
-    
-    private static void makeLineWithArrow(GraphicsContext region, double angle, double startX, double startY, double endX, double endY){
-        double radius = 12;
-        double a = 60;
-        double b = 120;
-        double angle1 = b - a + angle;
-        double angle2 = -b + a + angle;
-        
-        region.strokeLine(startX, startY, endX, endY);
-        region.strokeLine(endX, endY, radius * Math.cos(angle1) + endX, radius * Math.sin(angle1) + endY);
-        region.strokeLine(endX, endY, radius * Math.cos(angle2) + endX, radius * Math.sin(angle2) + endY);
     }
 
-    private static void makelineWithDualArrow(GraphicsContext region, double startX, double startY, double endX, double endY){
-        
+    private static void makeLineWithArrow(GraphicsContext region, double startX, double startY, double endX, double endY) {
+        double angle = Math.atan((startY - endY) / (startX - endX));
+        final double r = 12;
+        final double a = 60;
+        final double b = 120;
+        double angle1 = b - a + angle;
+        double angle2 = -b + a + angle;
+
+        region.strokeLine(startX, startY, endX, endY);
+        region.strokeLine(endX, endY, r * Math.cos(angle1) + endX, r * Math.sin(angle1) + endY);
+        region.strokeLine(endX, endY, r * Math.cos(angle2) + endX, r * Math.sin(angle2) + endY);
     }
-    
 }
