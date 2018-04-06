@@ -116,10 +116,14 @@ public class BinRel_GraphicsGraphCore {
         } else {
             angle = Math.atan((startY - endY) / (startX - endX));
         }
+        angle = Math.round(angle*180/Math.PI);
+        angle = angle*Math.PI/180;
+        if (Math.abs(angle*180/Math.PI) == 90) {
+            angle += Math.PI;
+        }
         
         angle1 = b - a + angle;
         angle2 = -b + a + angle;
-        System.out.println(angle * 180 / Math.PI);
 
         region.strokeLine(startX, startY, endX, endY);
         region.strokeLine(endX, endY, r * Math.cos(angle1) + endX, r * Math.sin(angle1) + endY);
