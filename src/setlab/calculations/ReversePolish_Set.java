@@ -29,7 +29,11 @@ public class ReversePolish_Set {
         } catch (Exception ex) {
             System.err.println("Ошибка getTokens() не найдено совпадение");
         }
-        System.out.println(res.toString());
+        res.clear();
+        res.add("A");
+        res.add("∪");
+        res.add("B");
+
         return res;
     }
 
@@ -41,8 +45,9 @@ public class ReversePolish_Set {
         operations.put("/", 1);
         operations.put("∆", 1);
         operations.put("∩", 2);
-
-        Stack<SetObj> A = new Stack<>();
+        System.out.println(input.toString());
+        
+        Stack<SetObj> A = new Stack<>();  
         Stack<String> B = new Stack<>();
         SetObj Res = new SetObj("Res");
 
@@ -74,7 +79,7 @@ public class ReversePolish_Set {
             SetObj a = A.pop();
             A.push(Action(a, b, B.pop()));
         } 
-        
+        System.out.println("+");
         return Res;
     }
 
