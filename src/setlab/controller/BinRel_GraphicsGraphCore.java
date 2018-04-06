@@ -77,7 +77,7 @@ public class BinRel_GraphicsGraphCore {
         for (Figure t : listFigure) {
             context.fillText(t.name, t.x2, t.y2);
             context.strokeOval(t.x, t.y, 6, 6);
-
+            
             mapFigure.put(t.name, t);
         }
 
@@ -94,7 +94,7 @@ public class BinRel_GraphicsGraphCore {
             } else {
                 double x1 = a.x + 3, x2 = b.x + 3;
                 double y1 = a.y + 3, y2 = b.y + 3;
-                makeLineWithArrow(context, 0x1, y1, x2, y2);
+                makeLineWithArrow(context, x1, y1, x2, y2);
             }
         }
 
@@ -104,7 +104,7 @@ public class BinRel_GraphicsGraphCore {
     }
 
     private static void makeLineWithArrow(GraphicsContext region, double startX, double startY, double endX, double endY) {
-        double angle = Math.atan((startY - endY) / (startX - endX));
+        double angle = Math.atan((endY - startY) / (endX - startX));
         final double r = 12;
         final double a = 60;
         final double b = 120;
