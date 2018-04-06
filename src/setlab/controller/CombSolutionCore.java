@@ -5,7 +5,7 @@ import setlab.cores.CombCore;
 
 public class CombSolutionCore {
 
-    private static StringBuilder res = new StringBuilder("<html>");
+    private static final StringBuilder res = new StringBuilder("<html><body>");
 
     static {
         res.append("");

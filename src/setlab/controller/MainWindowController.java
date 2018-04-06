@@ -122,7 +122,7 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private ImageView comb_imageViewReset;
-    
+
     @FXML
     private WebView comb_infoAcceptWebView;
 
@@ -192,16 +192,13 @@ public class MainWindowController implements Initializable {
                 binrel_field.setText("");
             } else if (command.equals("penta")) {
                 bufferedBinRel = new BinRel("Penta", "((1,4),(2,5),(3,1),(4,2),(5,3))");
-                GraphicsContext context = binrel_canvas.getGraphicsContext2D();
                 BinRel_GraphicsGraphCore.Render(binrel_canvas, bufferedBinRel);
             } else if (command.equals("madness")) {
-                bufferedBinRel = new BinRel("madness", "((1,1)(1,2),(1,3),(1,4),(1,5),(1,6),(2,2),(2,3),(2,4),(2,5),(2,6),(3,3),(3,4),(3,5),(3,6),(4,4),(4,5),(4,6),(5,5),(5,6),(6,6),(6,7),(7,7),(7,5),(7,4),(7,3),(7,2),(7,1),(8,7),(8,6),(8,5),(8,4),(8,3),(8,2),(8,1),(9,8),(9,7),(9,6),(9,5),(9,4),(9,3),(9,2),(9,1),(10,9),(10,8),(10,7),(10,6),(10,5),(10,4),(10,3),(10,2),(10,1))");
-                GraphicsContext context = binrel_canvas.getGraphicsContext2D();
+                bufferedBinRel = new BinRel("madness", "((1,1)(1,2),(1,3),(1,4),(1,5),(1,6),(2,2),(2,3),(2,4),(2,5),(2,6),(3,3),(3,4),(3,5),(3,6),(4,4),(4,5),(4,6),(5,5),(5,6),(6,6),(6,7),(7,7),(7,5),(7,4),(7,3),(7,2),(7,1),(8,8),(8,7),(8,6),(8,5),(8,4),(8,3),(8,2),(8,1),(9,9),(9,8),(9,7),(9,6),(9,5),(9,4),(9,3),(9,2),(9,1),(10,10),(10,9),(10,8),(10,7),(10,6),(10,5),(10,4),(10,3),(10,2),(10,1))");
                 BinRel_GraphicsGraphCore.Render(binrel_canvas, bufferedBinRel);
             } else {
                 String[] line = command.replaceAll(" ", "").split("=");
                 bufferedBinRel = new BinRel(line[0], line[1]);
-                GraphicsContext context = binrel_canvas.getGraphicsContext2D();
                 BinRel_GraphicsGraphCore.Render(binrel_canvas, bufferedBinRel);
                 binrel_area.setText(SintaxBinRel.get(command, bufferedBinRel));
 
@@ -215,24 +212,32 @@ public class MainWindowController implements Initializable {
     @FXML
     public void comb_getCommand() {
         if (!comb_btnEnter.isDisable()) {
+            // https://community.oracle.com/message/11243184#11243184  ------------ it is not crutch!
             int[] n = Arrays.stream(comb_fieldN.getText().split(",")).mapToInt(Integer::parseInt).toArray();
             int m = "".equals(comb_fieldM.getText()) ? 0 : Integer.valueOf(comb_fieldM.getText());
+            StringBuilder html = new StringBuilder().append("<html>");
+            html.append("<head>");
+            html.append("   <script language=\"javascript\" type=\"text/javascript\">");
+            html.append("       function toBottom(){");
+            html.append("           window.scrollTo(0, document.body.scrollHeight);");
+            html.append("       }");
+            html.append("   </script>");
+            html.append("</head>");
+            html.append("<body onload='toBottom()'>");
             switch (comb_typeFunc) {
                 case 1:
                     m = 0;
                 default:
-                    comb_webView.getEngine().loadContent(CombSolutionCore.get(comb_typeFunc, n, m) + "</html>");
+                    comb_webView.getEngine().loadContent(html.toString() + CombSolutionCore.get(comb_typeFunc, n, m) + "</body></html>");
                     break;
             }
             comb_fieldN.setText("");
             comb_fieldM.setText("");
-            // fall text
         }
     }
 
     private void initializeSet() {
         set_listView.setItems(obsList);
-
         set_field.setOnKeyPressed((event) -> {
             if (event.getCode() == KeyCode.ENTER) {
                 set_getCommand();
@@ -476,8 +481,7 @@ public class MainWindowController implements Initializable {
                 comb_getCommand();
             }
         });
-        
-        
+
         comb_imageViewReset.setFitHeight(24);
         comb_imageViewReset.setFitWidth(24);
         comb_imageViewReset.setImage(imageReset);

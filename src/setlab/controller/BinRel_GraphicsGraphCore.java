@@ -108,22 +108,21 @@ public class BinRel_GraphicsGraphCore {
         final double r = 12 * BinRel_GraphicsGraphCore.r / 50;
         final double a = 60;
         final double b = 120;
-        double angle1;
-        double angle2;
-        
-        if (endX - X0 <= 0) {
+        double mid = (startX + endX) / 2;
+        if (endX - mid < 0) {
             angle = Math.atan((endY - startY) / (endX - startX)) + Math.PI;
         } else {
             angle = Math.atan((startY - endY) / (startX - endX));
         }
-        angle = Math.round(angle*180/Math.PI);
-        angle = angle*Math.PI/180;
-        if (Math.abs(angle*180/Math.PI) == 90) {
+        angle = Math.round(Math.toDegrees(angle));
+        angle = Math.toRadians(angle);
+
+        double angle1 = b - a + angle;
+        double angle2 = -b + a + angle;
+
+        if (Math.toDegrees(angle) == 90) {
             angle += Math.PI;
         }
-        
-        angle1 = b - a + angle;
-        angle2 = -b + a + angle;
 
         region.strokeLine(startX, startY, endX, endY);
         region.strokeLine(endX, endY, r * Math.cos(angle1) + endX, r * Math.sin(angle1) + endY);

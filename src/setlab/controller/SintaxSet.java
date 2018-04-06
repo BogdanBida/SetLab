@@ -11,6 +11,7 @@ public class SintaxSet {
 
     public static String get(String command) {
         StringBuilder res = new StringBuilder(">>");
+        // print
         if (MainWindowController.MapOfSets.containsKey(command)) {
             return MainWindowController.MapOfSets.get(command).toString() + "\n";
         }
@@ -18,10 +19,12 @@ public class SintaxSet {
         Matcher matcher = Pattern.compile(CREATE).matcher(command);
         if (matcher.matches()) {
             res.append(getNewSet(matcher.group(1), matcher.group(2)));
-        } else {
+        } else { // if expression
             SetObj newSet = ReversePolish_Set.get(command);
-            if (newSet.error != null) 
+            if (!newSet.isError()) {
                 MainWindowController.addNewSet(newSet);
+            }
+            res.append(command).append("\n>>");
             res.append(newSet);
         }
 
