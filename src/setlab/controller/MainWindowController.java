@@ -338,7 +338,7 @@ public class MainWindowController implements Initializable {
                 BinRel_GraphicsGraphCore.Render(binrel_canvas, bufferedBinRel);
             }
         });
-        // Analisis datas
+        // Analisis of datas
         binrel_field.setOnKeyPressed((event) -> {
             if (event.getCode() == KeyCode.ENTER) {
                 binrel_getCommand();
