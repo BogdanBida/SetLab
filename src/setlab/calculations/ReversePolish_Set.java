@@ -40,7 +40,6 @@ public class ReversePolish_Set {
         operations.put("/", 1);
         operations.put("∆", 1);
         operations.put("∩", 2);
-        System.out.println(input.toString());
 
         Stack<SetObj> A = new Stack<>();
         Stack<String> B = new Stack<>();
@@ -70,7 +69,7 @@ public class ReversePolish_Set {
 
         while (A.size() > 1) {
             if (B.size() < 1) {
-                System.err.println("Error: operation length < 1");
+                System.err.println("Error: length of operation < 1");
             }
             SetObj b = A.pop();
             SetObj a = A.pop();

@@ -42,6 +42,7 @@ import javafx.stage.Stage;
 import setlab.SetLab;
 import setlab.cores.BinRelCore.BinRel;
 import setlab.cores.SetCore.SetObj;
+import setlab.s.BinRelTypesGraph;
 
 public class MainWindowController implements Initializable {
 
@@ -160,10 +161,11 @@ public class MainWindowController implements Initializable {
     public static HashMap<String, SetObj> MapOfSets = new HashMap<>();
     private static ObservableList obsList = FXCollections.observableArrayList();
     public static BinRel bufferedBinRel;
-    private HashMap<Integer, ImageView> MapOfImageView = new HashMap<>();
-    private GraphicsContext context;
-    SimpleStringProperty string = new SimpleStringProperty();
     private static byte comb_typeFunc;
+    private static HashMap<Integer, ImageView> MapOfImageView = new HashMap<>();
+    private static GraphicsContext context;
+    SimpleStringProperty string = new SimpleStringProperty();
+    private static String set_PrefTextArea;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -178,7 +180,7 @@ public class MainWindowController implements Initializable {
     @FXML
     public void set_getCommand() {
         if (!set_field.getText().isEmpty()) {
-            set_area.setText(set_area.getText() + SintaxSet.get(set_field.getText()));
+            set_area.appendText(SintaxSet.get(set_field.getText()));
             set_field.setText("");
         }
     }
@@ -190,11 +192,8 @@ public class MainWindowController implements Initializable {
             if (command.equals("clear")) {
                 binrel_area.setText("");
                 binrel_field.setText("");
-            } else if (command.equals("penta")) {
-                bufferedBinRel = new BinRel("Penta", "((1,4),(2,5),(3,1),(4,2),(5,3))");
-                BinRel_GraphicsGraphCore.Render(binrel_canvas, bufferedBinRel);
-            } else if (command.equals("madness")) {
-                bufferedBinRel = new BinRel("madness", "((1,1)(1,2),(1,3),(1,4),(1,5),(1,6),(2,2),(2,3),(2,4),(2,5),(2,6),(3,3),(3,4),(3,5),(3,6),(4,4),(4,5),(4,6),(5,5),(5,6),(6,6),(6,7),(7,7),(7,5),(7,4),(7,3),(7,2),(7,1),(8,8),(8,7),(8,6),(8,5),(8,4),(8,3),(8,2),(8,1),(9,9),(9,8),(9,7),(9,6),(9,5),(9,4),(9,3),(9,2),(9,1),(10,10),(10,9),(10,8),(10,7),(10,6),(10,5),(10,4),(10,3),(10,2),(10,1))");
+            } else if (BinRelTypesGraph.contain(command)) {
+                bufferedBinRel = BinRelTypesGraph.get(command);
                 BinRel_GraphicsGraphCore.Render(binrel_canvas, bufferedBinRel);
             } else {
                 String[] line = command.replaceAll(" ", "").split("=");
@@ -238,6 +237,7 @@ public class MainWindowController implements Initializable {
 
     private void initializeSet() {
         set_listView.setItems(obsList);
+        // Enter
         set_field.setOnKeyPressed((event) -> {
             if (event.getCode() == KeyCode.ENTER) {
                 set_getCommand();
@@ -246,6 +246,7 @@ public class MainWindowController implements Initializable {
         set_btnEnter.setOnMouseClicked((event) -> {
             set_getCommand();
         });
+        // func button 1
         set_op_union.setOnMouseClicked((event) -> {
             if (event.getButton() == MouseButton.PRIMARY) {
                 String t = set_field.getText(), leftRes, rigthRes;
@@ -256,6 +257,7 @@ public class MainWindowController implements Initializable {
                 set_field.positionCaret(pos + 1);
             }
         });
+        // func button 2
         set_op_inter.setOnMouseClicked((event) -> {
             if (event.getButton() == MouseButton.PRIMARY) {
                 String t = set_field.getText(), leftRes, rigthRes;
@@ -266,6 +268,7 @@ public class MainWindowController implements Initializable {
                 set_field.positionCaret(pos + 1);
             }
         });
+        // func button 3
         set_op_diff.setOnMouseClicked((event) -> {
             if (event.getButton() == MouseButton.PRIMARY) {
                 String t = set_field.getText(), leftRes, rigthRes;
@@ -276,6 +279,7 @@ public class MainWindowController implements Initializable {
                 set_field.positionCaret(pos + 1);
             }
         });
+        // func button 4
         set_op_symmdiff.setOnMouseClicked((event) -> {
             if (event.getButton() == MouseButton.PRIMARY) {
                 String t = set_field.getText(), leftRes, rigthRes;
@@ -286,6 +290,7 @@ public class MainWindowController implements Initializable {
                 set_field.positionCaret(pos + 1);
             }
         });
+        // add closer )
         set_field.setOnKeyTyped((event) -> {
             if (event.getCharacter().equals("(")) {
                 String t = set_field.getText(), leftRes, rigthRes;
@@ -333,7 +338,7 @@ public class MainWindowController implements Initializable {
                 BinRel_GraphicsGraphCore.Render(binrel_canvas, bufferedBinRel);
             }
         });
-        //
+        // Analisis datas
         binrel_field.setOnKeyPressed((event) -> {
             if (event.getCode() == KeyCode.ENTER) {
                 binrel_getCommand();
