@@ -28,8 +28,8 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Помощь">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#aboutProgram" text="О программе" />
                         <MenuItem mnemonicParsing="false" onAction="#manual" text="Справка" />
+                        <MenuItem mnemonicParsing="false" onAction="#aboutProgram" text="О программе" />
                     </items>
                 </Menu>
             </menus>
