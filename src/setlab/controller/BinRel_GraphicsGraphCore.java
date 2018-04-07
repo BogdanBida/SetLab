@@ -109,10 +109,14 @@ public class BinRel_GraphicsGraphCore {
         final double a = 60;
         final double b = 120;
         double mid = (startX + endX) / 2;
-        if (endX - mid < 0) {
+        System.out.println(endX-mid);
+        if (endX - mid < 0.0) {
             angle = Math.atan((endY - startY) / (endX - startX)) + Math.PI;
         } else {
             angle = Math.atan((startY - endY) / (startX - endX));
+        }
+        if (endX-mid == 0.0) {
+            angle += Math.PI;
         }
         angle = Math.round(Math.toDegrees(angle));
         angle = Math.toRadians(angle);

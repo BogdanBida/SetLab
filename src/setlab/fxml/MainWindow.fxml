@@ -219,22 +219,22 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <VBox layoutX="5.0" layoutY="5.0" style="-fx-border-color: #DDDDDD;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="280.0" AnchorPane.topAnchor="5.0">
+                                <VBox layoutX="5.0" layoutY="5.0" prefHeight="186.0" prefWidth="385.0" style="-fx-border-color: #DDDDDD;" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                     <children>
-                                        <WebView fx:id="comb_webView" focusTraversable="false" layoutX="14.0" layoutY="14.0" prefHeight="366.0" prefWidth="380.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                        <WebView fx:id="comb_webView" focusTraversable="false" layoutX="14.0" layoutY="14.0" minHeight="186.0" prefHeight="-1.0" prefWidth="-1.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
                                     </children>
                                 </VBox>
-                                <VBox alignment="CENTER" layoutX="396.0" layoutY="14.0" prefHeight="185.0" prefWidth="260.0" spacing="5.0" style="-fx-border-color: #DDDDDD;" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
+                                <VBox alignment="CENTER" layoutX="396.0" layoutY="14.0" prefHeight="175.0" prefWidth="310.0" spacing="5.0" style="-fx-border-color: #DDDDDD;" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
                                     <children>
                                         <WebView fx:id="comb_infoAcceptWebView" focusTraversable="false" prefHeight="200.0" prefWidth="200.0" />
-                                        <HBox alignment="CENTER" prefHeight="31.0" prefWidth="254.0" spacing="2.0">
+                                        <HBox alignment="CENTER" prefHeight="32.0" prefWidth="304.0" spacing="2.0">
                                             <children>
-                                                <Button fx:id="comb_infoAccept_yesBtn" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#commandYeah" prefHeight="31.0" prefWidth="75.0" text="Да" />
-                                                <Button fx:id="comb_infoAccept_backBtn" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#commandBack" prefHeight="31.0" prefWidth="61.0" text="Назад" />
-                                                <Button fx:id="comb_infoAccept_noBtn" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#commandNope" prefHeight="31.0" prefWidth="75.0" text="Нет" />
-                                    <ImageView fx:id="comb_imageViewReset" fitHeight="31.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                                <Button fx:id="comb_infoAccept_yesBtn" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#commandYeah" prefHeight="32.0" prefWidth="100.0" text="Да" />
+                                                <Button fx:id="comb_infoAccept_backBtn" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#commandBack" prefHeight="32.0" prefWidth="60.0" text="Назад" />
+                                                <Button fx:id="comb_infoAccept_noBtn" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#commandNope" prefHeight="32.0" prefWidth="100.0" text="Нет" />
+                                    <ImageView fx:id="comb_imageViewReset" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                        <HBox.margin>
-                                          <Insets left="3.0" />
+                                          <Insets left="2.0" right="5.0" />
                                        </HBox.margin></ImageView>
                                             </children>
                                             <VBox.margin>
@@ -243,9 +243,9 @@
                                         </HBox>
                                     </children>
                                 </VBox>
-                        <VBox alignment="CENTER" layoutX="470.0" layoutY="161.0" prefHeight="159.0" prefWidth="260.0" spacing="4.0" style="-fx-border-color: #DDDDDD;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="200.0">
+                        <VBox alignment="CENTER" layoutX="470.0" layoutY="161.0" prefHeight="175.0" prefWidth="344.0" spacing="4.0" style="-fx-border-color: #DDDDDD;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0">
                            <children>
-                              <HBox alignment="CENTER" prefHeight="119.0" prefWidth="260.0">
+                              <HBox alignment="CENTER" prefHeight="125.0" prefWidth="268.0">
                                  <children>
                                     <ImageView fx:id="comb_imageView" fitHeight="125.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true" smooth="false" />
                                  </children>
