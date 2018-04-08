@@ -159,6 +159,7 @@ public class MainWindowController implements Initializable {
     private static ObservableList obsList = FXCollections.observableArrayList();
     public static BinRel bufferedBinRel;
     private HashMap<Integer, ImageView> MapOfImageView = new HashMap<>();
+    private GraphicsContext context;
     SimpleStringProperty string = new SimpleStringProperty();
     private static byte comb_typeFunc;
 
@@ -293,6 +294,7 @@ public class MainWindowController implements Initializable {
     private void initializeBinRel() {
         bufferedBinRel = new BinRel("R", "{}");
         binrel_paneCanvas.setStyle("-fx-background-color: #585858");
+        context = binrel_canvas.getGraphicsContext2D();
         BinRel_GraphicsGraphCore.Render(binrel_canvas, bufferedBinRel);
         binrel_area.setFont(Font.font(15));
 

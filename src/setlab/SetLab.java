@@ -17,7 +17,8 @@ public class SetLab extends Application {
 
         primaryStage.setTitle("SetLab v.0.1 (demo)");
         
-        primaryStage.setResizable(false);
+        primaryStage.setMinWidth(670);
+        primaryStage.setMinHeight(70 + 440);
         
         primaryStage.setWidth(670);
         primaryStage.setHeight(70 + 440);

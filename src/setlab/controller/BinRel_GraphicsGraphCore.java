@@ -94,7 +94,7 @@ public class BinRel_GraphicsGraphCore {
             } else {
                 double x1 = a.x + 3, x2 = b.x + 3;
                 double y1 = a.y + 3, y2 = b.y + 3;
-                makeLineWithArrow(context,angleImage,a.x + 3, a.y + 3, b.x + 3, b.y + 3);
+                makeLineWithArrow(context, x1, y1, x2, y2);
             }
         }
 
@@ -103,18 +103,16 @@ public class BinRel_GraphicsGraphCore {
 
     }
 
-    private static void makeLineWithArrow(GraphicsContext region, float startX, float startY, float endX, float endY, float par3) {
+    private static void makeLineWithArrow(GraphicsContext region, double startX, double startY, double endX, double endY) {
         double angle = Math.atan((endY - startY) / (endX - startX));
         final double r = 12;
         final double a = 60;
         final double b = 120;
         double angle1 = b - a + angle;
         double angle2 = -b + a + angle;
-        
-        region.strokePolygon(new double[]{startX,endX}, new double[]{startY,endY}, 1);
-        
-//        region.strokeLine(startX, startY, endX, endY);
-//        region.strokeLine(endX, endY, r * Math.cos(angle1) + endX, r * Math.sin(angle1) + endY);
-//        region.strokeLine(endX, endY, r * Math.cos(angle2) + endX, r * Math.sin(angle2) + endY);
+
+        region.strokeLine(startX, startY, endX, endY);
+        region.strokeLine(endX, endY, r * Math.cos(angle1) + endX, r * Math.sin(angle1) + endY);
+        region.strokeLine(endX, endY, r * Math.cos(angle2) + endX, r * Math.sin(angle2) + endY);
     }
 }
