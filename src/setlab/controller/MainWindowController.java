@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.ResourceBundle;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -30,7 +29,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCharacterCombination;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
@@ -161,7 +159,6 @@ public class MainWindowController implements Initializable {
     private static ObservableList obsList = FXCollections.observableArrayList();
     public static BinRel bufferedBinRel;
     private HashMap<Integer, ImageView> MapOfImageView = new HashMap<>();
-    private GraphicsContext context;
     SimpleStringProperty string = new SimpleStringProperty();
     private static byte comb_typeFunc;
 
@@ -296,7 +293,6 @@ public class MainWindowController implements Initializable {
     private void initializeBinRel() {
         bufferedBinRel = new BinRel("R", "{}");
         binrel_paneCanvas.setStyle("-fx-background-color: #585858");
-        context = binrel_canvas.getGraphicsContext2D();
         BinRel_GraphicsGraphCore.Render(binrel_canvas, bufferedBinRel);
         binrel_area.setFont(Font.font(15));
 
