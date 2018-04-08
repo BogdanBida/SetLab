@@ -8,7 +8,7 @@ public class SetCore {
     public static class SetObj extends HashSet<String> {
 
         public String name;
-        public String error;
+        private String error;
         
         public SetObj(String name) {
             this.name = name;
@@ -40,6 +40,10 @@ public class SetCore {
         
         public void setError(String error) {
             this.error = error;
+        }
+        
+        public boolean isError() {
+            return this.error != null;
         }
 
         @Override

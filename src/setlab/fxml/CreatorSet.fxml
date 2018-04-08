@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="100.0" prefWidth="300.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="setlab.controller.CreatorSetController">
+    <stylesheets>
+        <URL value="@/setlab/css/creatorset.css" />
+    </stylesheets>
+   <children>
+      <Button fx:id="setAdd_btn_create" layoutX="334.0" layoutY="161.0" mnemonicParsing="false" text="Создать" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="12.0" />
+      <VBox layoutX="12.0" layoutY="25.0" spacing="2.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="12.0">
+         <children>
+            <TextField fx:id="setAdd_field_name" layoutX="12.0" layoutY="25.0" prefHeight="25.0" prefWidth="196.0" promptText="Имя" AnchorPane.leftAnchor="12.0" />
+            <TextField fx:id="setAdd_field_formula" layoutX="14.0" layoutY="161.0" prefHeight="25.0" prefWidth="196.0" promptText="Формула" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="12.0" />
+         </children>
+      </VBox>
+      <Label layoutX="63.0" layoutY="14.0" text="Задание множества" textOverrun="CENTER_ELLIPSIS" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="8.0">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

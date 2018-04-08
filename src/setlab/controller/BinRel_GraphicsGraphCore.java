@@ -77,7 +77,7 @@ public class BinRel_GraphicsGraphCore {
         for (Figure t : listFigure) {
             context.fillText(t.name, t.x2, t.y2);
             context.strokeOval(t.x, t.y, 6, 6);
-            
+
             mapFigure.put(t.name, t);
         }
 
@@ -100,19 +100,35 @@ public class BinRel_GraphicsGraphCore {
 
         context.fillText(Math.round(angleImage * 180 / Math.PI) + "°", 5, c.getHeight() - 5);
         context.fillText("n = " + n, 5, 14);
-
     }
 
     private static void makeLineWithArrow(GraphicsContext region, double startX, double startY, double endX, double endY) {
-        double angle = Math.atan((endY - startY) / (endX - startX));
-        final double r = 12;
+        double angle;
+
+        final double R = 12 * r / 50;
         final double a = 60;
         final double b = 120;
+        double mid = (startX + endX) / 2;
+        if (endX - mid < 0.0) {
+            angle = Math.atan((endY - startY) / (endX - startX)) + Math.PI;
+        } else {
+            angle = Math.atan((startY - endY) / (startX - endX));
+        }
+        if (endX-mid == 0.0) {
+            angle += Math.PI;
+        }
+        angle = Math.round(Math.toDegrees(angle));
+        angle = Math.toRadians(angle);
+
         double angle1 = b - a + angle;
         double angle2 = -b + a + angle;
 
+        if (Math.toDegrees(angle) == 90) {
+            angle += Math.PI;
+        }
+
         region.strokeLine(startX, startY, endX, endY);
-        region.strokeLine(endX, endY, r * Math.cos(angle1) + endX, r * Math.sin(angle1) + endY);
-        region.strokeLine(endX, endY, r * Math.cos(angle2) + endX, r * Math.sin(angle2) + endY);
+        region.strokeLine(endX, endY, R * Math.cos(angle1) + endX, R * Math.sin(angle1) + endY);
+        region.strokeLine(endX, endY, R * Math.cos(angle2) + endX, R * Math.sin(angle2) + endY);
     }
 }

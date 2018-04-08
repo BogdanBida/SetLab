@@ -40,6 +40,7 @@ import javafx.stage.Stage;
 import setlab.SetLab;
 import setlab.cores.BinRelCore.BinRel;
 import setlab.cores.SetCore.SetObj;
+import setlab.s.BinRelTypesGraph;
 
 public class MainWindowController implements Initializable {
 
@@ -69,6 +70,12 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private Button set_op_symmdiff;
+
+    @FXML
+    private Button set_btn_add;
+
+    @FXML
+    private Button set_btn_remove;
 
     @FXML
     private Tab tab_binRel;
@@ -120,7 +127,7 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private ImageView comb_imageViewReset;
-    
+
     @FXML
     private WebView comb_infoAcceptWebView;
 
@@ -158,10 +165,11 @@ public class MainWindowController implements Initializable {
     public static HashMap<String, SetObj> MapOfSets = new HashMap<>();
     private static ObservableList obsList = FXCollections.observableArrayList();
     public static BinRel bufferedBinRel;
-    private HashMap<Integer, ImageView> MapOfImageView = new HashMap<>();
-    private GraphicsContext context;
-    SimpleStringProperty string = new SimpleStringProperty();
     private static byte comb_typeFunc;
+    private static HashMap<Integer, ImageView> MapOfImageView = new HashMap<>();
+    private static GraphicsContext context;
+    SimpleStringProperty string = new SimpleStringProperty();
+    private static String set_PrefTextArea;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -176,7 +184,7 @@ public class MainWindowController implements Initializable {
     @FXML
     public void set_getCommand() {
         if (!set_field.getText().isEmpty()) {
-            set_area.setText(set_area.getText() + SintaxSet.get(set_field.getText()));
+            set_area.appendText(SintaxSet.get(set_field.getText()));
             set_field.setText("");
         }
     }
@@ -188,18 +196,12 @@ public class MainWindowController implements Initializable {
             if (command.equals("clear")) {
                 binrel_area.setText("");
                 binrel_field.setText("");
-            } else if (command.equals("penta")) {
-                bufferedBinRel = new BinRel("Penta", "((1,4),(2,5),(3,1),(4,2),(5,3))");
-                GraphicsContext context = binrel_canvas.getGraphicsContext2D();
-                BinRel_GraphicsGraphCore.Render(binrel_canvas, bufferedBinRel);
-            } else if (command.equals("madness")) {
-                bufferedBinRel = new BinRel("madness", "((1,1)(1,2),(1,3),(1,4),(1,5),(1,6),(2,2),(2,3),(2,4),(2,5),(2,6),(3,3),(3,4),(3,5),(3,6),(4,4),(4,5),(4,6),(5,5),(5,6),(6,6),(6,7),(7,7),(7,5),(7,4),(7,3),(7,2),(7,1),(8,7),(8,6),(8,5),(8,4),(8,3),(8,2),(8,1),(9,8),(9,7),(9,6),(9,5),(9,4),(9,3),(9,2),(9,1),(10,9),(10,8),(10,7),(10,6),(10,5),(10,4),(10,3),(10,2),(10,1))");
-                GraphicsContext context = binrel_canvas.getGraphicsContext2D();
+            } else if (BinRelTypesGraph.contain(command)) {
+                bufferedBinRel = BinRelTypesGraph.get(command);
                 BinRel_GraphicsGraphCore.Render(binrel_canvas, bufferedBinRel);
             } else {
                 String[] line = command.replaceAll(" ", "").split("=");
                 bufferedBinRel = new BinRel(line[0], line[1]);
-                GraphicsContext context = binrel_canvas.getGraphicsContext2D();
                 BinRel_GraphicsGraphCore.Render(binrel_canvas, bufferedBinRel);
                 binrel_area.setText(SintaxBinRel.get(command, bufferedBinRel));
 
@@ -213,24 +215,39 @@ public class MainWindowController implements Initializable {
     @FXML
     public void comb_getCommand() {
         if (!comb_btnEnter.isDisable()) {
+            // https://community.oracle.com/message/11243184#11243184  ------------ it is not crutch!
             int[] n = Arrays.stream(comb_fieldN.getText().split(",")).mapToInt(Integer::parseInt).toArray();
             int m = "".equals(comb_fieldM.getText()) ? 0 : Integer.valueOf(comb_fieldM.getText());
+            StringBuilder html = new StringBuilder().append("<html>");
+            html.append("<head>");
+            html.append("   <script language=\"javascript\" type=\"text/javascript\">");
+            html.append("       function toBottom(){");
+            html.append("           window.scrollTo(0, document.body.scrollHeight);");
+            html.append("       }");
+            html.append("   </script>");
+            html.append("</head>");
+            html.append("<body onload='toBottom()'>");
             switch (comb_typeFunc) {
                 case 1:
                     m = 0;
                 default:
-                    comb_webView.getEngine().loadContent(CombSolutionCore.get(comb_typeFunc, n, m) + "</html>");
+                    comb_webView.getEngine().loadContent(html.toString() + CombSolutionCore.get(comb_typeFunc, n, m) + "</body></html>");
                     break;
             }
             comb_fieldN.setText("");
             comb_fieldM.setText("");
-            // fall text
         }
     }
 
     private void initializeSet() {
         set_listView.setItems(obsList);
-
+        set_area.setFont(Setting.FONT);
+        set_field.setFont(Setting.FONT);
+        set_op_union.setFont(Setting.FONT);
+        set_op_inter.setFont(Setting.FONT);
+        set_op_diff.setFont(Setting.FONT);
+        set_op_symmdiff.setFont(Setting.FONT);
+        // Enter
         set_field.setOnKeyPressed((event) -> {
             if (event.getCode() == KeyCode.ENTER) {
                 set_getCommand();
@@ -239,6 +256,7 @@ public class MainWindowController implements Initializable {
         set_btnEnter.setOnMouseClicked((event) -> {
             set_getCommand();
         });
+        // func button 1
         set_op_union.setOnMouseClicked((event) -> {
             if (event.getButton() == MouseButton.PRIMARY) {
                 String t = set_field.getText(), leftRes, rigthRes;
@@ -249,6 +267,7 @@ public class MainWindowController implements Initializable {
                 set_field.positionCaret(pos + 1);
             }
         });
+        // func button 2
         set_op_inter.setOnMouseClicked((event) -> {
             if (event.getButton() == MouseButton.PRIMARY) {
                 String t = set_field.getText(), leftRes, rigthRes;
@@ -259,6 +278,7 @@ public class MainWindowController implements Initializable {
                 set_field.positionCaret(pos + 1);
             }
         });
+        // func button 3
         set_op_diff.setOnMouseClicked((event) -> {
             if (event.getButton() == MouseButton.PRIMARY) {
                 String t = set_field.getText(), leftRes, rigthRes;
@@ -269,6 +289,7 @@ public class MainWindowController implements Initializable {
                 set_field.positionCaret(pos + 1);
             }
         });
+        // func button 4
         set_op_symmdiff.setOnMouseClicked((event) -> {
             if (event.getButton() == MouseButton.PRIMARY) {
                 String t = set_field.getText(), leftRes, rigthRes;
@@ -279,6 +300,7 @@ public class MainWindowController implements Initializable {
                 set_field.positionCaret(pos + 1);
             }
         });
+        // add closer )
         set_field.setOnKeyTyped((event) -> {
             if (event.getCharacter().equals("(")) {
                 String t = set_field.getText(), leftRes, rigthRes;
@@ -287,6 +309,24 @@ public class MainWindowController implements Initializable {
                 rigthRes = t.substring(pos);
                 set_field.setText(leftRes + ")" + rigthRes);
                 set_field.positionCaret(pos);
+            }
+        });
+        set_btn_remove.setOnMouseClicked((event) -> {
+            if (event.getButton() == MouseButton.PRIMARY) {
+                if (set_listView.getSelectionModel().getSelectedIndex() != -1) {
+                    MapOfSets.remove(set_listView.getSelectionModel().getSelectedItem());
+                    set_listView.getItems().remove(set_listView.getSelectionModel().getSelectedIndex());
+                } else {
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Ошибка");
+                    alert.setContentText("Не выбрано множество");
+                    alert.showAndWait();
+                }
+            }
+        });
+        set_btn_add.setOnMouseClicked((event) -> {
+            if (event.getButton() == MouseButton.PRIMARY) {
+                
             }
         });
     }
@@ -326,7 +366,7 @@ public class MainWindowController implements Initializable {
                 BinRel_GraphicsGraphCore.Render(binrel_canvas, bufferedBinRel);
             }
         });
-        //
+        // Analisis of datas
         binrel_field.setOnKeyPressed((event) -> {
             if (event.getCode() == KeyCode.ENTER) {
                 binrel_getCommand();
@@ -474,8 +514,7 @@ public class MainWindowController implements Initializable {
                 comb_getCommand();
             }
         });
-        
-        
+
         comb_imageViewReset.setFitHeight(24);
         comb_imageViewReset.setFitWidth(24);
         comb_imageViewReset.setImage(imageReset);
@@ -584,7 +623,11 @@ public class MainWindowController implements Initializable {
     }
 
     public static void addNewSet(SetObj newObj) {
+        
         MapOfSets.put(newObj.name, newObj);
+        if (obsList.contains(newObj.name)) {
+            obsList.remove(newObj.name);
+        }
         obsList.add(newObj.name);
     }
 
@@ -609,8 +652,8 @@ public class MainWindowController implements Initializable {
                 + "\tСтуденты ХНЭУ им. С. Кузнеца\n"
                 + "\tБогдан Бида, Эдуард Белоусов\n"
                 + "\t(bogdanbida.ua@gmail.com),(edikbelousov@gmail.com)\n"
-                + "\tSetLab v.0.1 (demo)\n"
-                + "\t29.3.2018");
+                + "\tSetLab " + Setting.VERSION + "\n"
+                + "\t08.04.2018");
 
         alert.showAndWait();
     }

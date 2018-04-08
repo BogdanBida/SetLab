@@ -17,9 +17,8 @@ public class ReversePolish_Set {
 
     private static ArrayList<String> getTokens(String line) {
         ArrayList<String> res = new ArrayList<>();
-        String pattern = "([\\w]{0,}(\\d{0,7})[\\s]{0,})|[∪]|[/]";
+        String pattern = "([\\w]{0,}([\\d]{0,7})[\\s]{0,})|([\\u222a]{1})";
         Pattern p = Pattern.compile(pattern);
-
         Matcher m = p.matcher(line);
 
         try {
@@ -48,12 +47,14 @@ public class ReversePolish_Set {
 
         for (String s : input) {
             if (mapOfSets.containsKey(s)) { // -------- is set (operand)
+                System.out.println("add - " + s);
                 A.add(mapOfSets.get(s));
             } else if (operations.containsKey(s)) { // ------- is operation
                 if (B.isEmpty()) {
+                    System.out.println("add op - " + s);
                     B.push(s);
                 } else {
-                    if (operations.get(s) <= operations.get(B.peek())) {
+                    if (operations.get(s) >= operations.get(B.peek())) {
                         SetObj b = A.pop();
                         SetObj a = A.pop();
                         A.push(Action(a, b, B.pop()));
@@ -65,16 +66,16 @@ public class ReversePolish_Set {
                 return Res;
             }
         }
-        
+
         while (A.size() > 1) {
             if (B.size() < 1) {
-                System.err.println("Error: operation length < 1");
+                System.err.println("Error: length of operation < 1");
             }
             SetObj b = A.pop();
             SetObj a = A.pop();
             A.push(Action(a, b, B.pop()));
-        } 
-        
+        }
+        Res = A.pop();
         return Res;
     }
 

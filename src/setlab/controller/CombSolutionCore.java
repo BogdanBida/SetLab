@@ -5,7 +5,7 @@ import setlab.cores.CombCore;
 
 public class CombSolutionCore {
 
-    private static StringBuilder res = new StringBuilder("<html>");
+    private static final StringBuilder res = new StringBuilder("<html><body>");
 
     static {
         res.append("");
@@ -42,7 +42,7 @@ public class CombSolutionCore {
         res.append("<br><br>");
         return res.toString();
     }
-
+    
     public static String P(int n) {
         return "P<sub>" + n + "</sub> = " + n + "! = " + CombCore.P(n);
     }
@@ -54,7 +54,7 @@ public class CombSolutionCore {
     
     public static String Amn(int n, int m) {
         return "A(" + n + "," + m + ") = "
-                + n + "!/(" + (n - m) + ")! = " + CombCore.Amn(n, m);
+                + n + "!/(" + n + "-" + m + ")! = " + CombCore.Amn(n, m);
     }
 
     public static String A_mn(int n, int m) {
