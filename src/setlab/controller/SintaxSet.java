@@ -10,10 +10,10 @@ public class SintaxSet {
     private static final String CREATE = "([A-Za-z][A-Za-z0-9]{0,7})[\\s]{0,}[=][\\s]{0,}[{]([\\w]{1,}[[,][\\w]{1,}]{0,})[}]";
 
     public static String get(String command) {
-        StringBuilder res = new StringBuilder(">>");
+        StringBuilder res = new StringBuilder(">> ");
         // print
         if (MainWindowController.MapOfSets.containsKey(command)) {
-            return MainWindowController.MapOfSets.get(command).toString() + "\n";
+            return res + MainWindowController.MapOfSets.get(command).toString() + "\n";
         }
         //if create
         Matcher matcher = Pattern.compile(CREATE).matcher(command);
@@ -24,7 +24,7 @@ public class SintaxSet {
             if (!newSet.isError()) {
                 MainWindowController.addNewSet(newSet);
             }
-            res.append(command).append("\n>>");
+            res.append(command).append("\n>> ");
             res.append(newSet);
         }
 

@@ -74,6 +74,12 @@ public class MainWindowController implements Initializable {
     private Button set_op_symmdiff;
 
     @FXML
+    private Button set_btn_add;
+
+    @FXML
+    private Button set_btn_remove;
+
+    @FXML
     private Tab tab_binRel;
 
     @FXML
@@ -237,6 +243,12 @@ public class MainWindowController implements Initializable {
 
     private void initializeSet() {
         set_listView.setItems(obsList);
+        set_area.setFont(Setting.FONT);
+        set_field.setFont(Setting.FONT);
+        set_op_union.setFont(Setting.FONT);
+        set_op_inter.setFont(Setting.FONT);
+        set_op_diff.setFont(Setting.FONT);
+        set_op_symmdiff.setFont(Setting.FONT);
         // Enter
         set_field.setOnKeyPressed((event) -> {
             if (event.getCode() == KeyCode.ENTER) {
@@ -299,6 +311,24 @@ public class MainWindowController implements Initializable {
                 rigthRes = t.substring(pos);
                 set_field.setText(leftRes + ")" + rigthRes);
                 set_field.positionCaret(pos);
+            }
+        });
+        set_btn_remove.setOnMouseClicked((event) -> {
+            if (event.getButton() == MouseButton.PRIMARY) {
+                if (set_listView.getSelectionModel().getSelectedIndex() != -1) {
+                    MapOfSets.remove(set_listView.getSelectionModel().getSelectedItem());
+                    set_listView.getItems().remove(set_listView.getSelectionModel().getSelectedIndex());
+                } else {
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Ошибка");
+                    alert.setContentText("Не выбрано множество");
+                    alert.showAndWait();
+                }
+            }
+        });
+        set_btn_add.setOnMouseClicked((event) -> {
+            if (event.getButton() == MouseButton.PRIMARY) {
+                
             }
         });
     }
@@ -595,7 +625,11 @@ public class MainWindowController implements Initializable {
     }
 
     public static void addNewSet(SetObj newObj) {
+        
         MapOfSets.put(newObj.name, newObj);
+        if (obsList.contains(newObj.name)) {
+            obsList.remove(newObj.name);
+        }
         obsList.add(newObj.name);
     }
 
@@ -620,8 +654,8 @@ public class MainWindowController implements Initializable {
                 + "\tСтуденты ХНЭУ им. С. Кузнеца\n"
                 + "\tБогдан Бида, Эдуард Белоусов\n"
                 + "\t(bogdanbida.ua@gmail.com),(edikbelousov@gmail.com)\n"
-                + "\tSetLab v.0.1 (demo)\n"
-                + "\t29.3.2018");
+                + "\tSetLab " + Setting.VERSION + "\n"
+                + "\t08.04.2018");
 
         alert.showAndWait();
     }

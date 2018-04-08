@@ -105,11 +105,10 @@ public class BinRel_GraphicsGraphCore {
     private static void makeLineWithArrow(GraphicsContext region, double startX, double startY, double endX, double endY) {
         double angle;
 
-        final double r = 12 * BinRel_GraphicsGraphCore.r / 50;
+        final double R = 12 * r / 50;
         final double a = 60;
         final double b = 120;
         double mid = (startX + endX) / 2;
-        System.out.println(endX-mid);
         if (endX - mid < 0.0) {
             angle = Math.atan((endY - startY) / (endX - startX)) + Math.PI;
         } else {
@@ -129,7 +128,7 @@ public class BinRel_GraphicsGraphCore {
         }
 
         region.strokeLine(startX, startY, endX, endY);
-        region.strokeLine(endX, endY, r * Math.cos(angle1) + endX, r * Math.sin(angle1) + endY);
-        region.strokeLine(endX, endY, r * Math.cos(angle2) + endX, r * Math.sin(angle2) + endY);
+        region.strokeLine(endX, endY, R * Math.cos(angle1) + endX, R * Math.sin(angle1) + endY);
+        region.strokeLine(endX, endY, R * Math.cos(angle2) + endX, R * Math.sin(angle2) + endY);
     }
 }
