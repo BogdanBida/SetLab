@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import setlab.controller.Setting;
 
@@ -18,6 +19,7 @@ public class SetLab extends Application {
         Scene scene = new Scene(root);
 
         primaryStage.setTitle(NAME_PROGRAM + Setting.VERSION);
+        primaryStage.getIcons().add(new Image(SetLab.class.getResourceAsStream("fxml/icon/SetLab.png")));
         
         primaryStage.setMinWidth(670);
         primaryStage.setMinHeight(70 + 440);
