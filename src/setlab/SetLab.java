@@ -6,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javax.swing.ImageIcon;
 import setlab.controller.Setting;
 
 public class SetLab extends Application {
@@ -19,9 +18,9 @@ public class SetLab extends Application {
 
         primaryStage.setTitle("SetLab" + Setting.VERSION);
 
-        primaryStage.setResizable(false);
-
-
+        primaryStage.setMinWidth(670);
+        primaryStage.setMinHeight(70 + 440);
+        
         primaryStage.setWidth(670);
         primaryStage.setHeight(70 + 440);
         primaryStage.setScene(scene);

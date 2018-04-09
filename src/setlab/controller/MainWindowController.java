@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.ResourceBundle;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -30,7 +29,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCharacterCombination;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
@@ -655,7 +653,7 @@ public class MainWindowController implements Initializable {
                 + "\tБогдан Бида, Эдуард Белоусов\n"
                 + "\t(bogdanbida.ua@gmail.com),(edikbelousov@gmail.com)\n"
                 + "\tSetLab " + Setting.VERSION + "\n"
-                + "Написан на JavaFX" + "\n"
+                + "\tПрограмма написана на JavaFX 8" + "\n"
                 + "\t08.04.2018");
 
         alert.showAndWait();
