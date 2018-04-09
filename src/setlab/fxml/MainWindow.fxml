@@ -249,8 +249,8 @@
                               </BorderPane>
                               <HBox fx:id="comb_inputPane" alignment="CENTER" layoutX="2.0" layoutY="131.0" prefHeight="21.0" prefWidth="254.0" spacing="4.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                  <children>
-                                    <TextField fx:id="comb_fieldN" alignment="CENTER" focusTraversable="false" prefHeight="31.0" prefWidth="120.0" />
-                                    <TextField fx:id="comb_fieldM" alignment="CENTER" focusTraversable="false" prefHeight="31.0" prefWidth="120.0" />
+                                    <TextField fx:id="comb_fieldN" alignment="CENTER" focusTraversable="false" prefHeight="31.0" prefWidth="100.0" />
+                                    <TextField fx:id="comb_fieldM" alignment="CENTER" focusTraversable="false" prefHeight="31.0" prefWidth="100.0" />
                                     <Button fx:id="comb_btnEnter" focusTraversable="false" mnemonicParsing="false" prefHeight="31.0" prefWidth="60.0" text="Ввод" />
                                  </children>
                                  <VBox.margin>
