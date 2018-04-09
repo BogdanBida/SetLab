@@ -1,6 +1,5 @@
 package setlab;
 
-import java.awt.Image;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,14 +9,16 @@ import setlab.controller.Setting;
 
 public class SetLab extends Application {
 
+    public static String NAME_PROGRAM = "SetLab";
+    
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/setlab/fxml/MainWindow.fxml"));
 
         Scene scene = new Scene(root);
 
-        primaryStage.setTitle("SetLab" + Setting.VERSION);
-
+        primaryStage.setTitle(NAME_PROGRAM + Setting.VERSION);
+        
         primaryStage.setMinWidth(670);
         primaryStage.setMinHeight(70 + 440);
         
