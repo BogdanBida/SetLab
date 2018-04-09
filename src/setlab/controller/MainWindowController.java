@@ -328,7 +328,7 @@ public class MainWindowController implements Initializable {
         });
         set_btn_add.setOnMouseClicked((event) -> {
             if (event.getButton() == MouseButton.PRIMARY) {
-                
+
             }
         });
     }
@@ -525,8 +525,8 @@ public class MainWindowController implements Initializable {
             comb_imageView.setImage(null);
         });
 
-        comb_webView.getEngine().setUserStyleSheetLocation("data:,body { font: 16px Arial; }");
-        comb_infoAcceptWebView.getEngine().setUserStyleSheetLocation("data:,body { font: 16px Arial; }");
+        comb_webView.getEngine().setUserStyleSheetLocation("data:,body { font: 16px Tahoma; }");
+        comb_infoAcceptWebView.getEngine().setUserStyleSheetLocation("data:,body { font: 16px Tahoma; }");
         comb_infoAcceptWebView.setContextMenuEnabled(false);
         comb_webView.setContextMenuEnabled(false);
     }
@@ -625,7 +625,7 @@ public class MainWindowController implements Initializable {
     }
 
     public static void addNewSet(SetObj newObj) {
-        
+
         MapOfSets.put(newObj.name, newObj);
         if (obsList.contains(newObj.name)) {
             obsList.remove(newObj.name);
@@ -655,6 +655,7 @@ public class MainWindowController implements Initializable {
                 + "\tБогдан Бида, Эдуард Белоусов\n"
                 + "\t(bogdanbida.ua@gmail.com),(edikbelousov@gmail.com)\n"
                 + "\tSetLab " + Setting.VERSION + "\n"
+                + "Написан на JavaFX" + "\n"
                 + "\t08.04.2018");
 
         alert.showAndWait();

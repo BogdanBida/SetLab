@@ -62,10 +62,7 @@ public class BinRelCore {
             if (!Objects.equals(this.x, other.x)) {
                 return false;
             }
-            if (!Objects.equals(this.y, other.y)) {
-                return false;
-            }
-            return true;
+            return Objects.equals(this.y, other.y);
         }
 
     }
@@ -250,7 +247,7 @@ public class BinRelCore {
 
     public static boolean Transity(BinRel r) {
         BinRel composer = Composer(r, r);
-        if (composer.isEmpty() || isSubBinRel(composer, r)) {
+        if (isSubBinRel(composer, r)) {
             return true;
         }
         return false;
@@ -281,6 +278,9 @@ public class BinRelCore {
 
     // ---------------------------------------------- OPERATION EQUALS ---
     public static boolean isSubBinRel(BinRel a, BinRel b) {
-        return a.containsAll(b);
+        if (a.isEmpty()) {
+            return false;
+        }
+        return b.containsAll(a);
     }
 }

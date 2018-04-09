@@ -1,11 +1,13 @@
 package setlab;
 
+import java.awt.Image;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+import javax.swing.ImageIcon;
+import setlab.controller.Setting;
 
 public class SetLab extends Application {
 
@@ -15,13 +17,13 @@ public class SetLab extends Application {
 
         Scene scene = new Scene(root);
 
-        primaryStage.setTitle("SetLab v.0.1 (demo)");
-        
+        primaryStage.setTitle("SetLab" + Setting.VERSION);
+
         primaryStage.setResizable(false);
-        
+
+
         primaryStage.setWidth(670);
         primaryStage.setHeight(70 + 440);
-        
         primaryStage.setScene(scene);
         primaryStage.show();
     }
