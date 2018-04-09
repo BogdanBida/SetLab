@@ -18,7 +18,7 @@ public class SetLab extends Application {
 
         Scene scene = new Scene(root);
 
-        primaryStage.setTitle(NAME_PROGRAM + Setting.VERSION);
+        primaryStage.setTitle(NAME_PROGRAM + " " + Setting.VERSION);
         primaryStage.getIcons().add(new Image(SetLab.class.getResourceAsStream("fxml/icon/SetLab.png")));
         
         primaryStage.setMinWidth(670);
