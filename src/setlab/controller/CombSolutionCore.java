@@ -48,8 +48,10 @@ public class CombSolutionCore {
     }
 
     public static String Pk(int[] k, int m) {
-        return "P<sub>" + m + "</sub> + (" + Arrays.toString(k) + ") = "
-                + m + "!/(" + Arrays.toString(k) + ")!! = " + CombCore.Pmk(m, k);
+        String a = ArrayToLine(k, "", ",");
+        String b = ArrayToLine(k, "!", "*");
+        return "P<sub>" + m + "</sub>(" + a + ") = "
+                + m + "!/(" + b + ") = " + CombCore.Pmk(m, k);
     }
     
     public static String Amn(int n, int m) {
@@ -70,5 +72,17 @@ public class CombSolutionCore {
     public static String C_mn(int n, int m) {
         return "C_(" + n + "," + m + ") = C(" + n + "+" + m + "-1," + m + ") = "
                 + Cmn(n+m-1,m);
+    }
+
+    private static String ArrayToLine(int[] arr, String sep, String punct) {
+        StringBuilder ret = new StringBuilder("");
+        for (int i = 0; i < arr.length; i++) {
+                ret.append(arr[i]);
+                if (i == arr.length - 1) {
+                    return ret.append(sep).toString();
+                }
+                ret.append(sep).append(punct);
+            }
+        return ret.toString();
     }
 }

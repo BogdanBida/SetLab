@@ -247,10 +247,7 @@ public class BinRelCore {
 
     public static boolean Transity(BinRel r) {
         BinRel composer = Composer(r, r);
-        if (isSubBinRel(composer, r)) {
-            return true;
-        }
-        return false;
+        return isSubBinRel(composer, r);
     }
 
     // ------------------------------------------------ OPERATIONS ---

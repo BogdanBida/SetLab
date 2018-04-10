@@ -18,14 +18,14 @@ public class SintaxSet {
         //if create
         Matcher matcher = Pattern.compile(CREATE).matcher(command);
         if (matcher.matches()) {
-            res.append(getNewSet(matcher.group(1), matcher.group(2)));
+            res.append(getNewSet(matcher.group(1), matcher.group(2))).append("\n");
         } else { // if expression
             SetObj newSet = ReversePolish_Set.get(command);
             if (!newSet.isError()) {
                 MainWindowController.addNewSet(newSet);
             }
             res.append(command).append("\n>> ");
-            res.append(newSet);
+            res.append(newSet).append("\n");
         }
 
         res.append("\n");

@@ -1,6 +1,7 @@
 package setlab.calculations;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Stack;
 import java.util.regex.Matcher;
@@ -11,28 +12,10 @@ import setlab.cores.SetCore.SetObj;
 
 public class ReversePolish_Set {
 
+    
+
     public static SetObj get(String command) {
-        return calc(getTokens(command));
-    }
-
-    private static ArrayList<String> getTokens(String line) {
-        ArrayList<String> res = new ArrayList<>();
-        String pattern = "([\\w]{0,}([\\d]{0,7})[\\s]{0,})|([\\u222a]{1})";
-        Pattern p = Pattern.compile(pattern);
-        Matcher m = p.matcher(line);
-
-        try {
-            while (m.find()) {
-                res.add(m.group(0));
-            }
-        } catch (Exception ex) {
-            System.err.println("Ошибка getTokens() не найдено совпадение");
-        }
-        System.out.println(res.toString());
-        return res;
-    }
-
-    private static SetObj calc(ArrayList<String> input) {
+        ArrayList<String> input = getTokens(command);
         HashMap<String, SetObj> mapOfSets = MainWindowController.MapOfSets;
         HashMap<String, Integer> operations;
         operations = new HashMap<>();
@@ -54,7 +37,7 @@ public class ReversePolish_Set {
                     System.out.println("add op - " + s);
                     B.push(s);
                 } else {
-                    if (operations.get(s) >= operations.get(B.peek())) {
+                    if (operations.get(s) <= operations.get(B.peek())) {
                         SetObj b = A.pop();
                         SetObj a = A.pop();
                         A.push(Action(a, b, B.pop()));
@@ -79,6 +62,24 @@ public class ReversePolish_Set {
         return Res;
     }
 
+    private static ArrayList<String> getTokens(String line) {
+        ArrayList<String> res;
+        String pattern = "([\\w]{0,}([\\d]{0,7})[\\s]{0,})|\\u222a";
+        Pattern p = Pattern.compile(pattern);
+        Matcher m = p.matcher(line);
+
+//        try {
+//            while (m.find()) {
+//                res.add(m.group(0));
+//            }
+//        } catch (Exception ex) {
+//            System.err.println("Ошибка getTokens() не найдено совпадение");
+//        }
+        res = new ArrayList<>(Arrays.asList(line.split("")));
+        System.out.println(res.toString());
+        return res;
+    }
+    
     private static SetObj Action(SetObj a, SetObj b, String op) {
         switch (op) {
             case "∪":

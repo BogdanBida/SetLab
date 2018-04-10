@@ -9,7 +9,7 @@ public class SetCore {
 
         public String name;
         private String error;
-        
+
         public SetObj(String name) {
             this.name = name;
         }
@@ -33,15 +33,15 @@ public class SetCore {
             this.name = set.name;
             this.addAll(set);
         }
-        
+
         public void changeName(String newName) {
             this.name = newName;
         }
-        
+
         public void setError(String error) {
             this.error = error;
         }
-        
+
         public boolean isError() {
             return this.error != null;
         }
@@ -50,6 +50,9 @@ public class SetCore {
         public String toString() {
             if (error != null) {
                 return "Error: " + error + "\n";
+            }
+            if (this.isEmpty()) {
+                return this.name + " = Ø";
             }
             StringBuilder res = new StringBuilder(this.name + " = {");
             Iterator t = this.iterator();
@@ -64,8 +67,9 @@ public class SetCore {
                 res.append(",").append(" ");
             }
         }
-        
+
     }
+
     // --------------------------------------------------- OPERATIONS ---
     public static SetObj Union(SetObj a, SetObj b) {
         SetObj Res = new SetObj("Ans", a);
@@ -88,10 +92,12 @@ public class SetCore {
     public static SetObj SymmetricDiff(SetObj a, SetObj b) {
         return Union(Diff(a, b), Diff(b, a));
     }
+
     // ---------------------------------------------- OPERATION EQUALS ---
     public static boolean isSubSet(SetObj a, SetObj b) {
         return b.containsAll(a);
     }
+
     // ------------------------------------------- METHODS OF CREATING --- 
     public static SetObj createSetOnSeq(String name, String f, String max) {
         SetObj Res = new SetObj(name);
