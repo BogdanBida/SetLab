@@ -2,6 +2,7 @@ package setlab.calculations;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.EmptyStackException;
 import java.util.HashMap;
 import java.util.Stack;
 import java.util.regex.Matcher;
@@ -12,8 +13,6 @@ import setlab.cores.SetCore.SetObj;
 
 public class ReversePolish_Set {
 
-    
-
     public static SetObj get(String command) {
         ArrayList<String> input = getTokens(command);
         HashMap<String, SetObj> mapOfSets = MainWindowController.MapOfSets;
@@ -23,43 +22,58 @@ public class ReversePolish_Set {
         operations.put("/", 1);
         operations.put("∆", 1);
         operations.put("∩", 2);
+        operations.put("(", 0);
+        operations.put(")", 0);
 
         Stack<SetObj> A = new Stack<>();
         Stack<String> B = new Stack<>();
         SetObj Res = new SetObj("Res");
-
-        for (String s : input) {
-            if (mapOfSets.containsKey(s)) { // -------- is set (operand)
-                System.out.println("add - " + s);
-                A.add(mapOfSets.get(s));
-            } else if (operations.containsKey(s)) { // ------- is operation
-                if (B.isEmpty()) {
-                    System.out.println("add op - " + s);
-                    B.push(s);
-                } else {
-                    if (operations.get(s) <= operations.get(B.peek())) {
-                        SetObj b = A.pop();
-                        SetObj a = A.pop();
-                        A.push(Action(a, b, B.pop()));
+        try {
+            for (String s : input) {
+                System.out.println(B + " --- " + A);
+                if (mapOfSets.containsKey(s)) { // -------- is set (operand)
+                    A.add(mapOfSets.get(s));
+                } else if (operations.containsKey(s)) { // ------- is operation
+                    if (B.isEmpty() || s.equals("(")) {
+                        B.push(s);
+                    } else if (s.equals(")")) {
+                        while (!B.peek().equals("(")) {
+                            SetObj b = A.pop();
+                            SetObj a = A.pop();
+                            A.push(Action(a, b, B.pop()));
+                            System.out.println(A + " == " + B);
+                        }
+                        if (B.peek().equals("(")) {
+                            B.pop();
+                        }
+                    } else {
+                        if (operations.get(s) <= operations.get(B.peek())) {
+                            SetObj b = A.pop();
+                            SetObj a = A.pop();
+                            A.push(Action(a, b, B.pop()));
+                        }
+                        B.push(s);
                     }
-                    B.push(s);
+                } else {
+                    Res.setError("was not finded '" + s + "'");
+                    return Res;
                 }
-            } else {
-                Res.setError("was not finded '" + s + "'");
-                return Res;
             }
-        }
 
-        while (A.size() > 1) {
-            if (B.size() < 1) {
-                System.err.println("Error: length of operation < 1");
+            while (A.size() > 1) {
+                if (B.size() < 1) {
+                    System.err.println("Error: length of operation < 1");
+                }
+                SetObj b = A.pop();
+                SetObj a = A.pop();
+                A.push(Action(a, b, B.pop()));
             }
-            SetObj b = A.pop();
-            SetObj a = A.pop();
-            A.push(Action(a, b, B.pop()));
+            Res = A.pop();
+            return Res;
+        } catch (EmptyStackException e) {
+            Res.setError("Stack of operands is empty");
+            return Res;
         }
-        Res = A.pop();
-        return Res;
     }
 
     private static ArrayList<String> getTokens(String line) {
@@ -76,10 +90,9 @@ public class ReversePolish_Set {
 //            System.err.println("Ошибка getTokens() не найдено совпадение");
 //        }
         res = new ArrayList<>(Arrays.asList(line.split("")));
-        System.out.println(res.toString());
         return res;
     }
-    
+
     private static SetObj Action(SetObj a, SetObj b, String op) {
         switch (op) {
             case "∪":

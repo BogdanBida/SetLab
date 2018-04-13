@@ -2,9 +2,11 @@ package setlab.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+import java.util.Stack;
 import java.util.regex.Pattern;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -169,7 +171,7 @@ public class MainWindowController implements Initializable {
     private static HashMap<Integer, ImageView> MapOfImageView = new HashMap<>();
     private static GraphicsContext context;
     SimpleStringProperty string = new SimpleStringProperty();
-    private static String set_PrefTextArea;
+    private static Stack<String> set_HistoryText = new Stack<>();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -184,8 +186,19 @@ public class MainWindowController implements Initializable {
     @FXML
     public void set_getCommand() {
         if (!set_field.getText().isEmpty()) {
-            set_area.appendText(SintaxSet.get(set_field.getText()));
-            set_field.setText("");
+            //
+            if (set_field.getText().equals("clear")) {
+                set_HistoryText.push(set_area.getText());
+                set_area.setText("");
+                set_field.setText("");
+            } else if (set_field.getText().equals("pretext")) {
+                set_area.setText(set_HistoryText.pop());
+                set_field.setText("");
+            } else {
+                set_area.appendText(SintaxSet.get(set_field.getText()));
+                set_field.setText("");
+            }
+
         }
     }
 
