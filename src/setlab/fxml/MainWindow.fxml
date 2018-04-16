@@ -52,7 +52,7 @@
                                             </font>
                                         </Button>
                                         <Button fx:id="set_op_inter" focusTraversable="false" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" text="∩" />
-                                        <Button fx:id="set_op_diff" focusTraversable="false" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" text="/">
+                                        <Button fx:id="set_op_diff" focusTraversable="false" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" text="\\">
                                             <font>
                                                 <Font size="14.0" />
                                             </font>

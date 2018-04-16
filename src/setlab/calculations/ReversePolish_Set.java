@@ -19,7 +19,7 @@ public class ReversePolish_Set {
         HashMap<String, Integer> operations;
         operations = new HashMap<>();
         operations.put("∪", 1);
-        operations.put("/", 1);
+        operations.put("\\", 1);
         operations.put("∆", 1);
         operations.put("∩", 2);
         operations.put("(", 0);
@@ -30,7 +30,6 @@ public class ReversePolish_Set {
         SetObj Res = new SetObj("Res");
         try {
             for (String s : input) {
-                System.out.println(B + " --- " + A);
                 if (mapOfSets.containsKey(s)) { // -------- is set (operand)
                     A.add(mapOfSets.get(s));
                 } else if (operations.containsKey(s)) { // ------- is operation
@@ -41,7 +40,6 @@ public class ReversePolish_Set {
                             SetObj b = A.pop();
                             SetObj a = A.pop();
                             A.push(Action(a, b, B.pop()));
-                            System.out.println(A + " == " + B);
                         }
                         if (B.peek().equals("(")) {
                             B.pop();
@@ -78,9 +76,9 @@ public class ReversePolish_Set {
 
     private static ArrayList<String> getTokens(String line) {
         ArrayList<String> res;
-        String pattern = "([\\w]{0,}([\\d]{0,7})[\\s]{0,})|\\u222a";
-        Pattern p = Pattern.compile(pattern);
-        Matcher m = p.matcher(line);
+       // String pattern = "([\\w]{0,}([\\d]{0,7})[\\s]{0,})|";
+       // Pattern p = Pattern.compile(pattern);
+       // Matcher m = p.matcher(line);
 
 //        try {
 //            while (m.find()) {
@@ -97,7 +95,7 @@ public class ReversePolish_Set {
         switch (op) {
             case "∪":
                 return SetCore.Union(a, b);
-            case "/":
+            case "\\":
                 return SetCore.Diff(a, b);
             case "∆":
                 return SetCore.SymmetricDiff(a, b);
