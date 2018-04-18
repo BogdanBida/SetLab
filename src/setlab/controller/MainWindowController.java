@@ -2,7 +2,6 @@ package setlab.controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -73,11 +72,15 @@ public class MainWindowController implements Initializable {
     @FXML
     private Button set_op_symmdiff;
 
-    @FXML
-    private Button set_btn_add;
 
     @FXML
     private Button set_btn_remove;
+
+    @FXML
+    private ImageView set_viewTrash;
+    
+    @FXML
+    private ImageView set_backToText;
 
     @FXML
     private Tab tab_binRel;
@@ -133,7 +136,6 @@ public class MainWindowController implements Initializable {
     @FXML
     private WebView comb_infoAcceptWebView;
 
-    private Image imageReset;
     private Image imageYeah;
     private Image imageNope;
     private Image imageFormula_a_mn;
@@ -337,9 +339,17 @@ public class MainWindowController implements Initializable {
                 }
             }
         });
-        set_btn_add.setOnMouseClicked((event) -> {
-            if (event.getButton() == MouseButton.PRIMARY) {
 
+        set_viewTrash.setOnMouseClicked((event) -> {
+            set_HistoryText.push(set_area.getText());
+            set_area.setText("");
+            set_field.setText("");
+        });
+
+        set_backToText.setOnMouseClicked((event) -> {
+            if (!set_HistoryText.isEmpty()) {
+                set_area.setText(set_HistoryText.pop());
+                set_field.setText("");
             }
         });
     }
@@ -530,7 +540,6 @@ public class MainWindowController implements Initializable {
 
         comb_imageViewReset.setFitHeight(24);
         comb_imageViewReset.setFitWidth(24);
-        comb_imageViewReset.setImage(imageReset);
         comb_imageViewReset.setOnMouseClicked((event) -> {
             string.set("start");
             comb_imageView.setImage(null);
@@ -585,7 +594,6 @@ public class MainWindowController implements Initializable {
         imageFormula_p = new Image(SetLab.class.getResourceAsStream("fxml/icon/formula_p.png"));
         imageFormula_pk = new Image(SetLab.class.getResourceAsStream("fxml/icon/formula_pk.png"));
 
-        imageReset = new Image(SetLab.class.getResourceAsStream("fxml/icon/reset.png"));
         imageYeah = new Image(SetLab.class.getResourceAsStream("fxml/icon/accept.png"));
         imageNope = new Image(SetLab.class.getResourceAsStream("fxml/icon/dismiss.png"));
     }

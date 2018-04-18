@@ -65,20 +65,12 @@
                            <children>
                               <HBox alignment="CENTER" prefHeight="46.0" prefWidth="220.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <Button fx:id="set_btn_add" alignment="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" text="+">
+                                    <Button fx:id="set_btn_remove" alignment="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="30.0" prefWidth="205.0" text="Удалить множество">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                        <HBox.margin>
-                                          <Insets right="7.0" />
-                                       </HBox.margin>
-                                    </Button>
-                                    <Button fx:id="set_btn_remove" alignment="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" text="-">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                       <HBox.margin>
-                                          <Insets left="7.0" />
+                                          <Insets right="2.0" />
                                        </HBox.margin>
                                     </Button>
                                  </children>
@@ -86,7 +78,7 @@
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
                                  </padding>
                               </HBox>
-                              <ListView fx:id="set_listView" focusTraversable="false" layoutY="44.0" prefHeight="332.0" prefWidth="205.0" style="-fx-border-color: rgba(0, 0, 255, 0);" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="44.0">
+                              <ListView fx:id="set_listView" focusTraversable="false" layoutY="44.0" prefHeight="332.0" prefWidth="205.0" style="-fx-border-color: rgba(0, 0, 255, 0);" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="40.0">
                                  <padding>
                                     <Insets left="10.0" right="10.0" />
                                  </padding>
@@ -99,6 +91,16 @@
                            </padding>
                         </TextArea>
                         <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="242.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="20.0" />
+                        <ImageView fx:id="set_viewTrash" fitHeight="24.0" fitWidth="24.0" layoutX="428.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="218.0" AnchorPane.topAnchor="14.0">
+                           <image>
+                              <Image url="@icon/trash.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="set_backToText" fitHeight="24.0" fitWidth="24.0" layoutX="428.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="218.0" AnchorPane.topAnchor="46.0">
+                           <image>
+                              <Image url="@icon/back.png" />
+                           </image>
+                        </ImageView>
                             </children>
                         </AnchorPane>
                     </content>
@@ -228,13 +230,19 @@
                         </AnchorPane>
                         <AnchorPane layoutX="6.0" layoutY="177.0" prefHeight="183.0" prefWidth="342.0" style="-fx-border-color: #DDDDDD;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0">
                            <children>
-                                        <WebView fx:id="comb_infoAcceptWebView" focusTraversable="false" layoutX="3.0" layoutY="3.0" prefHeight="135.0" prefWidth="315.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0" />
-                                        <HBox alignment="CENTER" layoutX="2.0" layoutY="150.0" prefHeight="31.0" prefWidth="254.0" spacing="2.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                        <WebView fx:id="comb_infoAcceptWebView" focusTraversable="false" layoutX="4.0" layoutY="4.0" prefHeight="130.0" prefWidth="336.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="3.0" />
+                                        <HBox alignment="CENTER" layoutX="2.0" layoutY="150.0" prefHeight="50.0" prefWidth="254.0" spacing="2.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                             <children>
                                                 <Button fx:id="comb_infoAccept_yesBtn" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#commandYeah" prefHeight="31.0" prefWidth="100.0" text="Да" />
                                                 <Button fx:id="comb_infoAccept_backBtn" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#commandBack" prefHeight="31.0" prefWidth="61.0" text="Назад" />
-                                                <Button fx:id="comb_infoAccept_noBtn" focusTraversable="false" maxHeight="31.0" maxWidth="100.0" mnemonicParsing="false" onMouseClicked="#commandNope" prefHeight="31.0" prefWidth="100.0" text="Нет" />
-                                    <ImageView fx:id="comb_imageViewReset" fitHeight="31.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true" />
+                                                <Button fx:id="comb_infoAccept_noBtn" focusTraversable="false" maxHeight="31.0" maxWidth="100.0" mnemonicParsing="false" onMouseClicked="#commandNope" prefHeight="32.0" prefWidth="100.0" text="Нет" />
+                                    <ImageView fx:id="comb_imageViewReset" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icon/refresh.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets left="5.0" />
+                                       </HBox.margin></ImageView>
                                             </children>
                                             <VBox.margin>
                                                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
