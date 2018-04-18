@@ -72,13 +72,12 @@ public class MainWindowController implements Initializable {
     @FXML
     private Button set_op_symmdiff;
 
-
     @FXML
     private Button set_btn_remove;
 
     @FXML
     private ImageView set_viewTrash;
-    
+
     @FXML
     private ImageView set_backToText;
 
@@ -255,6 +254,21 @@ public class MainWindowController implements Initializable {
     }
 
     private void initializeSet() {
+        tab_set.getTabPane().setOnKeyPressed((event) -> {
+            if (event.getCode() == KeyCode.Q && event.isControlDown()) {
+                funcUnion();
+            }
+            if (event.getCode() == KeyCode.W && event.isControlDown()) {
+                funcInter();
+            }
+            if (event.getCode() == KeyCode.E && event.isControlDown()) {
+                funcDiff();
+            }
+            if (event.getCode() == KeyCode.R && event.isControlDown()) {
+                funcSymmdiff();
+            }
+        });
+
         set_listView.setItems(obsList);
         set_area.setFont(Setting.FONT);
         set_field.setFont(Setting.FONT);
@@ -274,45 +288,25 @@ public class MainWindowController implements Initializable {
         // func button 1
         set_op_union.setOnMouseClicked((event) -> {
             if (event.getButton() == MouseButton.PRIMARY) {
-                String t = set_field.getText(), leftRes, rigthRes;
-                int pos = set_field.getCaretPosition();
-                leftRes = t.substring(0, pos);
-                rigthRes = t.substring(pos);
-                set_field.setText(leftRes + "∪" + rigthRes);
-                set_field.positionCaret(pos + 1);
+                funcUnion();
             }
         });
         // func button 2
         set_op_inter.setOnMouseClicked((event) -> {
             if (event.getButton() == MouseButton.PRIMARY) {
-                String t = set_field.getText(), leftRes, rigthRes;
-                int pos = set_field.getCaretPosition();
-                leftRes = t.substring(0, pos);
-                rigthRes = t.substring(pos);
-                set_field.setText(leftRes + "∩" + rigthRes);
-                set_field.positionCaret(pos + 1);
+                funcInter();
             }
         });
         // func button 3
         set_op_diff.setOnMouseClicked((event) -> {
             if (event.getButton() == MouseButton.PRIMARY) {
-                String t = set_field.getText(), leftRes, rigthRes;
-                int pos = set_field.getCaretPosition();
-                leftRes = t.substring(0, pos);
-                rigthRes = t.substring(pos);
-                set_field.setText(leftRes + "\\" + rigthRes);
-                set_field.positionCaret(pos + 1);
+                funcDiff();
             }
         });
         // func button 4
         set_op_symmdiff.setOnMouseClicked((event) -> {
             if (event.getButton() == MouseButton.PRIMARY) {
-                String t = set_field.getText(), leftRes, rigthRes;
-                int pos = set_field.getCaretPosition();
-                leftRes = t.substring(0, pos);
-                rigthRes = t.substring(pos);
-                set_field.setText(leftRes + "∆" + rigthRes);
-                set_field.positionCaret(pos + 1);
+                funcSymmdiff();
             }
         });
         // add closer )
@@ -633,6 +627,42 @@ public class MainWindowController implements Initializable {
         MapOfImageView.put(3, ImageViewAntiBidirect);
         MapOfImageView.put(4, ImageViewAsBidirect);
         MapOfImageView.put(5, ImageViewTransitive);
+    }
+
+    private void funcUnion() {
+        String t = set_field.getText(), leftRes, rigthRes;
+        int pos = set_field.getCaretPosition();
+        leftRes = t.substring(0, pos);
+        rigthRes = t.substring(pos);
+        set_field.setText(leftRes + "∪" + rigthRes);
+        set_field.positionCaret(pos + 1);
+    }
+
+    private void funcInter() {
+        String t = set_field.getText(), leftRes, rigthRes;
+        int pos = set_field.getCaretPosition();
+        leftRes = t.substring(0, pos);
+        rigthRes = t.substring(pos);
+        set_field.setText(leftRes + "∩" + rigthRes);
+        set_field.positionCaret(pos + 1);
+    }
+
+    private void funcDiff() {
+        String t = set_field.getText(), leftRes, rigthRes;
+        int pos = set_field.getCaretPosition();
+        leftRes = t.substring(0, pos);
+        rigthRes = t.substring(pos);
+        set_field.setText(leftRes + "\\" + rigthRes);
+        set_field.positionCaret(pos + 1);
+    }
+
+    private void funcSymmdiff() {
+        String t = set_field.getText(), leftRes, rigthRes;
+        int pos = set_field.getCaretPosition();
+        leftRes = t.substring(0, pos);
+        rigthRes = t.substring(pos);
+        set_field.setText(leftRes + "∆" + rigthRes);
+        set_field.positionCaret(pos + 1);
     }
 
     private void setImageToTable(int i, boolean b) {
