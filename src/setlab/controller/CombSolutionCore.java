@@ -1,6 +1,5 @@
 package setlab.controller;
 
-import java.util.Arrays;
 import setlab.cores.CombCore;
 
 public class CombSolutionCore {
@@ -42,7 +41,7 @@ public class CombSolutionCore {
         res.append("<br><br>");
         return res.toString();
     }
-    
+
     public static String P(int n) {
         return "P<sub>" + n + "</sub> = " + n + "! = " + CombCore.P(n);
     }
@@ -53,7 +52,7 @@ public class CombSolutionCore {
         return "P<sub>" + m + "</sub>(" + a + ") = "
                 + m + "!/(" + b + ") = " + CombCore.Pmk(m, k);
     }
-    
+
     public static String Amn(int n, int m) {
         return "A(" + n + "," + m + ") = "
                 + n + "!/(" + n + "-" + m + ")! = " + CombCore.Amn(n, m);
@@ -71,18 +70,19 @@ public class CombSolutionCore {
 
     public static String C_mn(int n, int m) {
         return "C_(" + n + "," + m + ") = C(" + n + "+" + m + "-1," + m + ") = "
-                + Cmn(n+m-1,m);
+                + Cmn(n + m - 1, m);
     }
 
     private static String ArrayToLine(int[] arr, String sep, String punct) {
         StringBuilder ret = new StringBuilder("");
         for (int i = 0; i < arr.length; i++) {
-                ret.append(arr[i]);
-                if (i == arr.length - 1) {
-                    return ret.append(sep).toString();
-                }
-                ret.append(sep).append(punct);
+            ret.append(arr[i]);
+            if (i == arr.length - 1) {
+                return ret.append(sep).toString();
             }
+            ret.append(sep).append(punct);
+        }
         return ret.toString();
     }
+
 }

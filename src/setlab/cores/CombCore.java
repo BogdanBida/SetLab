@@ -7,6 +7,7 @@ public class CombCore {
     static private long time = 0;
 
     private static BigInteger Fact(int n) {
+        
         BigInteger res = BigInteger.ONE;
         long start = System.currentTimeMillis();
 

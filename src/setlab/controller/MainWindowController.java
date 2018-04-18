@@ -6,7 +6,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.Stack;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
+import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -218,7 +221,6 @@ public class MainWindowController implements Initializable {
     @FXML
     public void comb_getCommand() {
         if (!comb_btnEnter.isDisable()) {
-            // https://community.oracle.com/message/11243184#11243184  ------------ it is not crutch!
             int[] n = Arrays.stream(comb_fieldN.getText().split(",")).mapToInt(Integer::parseInt).toArray();
             int m = "".equals(comb_fieldM.getText()) ? 0 : Integer.valueOf(comb_fieldM.getText());
             StringBuilder html = new StringBuilder().append("<html>");
@@ -230,13 +232,18 @@ public class MainWindowController implements Initializable {
             html.append("   </script>");
             html.append("</head>");
             html.append("<body onload='toBottom()'>");
-            switch (comb_typeFunc) {
-                case 1:
-                    m = 0;
-                default:
-                    comb_webView.getEngine().loadContent(html.toString() + CombSolutionCore.get(comb_typeFunc, n, m) + "</body></html>");
-                    break;
-            }
+            Thread myThready = new Thread(new Runnable() {
+                public void run() //Этот метод будет выполняться в побочном потоке
+                {
+                    String inner = CombSolutionCore.get(comb_typeFunc, n, m);
+                    Platform.runLater(() -> {
+                        comb_webView.getEngine().loadContent(html.toString() + inner + "</body></html>");
+                        
+                    });
+                }
+            });
+            myThready.start();
+
             comb_fieldN.setText("");
             comb_fieldM.setText("");
         }
