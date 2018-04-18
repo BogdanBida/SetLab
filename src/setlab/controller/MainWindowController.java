@@ -300,7 +300,7 @@ public class MainWindowController implements Initializable {
                 int pos = set_field.getCaretPosition();
                 leftRes = t.substring(0, pos);
                 rigthRes = t.substring(pos);
-                set_field.setText(leftRes + "/" + rigthRes);
+                set_field.setText(leftRes + "\\" + rigthRes);
                 set_field.positionCaret(pos + 1);
             }
         });
