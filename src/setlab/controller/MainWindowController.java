@@ -35,6 +35,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
@@ -50,6 +51,9 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private Tab tab_set;
+    
+    @FXML
+    private AnchorPane set_anchorPane;
 
     @FXML
     private ListView<String> set_listView;
@@ -86,6 +90,9 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private Tab tab_binRel;
+    
+    @FXML
+    private AnchorPane binRel_anchorPane;
 
     @FXML
     private TextArea binrel_area;
@@ -126,6 +133,15 @@ public class MainWindowController implements Initializable {
     @FXML
     private Tab tab_comb;
 
+    @FXML
+    private AnchorPane comb_anchorPane;
+    
+    @FXML
+    private AnchorPane comb_leftSide;
+    
+    @FXML
+    private AnchorPane comb_rightSide;
+    
     @FXML
     private WebView comb_webView;
 
@@ -537,6 +553,11 @@ public class MainWindowController implements Initializable {
         comb_infoAcceptWebView.getEngine().setUserStyleSheetLocation("data:,body { font: 16px Tahoma; }");
         comb_infoAcceptWebView.setContextMenuEnabled(false);
         comb_webView.setContextMenuEnabled(false);
+        
+        comb_anchorPane.widthProperty().addListener((observable, oldValue, newValue) -> {
+            AnchorPane.setRightAnchor(comb_leftSide, (newValue.intValue()/2.0 + 5.0));
+            AnchorPane.setLeftAnchor(comb_rightSide, (newValue.intValue()/2.0 + 5.0));
+        });
     }
 
     @FXML
