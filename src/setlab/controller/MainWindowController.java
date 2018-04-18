@@ -176,30 +176,20 @@ public class MainWindowController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        initializaImage();
+        initializeImage();
         initializeMapOfImageView();
         initializeSet();
         initializeBinRel();
         initializeComb();
         initializeFields();
+        initializeCss();
     }
 
     @FXML
     public void set_getCommand() {
         if (!set_field.getText().isEmpty()) {
-            //
-            if (set_field.getText().equals("clear")) {
-                set_HistoryText.push(set_area.getText());
-                set_area.setText("");
-                set_field.setText("");
-            } else if (set_field.getText().equals("pretext")) {
-                set_area.setText(set_HistoryText.pop());
-                set_field.setText("");
-            } else {
-                set_area.appendText(SintaxSet.get(set_field.getText()));
-                set_field.setText("");
-            }
-
+            set_area.appendText(SintaxSet.get(set_field.getText()));
+            set_field.setText("");
         }
     }
 
@@ -532,8 +522,6 @@ public class MainWindowController implements Initializable {
             }
         });
 
-        comb_imageViewReset.setFitHeight(24);
-        comb_imageViewReset.setFitWidth(24);
         comb_imageViewReset.setOnMouseClicked((event) -> {
             string.set("start");
             comb_imageView.setImage(null);
@@ -580,7 +568,13 @@ public class MainWindowController implements Initializable {
         comb_fieldN.setPromptText("");
     }
 
-    private void initializaImage() {
+    private void initializeCss() {
+        set_viewTrash.setId("buttonImg");
+        set_backToText.setId("buttonImg");
+        comb_imageViewReset.setId("buttonImg");
+    }
+
+    private void initializeImage() {
         imageFormula_a_mn = new Image(SetLab.class.getResourceAsStream("fxml/icon/formula_a_mn.png"));
         imageFormula_amn = new Image(SetLab.class.getResourceAsStream("fxml/icon/formula_amn.png"));
         imageFormula_c_mn = new Image(SetLab.class.getResourceAsStream("fxml/icon/formula_c_mn.png"));
