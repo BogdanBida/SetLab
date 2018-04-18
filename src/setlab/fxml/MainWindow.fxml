@@ -92,7 +92,7 @@
                         </TextArea>
                         <VBox alignment="CENTER" layoutX="428.0" layoutY="14.0" prefWidth="40.0" spacing="4.0" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="14.0">
                            <children>
-                              <ImageView fx:id="set_viewTrash" fitHeight="24.0" fitWidth="24.0" layoutX="428.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="218.0" AnchorPane.topAnchor="14.0">
+                              <ImageView id="buttonImg" fx:id="set_viewTrash" fitHeight="24.0" fitWidth="24.0" layoutX="428.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="218.0" AnchorPane.topAnchor="14.0">
                                  <image>
                                     <Image url="@icon/trash.png" />
                                  </image>
@@ -102,7 +102,7 @@
                                     <Insets top="4.0" />
                                  </padding>
                               </Separator>
-                              <ImageView fx:id="set_backToText" fitHeight="24.0" fitWidth="24.0" layoutX="428.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="218.0" AnchorPane.topAnchor="46.0">
+                              <ImageView id="buttonImg" fx:id="set_backToText" fitHeight="24.0" fitWidth="24.0" layoutX="428.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="218.0" AnchorPane.topAnchor="46.0">
                                  <image>
                                     <Image url="@icon/back.png" />
                                  </image>
@@ -249,7 +249,7 @@
                                                 <Button fx:id="comb_infoAccept_yesBtn" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#commandYeah" prefHeight="31.0" prefWidth="100.0" text="Да" />
                                                 <Button fx:id="comb_infoAccept_backBtn" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#commandBack" prefHeight="31.0" prefWidth="61.0" text="Назад" />
                                                 <Button fx:id="comb_infoAccept_noBtn" focusTraversable="false" maxHeight="31.0" maxWidth="100.0" mnemonicParsing="false" onMouseClicked="#commandNope" prefHeight="32.0" prefWidth="100.0" text="Нет" />
-                                    <ImageView fx:id="comb_imageViewReset" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView id="buttonImg" fx:id="comb_imageViewReset" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@icon/refresh.png" />
                                        </image>

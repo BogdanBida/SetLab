@@ -182,7 +182,6 @@ public class MainWindowController implements Initializable {
         initializeBinRel();
         initializeComb();
         initializeFields();
-        initializeCss();
     }
 
     @FXML
@@ -566,12 +565,6 @@ public class MainWindowController implements Initializable {
         comb_fieldN.setText("");
         comb_fieldM.setPromptText("");
         comb_fieldN.setPromptText("");
-    }
-
-    private void initializeCss() {
-        set_viewTrash.setId("buttonImg");
-        set_backToText.setId("buttonImg");
-        comb_imageViewReset.setId("buttonImg");
     }
 
     private void initializeImage() {
