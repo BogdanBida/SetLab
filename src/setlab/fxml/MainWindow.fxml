@@ -90,17 +90,30 @@
                               <Insets right="40.0" />
                            </padding>
                         </TextArea>
-                        <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="242.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="20.0" />
-                        <ImageView fx:id="set_viewTrash" fitHeight="24.0" fitWidth="24.0" layoutX="428.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="218.0" AnchorPane.topAnchor="14.0">
-                           <image>
-                              <Image url="@icon/trash.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="set_backToText" fitHeight="24.0" fitWidth="24.0" layoutX="428.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="218.0" AnchorPane.topAnchor="46.0">
-                           <image>
-                              <Image url="@icon/back.png" />
-                           </image>
-                        </ImageView>
+                        <VBox alignment="CENTER" layoutX="428.0" layoutY="14.0" prefWidth="40.0" spacing="4.0" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="14.0">
+                           <children>
+                              <ImageView fx:id="set_viewTrash" fitHeight="24.0" fitWidth="24.0" layoutX="428.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="218.0" AnchorPane.topAnchor="14.0">
+                                 <image>
+                                    <Image url="@icon/trash.png" />
+                                 </image>
+                              </ImageView>
+                              <Separator>
+                                 <padding>
+                                    <Insets top="4.0" />
+                                 </padding>
+                              </Separator>
+                              <ImageView fx:id="set_backToText" fitHeight="24.0" fitWidth="24.0" layoutX="428.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="218.0" AnchorPane.topAnchor="46.0">
+                                 <image>
+                                    <Image url="@icon/back.png" />
+                                 </image>
+                              </ImageView>
+                              <Separator>
+                                 <padding>
+                                    <Insets top="4.0" />
+                                 </padding>
+                              </Separator>
+                           </children>
+                        </VBox>
                             </children>
                         </AnchorPane>
                     </content>
@@ -231,7 +244,7 @@
                         <AnchorPane layoutX="6.0" layoutY="177.0" prefHeight="183.0" prefWidth="342.0" style="-fx-border-color: #DDDDDD;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0">
                            <children>
                                         <WebView fx:id="comb_infoAcceptWebView" focusTraversable="false" layoutX="4.0" layoutY="4.0" prefHeight="130.0" prefWidth="336.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="3.0" />
-                                        <HBox alignment="CENTER" layoutX="2.0" layoutY="150.0" prefHeight="50.0" prefWidth="254.0" spacing="2.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                        <HBox alignment="CENTER" layoutX="2.0" layoutY="150.0" prefHeight="34.0" prefWidth="254.0" spacing="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                             <children>
                                                 <Button fx:id="comb_infoAccept_yesBtn" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#commandYeah" prefHeight="31.0" prefWidth="100.0" text="Да" />
                                                 <Button fx:id="comb_infoAccept_backBtn" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#commandBack" prefHeight="31.0" prefWidth="61.0" text="Назад" />
@@ -248,7 +261,7 @@
                                                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                             </VBox.margin>
                                  <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    <Insets bottom="2.0" />
                                  </padding>
                                         </HBox>
                            </children>
