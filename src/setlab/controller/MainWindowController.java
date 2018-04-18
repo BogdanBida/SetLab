@@ -51,7 +51,7 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private Tab tab_set;
-    
+
     @FXML
     private AnchorPane set_anchorPane;
 
@@ -90,7 +90,7 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private Tab tab_binRel;
-    
+
     @FXML
     private AnchorPane binRel_anchorPane;
 
@@ -135,13 +135,13 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private AnchorPane comb_anchorPane;
-    
+
     @FXML
     private AnchorPane comb_leftSide;
-    
+
     @FXML
     private AnchorPane comb_rightSide;
-    
+
     @FXML
     private WebView comb_webView;
 
@@ -248,13 +248,17 @@ public class MainWindowController implements Initializable {
             html.append("   </script>");
             html.append("</head>");
             html.append("<body onload='toBottom()'>");
+
+            comb_rightSide.setDisable(true);
+            comb_leftSide.setDisable(true);
             Thread myThready = new Thread(new Runnable() {
                 public void run() //Этот метод будет выполняться в побочном потоке
                 {
                     String inner = CombSolutionCore.get(comb_typeFunc, n, m);
                     Platform.runLater(() -> {
                         comb_webView.getEngine().loadContent(html.toString() + inner + "</body></html>");
-                        
+                        comb_rightSide.setDisable(false);
+                        comb_leftSide.setDisable(false);
                     });
                 }
             });
@@ -553,10 +557,10 @@ public class MainWindowController implements Initializable {
         comb_infoAcceptWebView.getEngine().setUserStyleSheetLocation("data:,body { font: 16px Tahoma; }");
         comb_infoAcceptWebView.setContextMenuEnabled(false);
         comb_webView.setContextMenuEnabled(false);
-        
+
         comb_anchorPane.widthProperty().addListener((observable, oldValue, newValue) -> {
-            AnchorPane.setRightAnchor(comb_leftSide, (newValue.intValue()/2.0 + 5.0));
-            AnchorPane.setLeftAnchor(comb_rightSide, (newValue.intValue()/2.0 + 5.0));
+            AnchorPane.setRightAnchor(comb_leftSide, (newValue.intValue() / 2.0 + 5.0));
+            AnchorPane.setLeftAnchor(comb_rightSide, (newValue.intValue() / 2.0 + 5.0));
         });
     }
 
