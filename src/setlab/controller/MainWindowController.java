@@ -6,8 +6,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.Stack;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
@@ -456,7 +454,7 @@ public class MainWindowController implements Initializable {
                     comb_imageView.setFitHeight(imageFormula_pk.getHeight());
                     comb_imageView.setFitWidth(imageFormula_pk.getWidth());
                     comb_imageView.setImage(imageFormula_pk);
-                    comb_fieldN.setPromptText("k1, k2 ... kn");
+                    comb_fieldN.setPromptText("k1, k2, ... ,kn");
                     comb_fieldM.setPromptText("m");
                     initializeFieldMask();
                     comb_fieldM.setDisable(false);
