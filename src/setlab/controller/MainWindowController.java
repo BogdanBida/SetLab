@@ -465,7 +465,7 @@ public class MainWindowController implements Initializable {
                     listenerBack.set(false);
                     listener.set(false);
                     break;
-                case "start;yeah;nope;yeah":
+                case "start;yeah;nope;nope":
                     massage = "Размещения с повторениями из n элементов по m";
                     listenerBack.set(false);
                     listener.set(true);
@@ -478,7 +478,7 @@ public class MainWindowController implements Initializable {
                     comb_fieldM.setDisable(false);
                     comb_typeFunc = 3;
                     break;
-                case "start;yeah;nope;nope":
+                case "start;yeah;nope;yeah":
                     massage = "Размещения без повторений из n элементов по m";
                     listenerBack.set(false);
                     listener.set(true);
