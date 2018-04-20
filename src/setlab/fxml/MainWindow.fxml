@@ -95,7 +95,7 @@
                            <children>
                               <ImageView id="buttonImg" fx:id="set_viewTrash" fitHeight="24.0" fitWidth="24.0" layoutX="428.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="218.0" AnchorPane.topAnchor="14.0">
                                  <image>
-                                    <Image url="@icon/trash.png" />
+                                    <Image url="@UI_images/trash.png" />
                                  </image>
                               </ImageView>
                               <Separator>
@@ -105,7 +105,7 @@
                               </Separator>
                               <ImageView id="buttonImg" fx:id="set_backToText" fitHeight="24.0" fitWidth="24.0" layoutX="428.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="218.0" AnchorPane.topAnchor="46.0">
                                  <image>
-                                    <Image url="@icon/back.png" />
+                                    <Image url="@UI_images/back.png" />
                                  </image>
                               </ImageView>
                               <Separator>
@@ -136,7 +136,7 @@
                                             <children>
                                                 <ImageView fx:id="ImageViewReflex" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
-                                                        <Image url="@icon/dismiss.png" />
+                                                        <Image url="@UI_images/dismiss.png" />
                                                     </image>
                                                 </ImageView>
                                                 <Label text="Рефлексивность" />
@@ -149,7 +149,7 @@
                                             <children>
                                                 <ImageView fx:id="ImageViewAntiReflex" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
-                                                        <Image url="@icon/dismiss.png" />
+                                                        <Image url="@UI_images/dismiss.png" />
                                                     </image>
                                                 </ImageView>
                                                 <Label text="Антирефлексивность" />
@@ -162,7 +162,7 @@
                                             <children>
                                                 <ImageView fx:id="ImageViewBidirect" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
-                                                        <Image url="@icon/dismiss.png" />
+                                                        <Image url="@UI_images/dismiss.png" />
                                                     </image>
                                                 </ImageView>
                                                 <Label text="Симметричность" />
@@ -175,7 +175,7 @@
                                             <children>
                                                 <ImageView fx:id="ImageViewAntiBidirect" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
-                                                        <Image url="@icon/dismiss.png" />
+                                                        <Image url="@UI_images/dismiss.png" />
                                                     </image>
                                                 </ImageView>
                                                 <Label text="Антисимметричность" />
@@ -188,7 +188,7 @@
                                             <children>
                                                 <ImageView fx:id="ImageViewAsBidirect" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
-                                                        <Image url="@icon/dismiss.png" />
+                                                        <Image url="@UI_images/dismiss.png" />
                                                     </image>
                                                 </ImageView>
                                                 <Label text="Асимметричность" />
@@ -201,7 +201,7 @@
                                             <children>
                                                 <ImageView fx:id="ImageViewTransitive" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
-                                                        <Image url="@icon/dismiss.png" />
+                                                        <Image url="@UI_images/dismiss.png" />
                                                     </image>
                                                 </ImageView>
                                                 <Label text="Транзитивность" />
@@ -245,7 +245,7 @@
                                  <children>
                                     <ImageView id="buttonImg" fx:id="comb_viewTrash" fitHeight="24.0" fitWidth="24.0" layoutX="428.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="218.0" AnchorPane.topAnchor="14.0">
                                        <image>
-                                          <Image url="@icon/trash.png" />
+                                          <Image url="@UI_images/trash.png" />
                                        </image>
                                     </ImageView>
                                     <Separator>
@@ -255,7 +255,7 @@
                                     </Separator>
                                     <ImageView id="buttonImg" fx:id="comb_backToText" fitHeight="24.0" fitWidth="24.0" layoutX="428.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="218.0" AnchorPane.topAnchor="46.0">
                                        <image>
-                                          <Image url="@icon/back.png" />
+                                          <Image url="@UI_images/back.png" />
                                        </image>
                                     </ImageView>
                                     <Separator>
@@ -282,7 +282,7 @@
                                         </HBox>
                               <ImageView id="buttonImg" fx:id="comb_imageViewReset" fitHeight="24.0" fitWidth="24.0" layoutX="309.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
                                  <image>
-                                    <Image url="@icon/refresh.png" />
+                                    <Image url="@UI_images/refresh.png" />
                                  </image>
                               </ImageView>
                            </children>
