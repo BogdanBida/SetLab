@@ -553,7 +553,6 @@ public class MainWindowController implements Initializable {
                 comb_getCommand();
             }
         });
-
         comb_imageViewReset.setOnMouseClicked((event) -> {
             string.set("start");
             comb_imageView.setImage(null);
