@@ -30,6 +30,7 @@
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#manual" text="Справка" />
                         <MenuItem mnemonicParsing="false" onAction="#aboutProgram" text="О программе" />
+                  <MenuItem mnemonicParsing="false" onAction="#feedback" text="Обратная связь" />
                     </items>
                 </Menu>
             </menus>

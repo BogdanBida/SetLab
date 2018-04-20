@@ -756,16 +756,21 @@ public class MainWindowController implements Initializable {
 
         alert.showAndWait();
     }
-
+    
+    @FXML
+    public void feedback(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/setlab/fxml/feedbackWindow.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setTitle("Feedback");
+        stage.setResizable(false);
+        stage.initModality(Modality.NONE);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
     @FXML
     public void closeProgram(ActionEvent actionEvent) {
         System.exit(0);
     }
-
-    /*
-        - Запрет на ввод текста в поля вывода
-        - Пункут меню "о программе" модальное окно с авторами, версией
-            датой созданий - текущей датой (Пример: 25.03.2018 - 01.01.2020)
-            почтой и.т.д.
-     */
 }
