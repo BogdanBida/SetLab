@@ -1,4 +1,4 @@
-package setlab.fxml;
+package setlab.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
