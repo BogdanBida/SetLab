@@ -34,7 +34,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.web.WebView;
@@ -132,6 +131,9 @@ public class MainWindowController implements Initializable {
     private Tab tab_comb;
 
     @FXML
+    private AnchorPane comb_fieldBar;
+
+    @FXML
     private AnchorPane comb_anchorPane;
 
     @FXML
@@ -154,7 +156,7 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private ImageView comb_backToText;
-    
+
     @FXML
     private WebView comb_infoAcceptWebView;
 
@@ -184,9 +186,6 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private Button comb_btnEnter;
-
-    @FXML
-    private HBox comb_inputPane;
 
     public static HashMap<String, SetObj> MapOfSets = new HashMap<>();
     private static ObservableList obsList = FXCollections.observableArrayList();
@@ -419,7 +418,7 @@ public class MainWindowController implements Initializable {
 
         comb_infoAccept_noBtn.disableProperty().bind(listener);
         comb_infoAccept_yesBtn.disableProperty().bind(listener);
-        comb_inputPane.disableProperty().bind(listener.not());
+        comb_fieldBar.disableProperty().bind(listener.not());
         comb_infoAccept_backBtn.disableProperty().bind(listenerBack);
 
         string.addListener((observable, oldValue, newValue) -> {
@@ -567,6 +566,11 @@ public class MainWindowController implements Initializable {
         comb_anchorPane.widthProperty().addListener((observable, oldValue, newValue) -> {
             AnchorPane.setRightAnchor(comb_leftSide, (newValue.intValue() / 2.0 + 5.0));
             AnchorPane.setLeftAnchor(comb_rightSide, (newValue.intValue() / 2.0 + 5.0));
+        });
+
+        comb_fieldBar.widthProperty().addListener((observable, oldValue, newValue) -> {
+            AnchorPane.setRightAnchor(comb_fieldN, ((newValue.intValue()+65) / 2.0 + 2.0));
+            AnchorPane.setLeftAnchor(comb_fieldM, ((newValue.intValue()-65) / 2.0 + 2.0));
         });
         
         comb_viewTrash.setOnMouseClicked((event) -> {
