@@ -150,6 +150,12 @@ public class MainWindowController implements Initializable {
     private ImageView comb_imageViewReset;
 
     @FXML
+    private ImageView comb_viewTrash;
+
+    @FXML
+    private ImageView comb_backToText;
+    
+    @FXML
     private WebView comb_infoAcceptWebView;
 
     private Image imageYeah;
@@ -190,6 +196,7 @@ public class MainWindowController implements Initializable {
     private static GraphicsContext context;
     SimpleStringProperty string = new SimpleStringProperty();
     private static Stack<String> set_HistoryText = new Stack<>();
+    private static Stack<String> comb_HistoryText = new Stack<>();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -559,6 +566,17 @@ public class MainWindowController implements Initializable {
         comb_anchorPane.widthProperty().addListener((observable, oldValue, newValue) -> {
             AnchorPane.setRightAnchor(comb_leftSide, (newValue.intValue() / 2.0 + 5.0));
             AnchorPane.setLeftAnchor(comb_rightSide, (newValue.intValue() / 2.0 + 5.0));
+        });
+        
+        comb_viewTrash.setOnMouseClicked((event) -> {
+            comb_HistoryText.push(comb_webView.toString());
+            comb_webView.getEngine().loadContent("");
+        });
+
+        comb_backToText.setOnMouseClicked((event) -> {
+            if (!set_HistoryText.isEmpty()) {
+                comb_webView.getEngine().loadContent(comb_HistoryText.pop());
+            }
         });
     }
 

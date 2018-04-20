@@ -7,7 +7,7 @@ public class CombCore {
     static private long time = 0;
 
     private static BigInteger Fact(int n) {
-        
+
         BigInteger res = BigInteger.ONE;
         long start = System.currentTimeMillis();
 
@@ -41,7 +41,11 @@ public class CombCore {
     }
 
     public static BigInteger Cmn(int n, int m) {
-        return Fact(n).divide(new BigInteger(String.valueOf(m)).multiply(new BigInteger(String.valueOf(n - m))));
+        try {
+            return Fact(n).divide(new BigInteger(String.valueOf(m)).multiply(new BigInteger(String.valueOf(n - m))));
+        } catch (ArithmeticException e) {
+            return new BigInteger("0");
+        }
     }
 
     public static BigInteger C_mn(int n, int m) {

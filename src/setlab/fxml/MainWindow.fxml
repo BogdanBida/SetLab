@@ -238,7 +238,32 @@
                             <children>
                         <AnchorPane layoutX="5.0" layoutY="5.0" prefHeight="160.0" prefWidth="660.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                            <children>
-                                        <WebView fx:id="comb_webView" focusTraversable="false" prefHeight="160.0" prefWidth="380.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                        <WebView fx:id="comb_webView" focusTraversable="false" prefHeight="161.0" prefWidth="620.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="5.0" />
+                              <Separator orientation="VERTICAL" prefHeight="200.0" AnchorPane.bottomAnchor="-5.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="-5.0" />
+                              <VBox alignment="CENTER" prefWidth="40.0" spacing="4.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                                 <children>
+                                    <ImageView id="buttonImg" fx:id="comb_viewTrash" fitHeight="24.0" fitWidth="24.0" layoutX="428.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="218.0" AnchorPane.topAnchor="14.0">
+                                       <image>
+                                          <Image url="@icon/trash.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Separator>
+                                       <padding>
+                                          <Insets top="4.0" />
+                                       </padding>
+                                    </Separator>
+                                    <ImageView id="buttonImg" fx:id="comb_backToText" fitHeight="24.0" fitWidth="24.0" layoutX="428.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="218.0" AnchorPane.topAnchor="46.0">
+                                       <image>
+                                          <Image url="@icon/back.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Separator>
+                                       <padding>
+                                          <Insets top="4.0" />
+                                       </padding>
+                                    </Separator>
+                                 </children>
+                              </VBox>
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="comb_leftSide" layoutX="6.0" layoutY="177.0" prefHeight="190.0" prefWidth="342.0" style="-fx-border-color: #DDDDDD;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0">

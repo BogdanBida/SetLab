@@ -19,7 +19,8 @@ public class SintaxSet {
         Matcher matcher = Pattern.compile(CREATE).matcher(command);
         if (matcher.matches()) {
             res.append(getNewSet(matcher.group(1), matcher.group(2))).append("\n");
-        } else { // if expression
+        } else {
+            // if expression
             SetObj newSet = ReversePolish_Set.get(command);
             if (!newSet.isError()) {
                 MainWindowController.addNewSet(newSet);
