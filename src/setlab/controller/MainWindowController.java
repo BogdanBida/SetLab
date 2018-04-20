@@ -340,6 +340,14 @@ public class MainWindowController implements Initializable {
                 set_field.setText(leftRes + ")" + rigthRes);
                 set_field.positionCaret(pos);
             }
+            if (event.getCharacter().equals("{")) {
+                String t = set_field.getText(), leftRes, rigthRes;
+                int pos = set_field.getCaretPosition();
+                leftRes = t.substring(0, pos);
+                rigthRes = t.substring(pos);
+                set_field.setText(leftRes + "}" + rigthRes);
+                set_field.positionCaret(pos);
+            }
         });
         set_btn_remove.setOnMouseClicked((event) -> {
             if (event.getButton() == MouseButton.PRIMARY) {
