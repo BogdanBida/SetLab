@@ -1,6 +1,7 @@
 package setlab.calculations;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.EmptyStackException;
 import java.util.HashMap;
 import java.util.Stack;
@@ -84,7 +85,8 @@ public class ReversePolish_Set {
                     res.add(matcher.group());
                     line = line.substring(matcher.end());
                 }else{
-                    System.out.println("Осталось: " + line);
+                    res.clear();
+                    res.add(line);
                     break;
                 }
             }
