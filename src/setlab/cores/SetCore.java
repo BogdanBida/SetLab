@@ -16,8 +16,9 @@ public class SetCore {
 
         public SetObj(String name, String line) {
             this.name = name;
-            if (line.length() > 1) 
+            if (line.length() > 1) {
                 this.addAll(Arrays.asList(line.split(",")));
+            }
         }
 
         public SetObj(String name, String[] sequence) {
@@ -57,9 +58,6 @@ public class SetCore {
             }
             StringBuilder res = new StringBuilder(this.name + " = {");
             Iterator t = this.iterator();
-            if (!t.hasNext()) {
-                return "{}";
-            }
             for (;;) {
                 res.append(t.next());
                 if (!t.hasNext()) {

@@ -16,6 +16,9 @@ public class ReversePolish_Set {
     public static SetObj get(String command) {
         ArrayList<String> input = getTokens(command);
         HashMap<String, SetObj> mapOfSets = MainWindowController.MapOfSets;
+        if (input.size() == 1 && mapOfSets.containsKey(input.get(0))) {
+            return mapOfSets.get(input.get(0));
+        }
         HashMap<String, Integer> operations;
         operations = new HashMap<>();
         operations.put("∪", 1);
