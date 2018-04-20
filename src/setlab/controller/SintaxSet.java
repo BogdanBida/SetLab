@@ -2,12 +2,12 @@ package setlab.controller;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import setlab.cores.SetCore.SetObj;
 import setlab.calculations.ReversePolish_Set;
+import setlab.cores.SetCore.SetObj;
 
 public class SintaxSet {
 
-    private static final String CREATE = "([A-Za-z][A-Za-z0-9]{0,7})[\\s]{0,}[=][\\s]{0,}[{]([\\w]{1,}[[,][\\w]{1,}]{0,})[}]";
+    private static final String CREATE = "([A-Za-z][A-Za-z0-9]{0,7})[\\s]{0,}[=][\\s]{0,}[{]([[\\w]{1,}[[,][\\w]{1,}]{0,}]?)[}]";
 
     public static String get(String command) {
         StringBuilder res = new StringBuilder(">> ");
