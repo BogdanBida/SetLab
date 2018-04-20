@@ -266,6 +266,7 @@ public class MainWindowController implements Initializable {
                         comb_leftSide.setDisable(false);
                     });
                 }
+
             });
             myThready.start();
 

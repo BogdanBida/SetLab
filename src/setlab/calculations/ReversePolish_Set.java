@@ -1,7 +1,6 @@
 package setlab.calculations;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.EmptyStackException;
 import java.util.HashMap;
 import java.util.Stack;
@@ -75,22 +74,27 @@ public class ReversePolish_Set {
     }
 
     private static ArrayList<String> getTokens(String line) {
-        ArrayList<String> res;
-       // String pattern = "([\\w]{0,}([\\d]{0,7})[\\s]{0,})|";
-       // Pattern p = Pattern.compile(pattern);
-       // Matcher m = p.matcher(line);
+        ArrayList<String> res = new ArrayList<>();
+        String patternString = "^[A-Z][\\d]{0,9}|[(]|[)]|[∆]|[∪]|[∩]|[\\x5C]";
 
-//        try {
-//            while (m.find()) {
-//                res.add(m.group(0));
-//            }
-//        } catch (Exception ex) {
-//            System.err.println("Ошибка getTokens() не найдено совпадение");
-//        }
-        res = new ArrayList<>(Arrays.asList(line.split("")));
+        try {
+            while (!line.isEmpty()) {
+                Matcher matcher = Pattern.compile(patternString).matcher(line);
+                if (matcher.find()) {
+                    res.add(matcher.group());
+                    line = line.substring(matcher.end());
+                }else{
+                    System.out.println("Осталось: " + line);
+                    break;
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+       
         return res;
     }
-
+    
     private static SetObj Action(SetObj a, SetObj b, String op) {
         switch (op) {
             case "∪":
