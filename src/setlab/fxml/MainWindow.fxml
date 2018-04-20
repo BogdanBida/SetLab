@@ -236,11 +236,11 @@
                     <content>
                         <AnchorPane fx:id="comb_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                        <AnchorPane layoutX="5.0" layoutY="5.0" prefHeight="160.0" prefWidth="660.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                        <AnchorPane layoutX="5.0" layoutY="5.0" prefHeight="161.0" prefWidth="659.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                            <children>
-                                        <WebView fx:id="comb_webView" focusTraversable="false" prefHeight="161.0" prefWidth="620.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="5.0" />
+                                        <WebView fx:id="comb_webView" focusTraversable="false" prefHeight="151.0" prefWidth="611.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="43.0" AnchorPane.topAnchor="5.0" />
                               <Separator orientation="VERTICAL" prefHeight="200.0" AnchorPane.bottomAnchor="-5.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="-5.0" />
-                              <VBox alignment="CENTER" prefWidth="40.0" spacing="4.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                              <VBox alignment="TOP_CENTER" prefWidth="40.0" spacing="4.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <ImageView id="buttonImg" fx:id="comb_viewTrash" fitHeight="24.0" fitWidth="24.0" layoutX="428.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="218.0" AnchorPane.topAnchor="14.0">
                                        <image>
@@ -269,26 +269,21 @@
                         <AnchorPane fx:id="comb_leftSide" layoutX="6.0" layoutY="177.0" prefHeight="190.0" prefWidth="342.0" style="-fx-border-color: #DDDDDD;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0">
                            <children>
                                         <WebView fx:id="comb_infoAcceptWebView" focusTraversable="false" layoutX="4.0" layoutY="4.0" prefHeight="130.0" prefWidth="336.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="3.0" />
-                                        <HBox alignment="CENTER" layoutX="2.0" layoutY="150.0" prefHeight="34.0" prefWidth="254.0" spacing="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                        <HBox alignment="CENTER" layoutX="2.0" layoutY="150.0" prefHeight="34.0" prefWidth="254.0" spacing="2.0" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="32.0">
                                             <children>
                                                 <Button fx:id="comb_infoAccept_yesBtn" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#commandYeah" prefHeight="31.0" prefWidth="100.0" text="Да" />
                                                 <Button fx:id="comb_infoAccept_backBtn" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#commandBack" prefHeight="31.0" prefWidth="61.0" text="Назад" />
                                                 <Button fx:id="comb_infoAccept_noBtn" focusTraversable="false" maxHeight="31.0" maxWidth="100.0" mnemonicParsing="false" onMouseClicked="#commandNope" prefHeight="32.0" prefWidth="100.0" text="Нет" />
-                                    <ImageView id="buttonImg" fx:id="comb_imageViewReset" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@icon/refresh.png" />
-                                       </image>
-                                       <HBox.margin>
-                                          <Insets left="5.0" />
-                                       </HBox.margin></ImageView>
                                             </children>
                                             <VBox.margin>
                                                 <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                             </VBox.margin>
-                                 <padding>
-                                    <Insets bottom="2.0" />
-                                 </padding>
                                         </HBox>
+                              <ImageView id="buttonImg" fx:id="comb_imageViewReset" fitHeight="24.0" fitWidth="24.0" layoutX="309.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                                 <image>
+                                    <Image url="@icon/refresh.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="comb_rightSide" layoutX="382.0" layoutY="184.0" prefHeight="190.0" prefWidth="307.0" style="-fx-border-color: #DDDDDD;" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
@@ -298,19 +293,13 @@
                                     <ImageView fx:id="comb_imageView" fitHeight="70.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true" smooth="false" BorderPane.alignment="CENTER" />
                                  </center>
                               </BorderPane>
-                              <HBox fx:id="comb_inputPane" alignment="CENTER" layoutX="2.0" layoutY="131.0" prefHeight="21.0" prefWidth="254.0" spacing="4.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                              <AnchorPane fx:id="comb_fieldBar" layoutX="20.0" layoutY="153.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
                                  <children>
-                                    <TextField fx:id="comb_fieldN" alignment="CENTER" focusTraversable="false" prefHeight="31.0" prefWidth="100.0" />
-                                    <TextField fx:id="comb_fieldM" alignment="CENTER" focusTraversable="false" prefHeight="31.0" prefWidth="100.0" />
-                                    <Button fx:id="comb_btnEnter" focusTraversable="false" mnemonicParsing="false" prefHeight="31.0" prefWidth="60.0" text="Ввод" />
+                                    <TextField fx:id="comb_fieldM" alignment="CENTER" focusTraversable="false" layoutX="104.0" prefHeight="31.0" prefWidth="110.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="0.0" />
+                                    <TextField fx:id="comb_fieldN" alignment="CENTER" focusTraversable="false" prefHeight="31.0" prefWidth="115.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="180.0" AnchorPane.topAnchor="0.0" />
+                                    <Button fx:id="comb_btnEnter" focusTraversable="false" layoutX="208.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="60.0" text="Ввод" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
-                                 <VBox.margin>
-                                    <Insets bottom="4.0" left="2.0" right="2.0" top="2.0" />
-                                 </VBox.margin>
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                              </HBox>
+                              </AnchorPane>
                            </children>
                         </AnchorPane>
                             </children>
