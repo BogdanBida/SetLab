@@ -628,15 +628,15 @@ public class MainWindowController implements Initializable {
     }
 
     private void initializeImage() {
-        imageFormula_a_mn = new Image(SetLab.class.getResourceAsStream("fxml/icon/formula_a_mn.png"));
-        imageFormula_amn = new Image(SetLab.class.getResourceAsStream("fxml/icon/formula_amn.png"));
-        imageFormula_c_mn = new Image(SetLab.class.getResourceAsStream("fxml/icon/formula_c_mn.png"));
-        imageFormula_cmn = new Image(SetLab.class.getResourceAsStream("fxml/icon/formula_cmn.png"));
-        imageFormula_p = new Image(SetLab.class.getResourceAsStream("fxml/icon/formula_p.png"));
-        imageFormula_pk = new Image(SetLab.class.getResourceAsStream("fxml/icon/formula_pk.png"));
+        imageFormula_a_mn = new Image(SetLab.class.getResourceAsStream("fxml/UI_images/formula_a_mn.png"));
+        imageFormula_amn = new Image(SetLab.class.getResourceAsStream("fxml/UI_images/formula_amn.png"));
+        imageFormula_c_mn = new Image(SetLab.class.getResourceAsStream("fxml/UI_images/formula_c_mn.png"));
+        imageFormula_cmn = new Image(SetLab.class.getResourceAsStream("fxml/UI_images/formula_cmn.png"));
+        imageFormula_p = new Image(SetLab.class.getResourceAsStream("fxml/UI_images/formula_p.png"));
+        imageFormula_pk = new Image(SetLab.class.getResourceAsStream("fxml/UI_images/formula_pk.png"));
 
-        imageYeah = new Image(SetLab.class.getResourceAsStream("fxml/icon/accept.png"));
-        imageNope = new Image(SetLab.class.getResourceAsStream("fxml/icon/dismiss.png"));
+        imageYeah = new Image(SetLab.class.getResourceAsStream("fxml/UI_images/accept.png"));
+        imageNope = new Image(SetLab.class.getResourceAsStream("fxml/UI_images/dismiss.png"));
     }
 
     private void initializeFieldMask() {
