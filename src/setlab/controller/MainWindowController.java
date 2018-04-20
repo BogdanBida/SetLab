@@ -736,6 +736,7 @@ public class MainWindowController implements Initializable {
         Stage stage = new Stage();
         stage.setTitle("SetLab Manual");
         stage.setResizable(true);
+        stage.getIcons().add(new Image(SetLab.class.getResourceAsStream("fxml/UI_images/SetLab.png")));
         stage.initModality(Modality.NONE);
         stage.setScene(scene);
         stage.show();
@@ -746,6 +747,7 @@ public class MainWindowController implements Initializable {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("О программе");
         alert.setHeaderText("");
+        ((Stage) alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image(SetLab.class.getResourceAsStream("fxml/UI_images/SetLab.png")));
         alert.setContentText("Авторы: \n"
                 + "\tСтуденты ХНЭУ им. С. Кузнеца\n"
                 + "\tБогдан Бида, Эдуард Белоусов\n"
@@ -759,10 +761,11 @@ public class MainWindowController implements Initializable {
     
     @FXML
     public void feedback(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/setlab/fxml/feedbackWindow.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/setlab/fxml/FeedbackWindow.fxml"));
         Scene scene = new Scene(root);
         Stage stage = new Stage();
-        stage.setTitle("Feedback");
+        stage.setTitle(SetLab.NAME_PROGRAM + " - " + "Feedback");
+        stage.getIcons().add(new Image(SetLab.class.getResourceAsStream("fxml/UI_images/SetLab.png")));
         stage.setResizable(false);
         stage.initModality(Modality.NONE);
         stage.setScene(scene);
