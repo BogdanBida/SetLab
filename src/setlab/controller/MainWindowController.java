@@ -761,7 +761,7 @@ public class MainWindowController implements Initializable {
     
     @FXML
     public void feedback(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/setlab/fxml/FeedbackWindow.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/setlab/fxml/FeedbackWin.fxml"));
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setTitle(SetLab.NAME_PROGRAM + " - " + "Feedback");
