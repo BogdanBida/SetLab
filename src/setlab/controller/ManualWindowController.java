@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.web.WebView;
+import setlab.SetLab;
 
 public class ManualWindowController implements Initializable {
 
@@ -23,6 +24,6 @@ public class ManualWindowController implements Initializable {
         mainWin.getEngine().load(url.toExternalForm());
         mainWin.contextMenuEnabledProperty().set(false);
         
-        info.setText("SetLab v.0.1 (beta)");
+        info.setText(SetLab.NAME_PROGRAM + " " + Setting.VERSION);
     }
 }
