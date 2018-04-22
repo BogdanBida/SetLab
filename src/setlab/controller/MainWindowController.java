@@ -752,7 +752,7 @@ public class MainWindowController implements Initializable {
                 + "\tСтуденты ХНЭУ им. С. Кузнеца\n"
                 + "\tБогдан Бида, Эдуард Белоусов\n"
                 + "\t(bogdanbida.ua@gmail.com),(edikbelousov@gmail.com)\n"
-                + "\tSetLab " + Setting.VERSION + "\n"
+                + "\t" + SetLab.NAME_PROGRAM + " " + Setting.VERSION + "\n"
                 + "\tПрограмма написана на JavaFX 8" + "\n"
                 + "\t08.04.2018");
 
