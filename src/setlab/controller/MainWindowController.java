@@ -3,6 +3,7 @@ package setlab.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.EmptyStackException;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.Stack;
@@ -195,6 +196,7 @@ public class MainWindowController implements Initializable {
     private static GraphicsContext context;
     SimpleStringProperty string = new SimpleStringProperty();
     private static Stack<String> set_HistoryText = new Stack<>();
+    public static Stack<String> set_StackExpression = new Stack<>();
     private static Stack<String> comb_HistoryText = new Stack<>();
 
     @Override
@@ -296,6 +298,13 @@ public class MainWindowController implements Initializable {
             if (event.getCode() == KeyCode.R && event.isControlDown()) {
                 funcSymmdiff();
             }
+            if (event.getCode() == KeyCode.UP && event.isControlDown()) {
+                if (!set_StackExpression.isEmpty()) {
+                    String t = set_StackExpression.pop();
+                    set_field.setText(t);
+                    set_field.positionCaret(t.length());
+                }
+            }
         });
 
         set_listView.setItems(obsList);
@@ -338,7 +347,7 @@ public class MainWindowController implements Initializable {
                 funcSymmdiff();
             }
         });
-        // add closer )
+        // add closer ),}
         set_field.setOnKeyTyped((event) -> {
             if (event.getCharacter().equals("(")) {
                 String t = set_field.getText(), leftRes, rigthRes;
@@ -424,6 +433,16 @@ public class MainWindowController implements Initializable {
         binrel_field.setOnKeyPressed((event) -> {
             if (event.getCode() == KeyCode.ENTER) {
                 binrel_getCommand();
+            }
+        });
+        binrel_field.setOnKeyTyped((event) -> {
+            if (event.getCharacter().equals("{")) {
+                String t = binrel_field.getText(), leftRes, rigthRes;
+                int pos = binrel_field.getCaretPosition();
+                leftRes = t.substring(0, pos);
+                rigthRes = t.substring(pos);
+                binrel_field.setText(leftRes + "}" + rigthRes);
+                binrel_field.positionCaret(pos);
             }
         });
     }
@@ -584,10 +603,10 @@ public class MainWindowController implements Initializable {
         });
 
         comb_fieldBar.widthProperty().addListener((observable, oldValue, newValue) -> {
-            AnchorPane.setRightAnchor(comb_fieldN, ((newValue.intValue()+65) / 2.0 + 2.0));
-            AnchorPane.setLeftAnchor(comb_fieldM, ((newValue.intValue()-65) / 2.0 + 2.0));
+            AnchorPane.setRightAnchor(comb_fieldN, ((newValue.intValue() + 65) / 2.0 + 2.0));
+            AnchorPane.setLeftAnchor(comb_fieldM, ((newValue.intValue() - 65) / 2.0 + 2.0));
         });
-        
+
         comb_viewTrash.setOnMouseClicked((event) -> {
             comb_HistoryText.push(comb_webView.toString());
             comb_webView.getEngine().loadContent("");
@@ -766,7 +785,7 @@ public class MainWindowController implements Initializable {
 
         alert.showAndWait();
     }
-    
+
     @FXML
     public void feedback(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/setlab/fxml/FeedbackWin.fxml"));
@@ -779,7 +798,7 @@ public class MainWindowController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    
+
     @FXML
     public void closeProgram(ActionEvent actionEvent) {
         System.exit(0);

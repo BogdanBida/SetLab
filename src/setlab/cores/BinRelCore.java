@@ -238,7 +238,7 @@ public class BinRelCore {
     }
 
     public static boolean AntiSimetry(BinRel r) {
-        return isSubBinRel(Intersect(r, Reverse(r)), r);
+        return isSubAndNotEqualBinRel(Intersect(r, Reverse(r)), r);
     }
 
     public static boolean Asimetry(BinRel r) {
@@ -276,6 +276,15 @@ public class BinRelCore {
     // ---------------------------------------------- OPERATION EQUALS ---
     public static boolean isSubBinRel(BinRel a, BinRel b) {
         if (a.isEmpty()) {
+            return false;
+        }
+        return b.containsAll(a);
+    }
+
+    public static boolean isSubAndNotEqualBinRel(BinRel a, BinRel b) {
+        if (a.isEmpty()) {
+            return false;
+        } else if (Diff(a, b).isEmpty()) {
             return false;
         }
         return b.containsAll(a);

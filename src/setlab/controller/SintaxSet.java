@@ -12,7 +12,7 @@ public class SintaxSet {
 
     public static String get(String command) {
         StringBuilder res = new StringBuilder(">> ");
-        // print
+        // printe
         if (MainWindowController.MapOfSets.containsKey(command)) {
             return res + MainWindowController.MapOfSets.get(command).toString() + "\n";
         }
@@ -23,16 +23,14 @@ public class SintaxSet {
             res.append(getNewSet(matcher1.group(1), matcher1.group(2))).append("\n");
         } else if (matcher2.matches()) {
             res.append(command).append("\n>> ");
-            String[] name_line = command.split("=");
-            System.out.println(name_line[0] + "=" + name_line[1]);
-            name_line[0].replaceAll(" ", "");
-            name_line[1].replaceAll(" ", "");
-            name_line[0] = "C";
-            name_line[1] = "A∪B";
-            System.out.println(name_line[0] + "=" + name_line[1]);
-            res.append(getNewSet(name_line[0],ReversePolish_Set.get(name_line[1]))).append("\n");
+            MainWindowController.set_StackExpression.push(command);
+            String[] comnd = command.split("=");
+            comnd[0] = comnd[0].replaceAll(" ", "");
+            comnd[1] = comnd[1].replaceAll(" ", "");
+            res.append(getNewSet(comnd[0],ReversePolish_Set.get(comnd[1]))).append("\n");
         } else {
             // if expression
+            MainWindowController.set_StackExpression.push(command);
             SetObj newSet = ReversePolish_Set.get(command);
             if (!newSet.isError()) {
                 MainWindowController.addNewSet(newSet);
