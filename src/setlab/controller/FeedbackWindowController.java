@@ -1,6 +1,7 @@
 package setlab.controller;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 import java.util.ResourceBundle;
@@ -76,18 +77,23 @@ public class FeedbackWindowController implements Initializable {
 
     public String getMessage(String inner) {
         StringBuilder res = new StringBuilder(inner);
-        res.append("\n------------ Info -----------\n");
+        res.append("\n------------------------ Info -----------------------\n");
         res.append(getInfo());
         return res.toString();
     }
 
     private String getInfo() {
-        StringBuilder res = new StringBuilder();
-        res.append("\tOS: ").append(System.getProperties().getProperty("os.name")).append("\n");
-        res.append("\tJava version: ");
-        res.append(System.getProperties().getProperty("java.version")).append("\n");
-        Date date = new Date();
-        res.append(date);
+        SimpleDateFormat formatForDateNow = new SimpleDateFormat("'\nДата: 'E dd.MM.yyyy '\nВремя: 'HH:mm:ss zzz");
+        StringBuilder res = new StringBuilder("");
+        res.append("OS: ").append(System.getProperties().getProperty("os.name")).append("\n");
+        res.append("Имя пользователя: ").append(System.getProperty("user.name")).append("\n");
+        res.append("Язык на комрьютере: ").append(System.getProperty("user.country")).append("\n");
+        res.append("Java version: ").append(System.getProperties().getProperty("java.version")).append("\n");
+        res.append("\n------------ Processor info ------------\n");
+        res.append("Название процессора: ").append(System.getenv("PROCESSOR_IDENTIFIER")).append("\n");
+        res.append("Количество ядер: ").append(System.getenv("NUMBER_OF_PROCESSORS")).append("\n");
+        res.append("Архитектура процессора: ").append(System.getenv("PROCESSOR_ARCHITECTURE")).append("\n");
+        res.append("\nСообщение создано: ").append(formatForDateNow.format(new Date()));
         return res.toString();
     }
 
@@ -112,7 +118,6 @@ public class FeedbackWindowController implements Initializable {
         props.put("mail.smtp.auth", "true");
         props.put("mail.debug", "true");
         props.put("mail.smtp.starttls.enable", "true");
-        
 
         session = Session.getDefaultInstance(props);
         transport = session.getTransport();
