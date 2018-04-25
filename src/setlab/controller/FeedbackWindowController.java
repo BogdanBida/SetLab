@@ -3,7 +3,6 @@ package setlab.controller;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Properties;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,13 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javax.mail.Message;
-import javax.mail.MessagingException;
 import javax.mail.NoSuchProviderException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 
 public class FeedbackWindowController implements Initializable {
 
@@ -33,13 +26,6 @@ public class FeedbackWindowController implements Initializable {
     @FXML
     private Button fd_btnSend;
 
-    String EMAIL_login = "setlab.feedback@gmail.com";
-    String EMAIL_password = "BeqhBE09";
-    String EMAIL_host = "smtp.gmail.com";
-    Properties props = new Properties();
-    Session session = null;
-    Transport transport = null;
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
@@ -51,28 +37,11 @@ public class FeedbackWindowController implements Initializable {
 
     @FXML
     public void tryToSendMassege() {
-        sendMassege(fd_titleField.getText(), fd_textArea.getText());
-    }
-
-    public void sendMassege(String title, String text) {
-        try {
-            transport.connect(EMAIL_host, 587, EMAIL_login, EMAIL_password);
-            MimeMessage msg = new MimeMessage(session);
-
-            msg.setFrom(new InternetAddress(EMAIL_login));
-            InternetAddress[] address = {new InternetAddress(EMAIL_login)};
-            msg.setRecipients(Message.RecipientType.TO, address);
-            
-            msg.setSubject(title);
-            msg.setText(getMessage(text));
-
-            msg.setSentDate(new Date());
-            transport.sendMessage(msg, msg.getRecipients(Message.RecipientType.TO));
-            transport.close();
-        } catch (MessagingException mex) {
-            mex.printStackTrace();
-        }
-
+        MessageQueue messageQueue = new MessageQueue();
+        messageQueue.addToQueue(fd_titleField.getText(), getMessage(fd_textArea.getText()));
+        Thread dThread = new Thread(messageQueue);
+        dThread.setDaemon(true);
+        dThread.start();
     }
 
     public String getMessage(String inner) {
@@ -112,14 +81,6 @@ public class FeedbackWindowController implements Initializable {
         });
 
         fd_btnSend.disableProperty().bind(fd_textArea.textProperty().isEmpty().or(fd_titleField.textProperty().isEmpty()));
-
-        props.put("mail.smtp.host", EMAIL_login);
-        props.put("mail.smtp.ssl.enable", "smtps");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.debug", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-
-        session = Session.getDefaultInstance(props);
-        transport = session.getTransport();
     }
+
 }

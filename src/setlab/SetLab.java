@@ -27,6 +27,11 @@ public class SetLab extends Application {
         primaryStage.setWidth(670);
         primaryStage.setHeight(70 + 440);
         primaryStage.setScene(scene);
+        
+        primaryStage.setOnCloseRequest((event) -> {
+            System.exit(0);
+        });
+        
         primaryStage.show();
     }
 

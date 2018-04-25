@@ -205,6 +205,7 @@ public class MainWindowController implements Initializable {
         initializeBinRel();
         initializeComb();
         initializeFields();
+        initializeTread();
     }
 
     @FXML
@@ -243,7 +244,7 @@ public class MainWindowController implements Initializable {
         if (!comb_btnEnter.isDisable()) {
             int[] n = Arrays.stream(comb_fieldN.getText().split(",")).mapToInt(Integer::parseInt).toArray();
             int m = "".equals(comb_fieldM.getText()) ? 0 : Integer.valueOf(comb_fieldM.getText());
-            StringBuilder html = new StringBuilder().append("<html>");
+            StringBuilder html = new StringBuilder("").append("<html>");
             html.append("<head>");
             html.append("   <script language=\"javascript\" type=\"text/javascript\">");
             html.append("       function toBottom(){");
@@ -268,12 +269,19 @@ public class MainWindowController implements Initializable {
 
             });
             myThready.start();
-
+            
             comb_fieldN.setText("");
             comb_fieldM.setText("");
         }
     }
 
+    private void initializeTread(){
+        MessageQueue messageQueue = new MessageQueue();
+        Thread dThread = new Thread(messageQueue);
+        dThread.setDaemon(true);
+        dThread.start();
+    }
+    
     private void initializeSet() {
         tab_set.getTabPane().setOnKeyPressed((event) -> {
             if (event.getCode() == KeyCode.Q && event.isControlDown()) {
