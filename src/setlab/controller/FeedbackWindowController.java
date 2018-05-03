@@ -56,7 +56,7 @@ public class FeedbackWindowController implements Initializable {
         StringBuilder res = new StringBuilder("");
         res.append("OS: ").append(System.getProperties().getProperty("os.name")).append("\n");
         res.append("Имя пользователя: ").append(System.getProperty("user.name")).append("\n");
-        res.append("Язык на комрьютере: ").append(System.getProperty("user.country")).append("\n");
+        res.append("Язык на компьютере: ").append(System.getProperty("user.country")).append("\n");
         res.append("Java version: ").append(System.getProperties().getProperty("java.version")).append("\n");
         res.append("\n------------ Processor info ------------\n");
         res.append("Название процессора: ").append(System.getenv("PROCESSOR_IDENTIFIER")).append("\n");
