@@ -313,15 +313,15 @@
                      <children>
                         <HBox layoutX="5.0" layoutY="346.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0">
                            <children>
-                              <TextField layoutX="14.0" layoutY="331.0" prefHeight="32.0" prefWidth="345.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" />
-                              <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="55.0" text="Ввод">
+                              <TextField fx:id="logic_field" layoutX="14.0" layoutY="331.0" prefHeight="32.0" prefWidth="345.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" />
+                              <Button fx:id="logic_enter" mnemonicParsing="false" prefHeight="32.0" prefWidth="55.0" text="Ввод">
                                  <HBox.margin>
                                     <Insets left="4.0" />
                                  </HBox.margin>
                               </Button>
                            </children>
                         </HBox>
-                        <TreeTableView layoutX="14.0" layoutY="14.0" prefHeight="329.0" prefWidth="651.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                        <TreeTableView fx:id="logic_mainTable" layoutX="14.0" layoutY="14.0" prefHeight="329.0" prefWidth="651.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                           <columns>
                             <TreeTableColumn editable="false" minWidth="32.0" prefWidth="32.0" sortable="false" text="X" />
                             <TreeTableColumn minWidth="32.0" prefWidth="32.0" text="Y" />
