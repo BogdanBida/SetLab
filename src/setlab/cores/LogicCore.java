@@ -2,14 +2,26 @@ package setlab.cores;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class LogicCore {
 
     public static class TableTruth {
-
-        private final ArrayList<String> atoms = new ArrayList<>();
-        public final HashMap<String, Integer[]> columns = new HashMap<>();
+        
+        public static class Operation {
+            String a,b;
+            String op;
+            public Operation(String a, String b, String op) {
+                this.a = a;
+                this.b = b;
+                this.op = op;
+            }
+        }
+        
+        public static HashSet<String> atoms = new HashSet<>();
         int height;
+        
+        public final HashMap<String, Integer[]> columns = new HashMap<>();
 
         public TableTruth(ArrayList<String> atomsNameList) {
             atoms.addAll(atomsNameList);
@@ -25,6 +37,33 @@ public class LogicCore {
                 k = k == 0 ? 1 : k;
                 columns.put(atomName, t);
             }
+        }
+
+        private void addCol(String name, String op) {
+            Integer[] t = new Integer[height];
+            int id = 0;
+            for (int i = 0; i < height; i++) {
+                t[i] = calk(op);
+            }
+            columns.put(name, t);
+        }
+
+        private final static HashMap<String, Integer> mapOp = new HashMap<>();
+
+        static {
+            mapOp.put("∨", 1);
+            mapOp.put("∧", 2);
+            mapOp.put("→", 1);
+            mapOp.put("~", 1);
+            mapOp.put("⊕", 1);
+            mapOp.put("↑", 1);
+            mapOp.put("↓", 1);
+            mapOp.put("¬", 3);
+        }
+
+        private int calk(String ex) {
+
+            return 0;
         }
 
         public void printTable() {

@@ -1,6 +1,7 @@
-package setlab.controller;
+package setlab.calculations;
 
 import java.util.ArrayList;
+import javafx.scene.control.TableView;
 import setlab.cores.LogicCore.TableTruth;
 
 public class LogicCreateTable {
@@ -14,13 +15,11 @@ public class LogicCreateTable {
         t1.printTable();
     }
     
-    public static void printCol(int i, int h) {
-        if (h == 2) {
-            System.out.println(i % 2);
-            return;
-        }
-        int t = h / 2;
-        System.out.print((i / t) % 2 + " ");
-        printCol(i,t);
+    public static TableView<String> getTable() {
+        TableView<String> table = new TableView<>();
+        
+        
+        return table;
     }
+    
 }

@@ -1,8 +1,9 @@
-package setlab.controller;
+package setlab.sintaxClasses;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import setlab.calculations.ReversePolish_Set;
+import setlab.controller.MainWindowController;
 import setlab.cores.SetCore.SetObj;
 
 public class SintaxSet {
@@ -12,6 +13,7 @@ public class SintaxSet {
 
     public static String get(String command) {
         StringBuilder res = new StringBuilder(">> ");
+        Set_SintaxHistory.addEx(command);
         // printe
         if (MainWindowController.MapOfSets.containsKey(command)) {
             return res + MainWindowController.MapOfSets.get(command).toString() + "\n";
@@ -23,14 +25,12 @@ public class SintaxSet {
             res.append(getNewSet(matcher1.group(1), matcher1.group(2))).append("\n");
         } else if (matcher2.matches()) {
             res.append(command).append("\n>> ");
-            MainWindowController.set_StackExpression.push(command);
             String[] comnd = command.split("=");
             comnd[0] = comnd[0].replaceAll(" ", "");
             comnd[1] = comnd[1].replaceAll(" ", "");
-            res.append(getNewSet(comnd[0],ReversePolish_Set.get(comnd[1]))).append("\n");
+            res.append(getNewSet(comnd[0], ReversePolish_Set.get(comnd[1]))).append("\n");
         } else {
             // if expression
-            MainWindowController.set_StackExpression.push(command);
             SetObj newSet = ReversePolish_Set.get(command);
             if (!newSet.isError()) {
                 MainWindowController.addNewSet(newSet);

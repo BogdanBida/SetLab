@@ -1,8 +1,16 @@
 package setlab.controller;
 
+import setlab.Setting;
+import setlab.calculations.BinRel_GraphicsGraphCore;
+import setlab.sintaxClasses.CombSolutionCore;
+import setlab.sintaxClasses.Set_SintaxHistory;
+import setlab.sintaxClasses.SintaxSet;
+import setlab.sintaxClasses.SintaxBinRel;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.EmptyStackException;
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -49,7 +57,7 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private Tab tab_set;
-
+    // ------------------------------------------ SETS ----------------------
     @FXML
     private AnchorPane set_anchorPane;
 
@@ -88,7 +96,7 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private Tab tab_binRel;
-
+    // ---------------------------- BINARY RELATION -------------------------
     @FXML
     private AnchorPane binRel_anchorPane;
 
@@ -130,7 +138,7 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private Tab tab_comb;
-
+    //--------------------------------- COMBINATORICS ----------------------
     @FXML
     private AnchorPane comb_fieldBar;
 
@@ -188,6 +196,11 @@ public class MainWindowController implements Initializable {
     @FXML
     private Button comb_btnEnter;
 
+    @FXML
+    private Tab tab_logic;
+    // --------------------------------- BINARY LOGIC -----------------------
+    
+    
     public static HashMap<String, SetObj> MapOfSets = new HashMap<>();
     private static ObservableList obsList = FXCollections.observableArrayList();
     public static BinRel bufferedBinRel;
@@ -196,7 +209,6 @@ public class MainWindowController implements Initializable {
     private static GraphicsContext context;
     SimpleStringProperty string = new SimpleStringProperty();
     private static Stack<String> set_HistoryText = new Stack<>();
-    public static Stack<String> set_StackExpression = new Stack<>();
     private static Stack<String> comb_HistoryText = new Stack<>();
 
     @Override
@@ -299,8 +311,15 @@ public class MainWindowController implements Initializable {
                 funcSymmdiff();
             }
             if (event.getCode() == KeyCode.UP && event.isControlDown()) {
-                if (!set_StackExpression.isEmpty()) {
-                    String t = set_StackExpression.pop();
+                if (Set_SintaxHistory.isUp()) {
+                    String t = Set_SintaxHistory.up();
+                    set_field.setText(t);
+                    set_field.positionCaret(t.length());
+                }
+            }
+            if (event.getCode() == KeyCode.DOWN && event.isControlDown()) {
+                if (Set_SintaxHistory.isDown()) {
+                    String t = Set_SintaxHistory.down();
                     set_field.setText(t);
                     set_field.positionCaret(t.length());
                 }
@@ -619,6 +638,10 @@ public class MainWindowController implements Initializable {
         });
     }
 
+    private void initializeBoolLogic() {
+        
+    }
+    
     @FXML
     public void commandStart() {
         string.set("start");

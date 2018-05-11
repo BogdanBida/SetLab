@@ -1,4 +1,4 @@
-package setlab.controller;
+package setlab.sintaxClasses;
 
 import java.util.Arrays;
 import javafx.collections.FXCollections;

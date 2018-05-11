@@ -1,4 +1,4 @@
-package setlab.controller;
+package setlab;
 
 import javafx.scene.text.Font;
 
