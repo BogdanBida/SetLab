@@ -3,6 +3,7 @@ package setlab.cores;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import setlab.calculations.ReversePolish_Bool;
 
 public class LogicCore {
 
@@ -23,7 +24,8 @@ public class LogicCore {
         
         public final HashMap<String, Integer[]> columns = new HashMap<>();
 
-        public TableTruth(ArrayList<String> atomsNameList) {
+        public TableTruth(ArrayList<String> atomsNameList, String form) {
+            // creating colums for atoms
             atoms.addAll(atomsNameList);
             height = (int) Math.pow(2, atoms.size());
             int k = height / 2;
@@ -37,6 +39,9 @@ public class LogicCore {
                 k = k == 0 ? 1 : k;
                 columns.put(atomName, t);
             }
+            // creating colums for expressions
+            String expession = ReversePolish_Bool.getStr(form);
+            
         }
 
         private void addCol(String name, String op) {
@@ -68,8 +73,8 @@ public class LogicCore {
 
         public void printTable() {
             for (int i = 0; i < height; i++) {
-                for (String atomName : atoms) {
-                    Integer[] t = columns.get(atomName);
+                for (String keys : columns.keySet()) {
+                    Integer[] t = columns.get(keys);
                     System.out.print(t[i] + " ");
                 }
                 System.out.println();
@@ -117,26 +122,6 @@ public class LogicCore {
 
     public static int arrP(int a, int b) {
         return inv(or(a, b));
-    }
-
-    public static void main(String[] args) {
-        StringBuilder res = new StringBuilder("");
-        res.append("x|y|¬x |x∨y|x∧y|x→x|x=x|x⊕x|x↑x|x↓x|\n");
-        for (int x = 0; x < 2; x++) {
-            for (int y = 0; y < 2; y++) {
-                res.append(x).append("|").append(y).append("|");
-                res.append(" ").append(inv(x)).append(" |");
-                res.append(" ").append(or(x, y)).append(" |");
-                res.append(" ").append(and(x, y)).append(" |");
-                res.append(" ").append(imp(x, y)).append(" |");
-                res.append(" ").append(eq(x, y)).append(" |");
-                res.append(" ").append(oppJ(x, y)).append(" |");
-                res.append(" ").append(sh(x, y)).append(" |");
-                res.append(" ").append(arrP(x, y)).append(" |");
-                res.append("\n");
-            }
-        }
-        System.out.println(res);
     }
 
     private static boolean bin(int b) {

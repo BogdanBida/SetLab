@@ -11,7 +11,7 @@ public class LogicCreateTable {
         list.add("x");
         list.add("y");
         list.add("z");
-        TableTruth t1 = new TableTruth(list);
+        TableTruth t1 = new TableTruth(list, "(x∧y)~z");
         t1.printTable();
     }
     
