@@ -346,7 +346,7 @@
                                              </VBox.margin>
                                           </TextField>
                                        </children></VBox>
-                                    <GridPane>
+                                    <GridPane fx:id="panelButton" hgap="4.0" vgap="4.0">
                                       <columnConstraints>
                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -373,7 +373,10 @@
                                           <Button fx:id="bool_btn_or" focusTraversable="false" mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" text="∨" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                              <GridPane.margin>
                                                 <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                                             </GridPane.margin></Button>
+                                             </GridPane.margin>
+                                             <padding>
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                             </padding></Button>
                                           <Button fx:id="bool_btn_invEq" focusTraversable="false" mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" text="⊕" GridPane.rowIndex="2">
                                              <GridPane.margin>
                                                 <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
@@ -382,18 +385,21 @@
                                              <GridPane.margin>
                                                 <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                                              </GridPane.margin></Button>
-                                          <Button fx:id="bool_btn_enter" focusTraversable="false" mnemonicParsing="false" prefHeight="32.0" prefWidth="98.0" text="Ввод" GridPane.rowIndex="3">
+                                          <Button fx:id="bool_btn_enter" focusTraversable="false" mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" text="Ввод" GridPane.rowIndex="3">
                                              <GridPane.margin>
-                                                <Insets right="4.0" />
+                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                                              </GridPane.margin></Button>
                                           <Button fx:id="bool_btn_arr" focusTraversable="false" mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" text="↓" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                              <GridPane.margin>
-                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                                <Insets bottom="2.0" left="1.0" right="1.0" top="1.0" />
                                              </GridPane.margin></Button>
                                        </children>
                                        <HBox.margin>
                                           <Insets top="2.0" />
                                        </HBox.margin>
+                                       <padding>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </padding>
                                     </GridPane>
                                  </children>
                               </HBox>
