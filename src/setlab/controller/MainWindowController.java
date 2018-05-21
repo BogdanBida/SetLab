@@ -43,6 +43,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.web.WebView;
@@ -198,6 +199,9 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private Tab tab_logic;
+    
+    @FXML
+    private GridPane panelButton;
     // --------------------------------- BINARY LOGIC -----------------------
     
     
@@ -218,6 +222,7 @@ public class MainWindowController implements Initializable {
         initializeSet();
         initializeBinRel();
         initializeComb();
+        initializeBoolLogic();
         initializeFields();
         initializeTread();
     }
@@ -639,7 +644,7 @@ public class MainWindowController implements Initializable {
     }
 
     private void initializeBoolLogic() {
-        
+        panelButton.setId("panel");
     }
     
     @FXML
