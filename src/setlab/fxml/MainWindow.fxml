@@ -285,6 +285,7 @@
                                     <Image url="@UI_images/refresh.png" />
                                  </image>
                               </ImageView>
+                              <Separator layoutX="4.0" layoutY="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" />
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="comb_rightSide" layoutX="382.0" layoutY="184.0" prefHeight="190.0" prefWidth="307.0" style="-fx-border-color: #DDDDDD;" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
@@ -321,7 +322,30 @@
                               </TreeTableView>
                               <HBox prefHeight="165.0" prefWidth="660.0">
                                  <children>
-                                    <VBox prefHeight="157.0" prefWidth="460.0" />
+                                    <VBox alignment="BOTTOM_CENTER" prefHeight="157.0" prefWidth="460.0" spacing="4.0">
+                                       <children>
+                                          <HBox spacing="4.0">
+                                             <children>
+                                                <Button fx:id="bool_addAtom" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" text="+" />
+                                                <ListView fx:id="bool_listAtoms" focusTraversable="false" orientation="HORIZONTAL" prefHeight="32.0" prefWidth="412.0">
+                                                   <VBox.margin>
+                                                      <Insets left="4.0" right="8.0" top="2.0" />
+                                                   </VBox.margin>
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </ListView>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets left="4.0" right="4.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <TextField fx:id="bool_field" prefHeight="32.0" promptText="Введите формулу">
+                                             <VBox.margin>
+                                                <Insets bottom="4.0" left="4.0" right="4.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                       </children></VBox>
                                     <GridPane>
                                       <columnConstraints>
                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -334,15 +358,42 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" text="Button" />
-                                          <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" text="Button" GridPane.columnIndex="1" />
-                                          <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" text="Button" GridPane.rowIndex="1" />
-                                          <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                          <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" text="Button" GridPane.rowIndex="2" />
-                                          <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                          <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" text="Button" GridPane.rowIndex="3" />
-                                          <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                          <Button fx:id="bool_btn_invert" focusTraversable="false" mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" text="¬">
+                                             <GridPane.margin>
+                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                             </GridPane.margin></Button>
+                                          <Button fx:id="bool_btn_and" focusTraversable="false" mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" text="∧" GridPane.columnIndex="1">
+                                             <GridPane.margin>
+                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                             </GridPane.margin></Button>
+                                          <Button fx:id="bool_btn_eq" focusTraversable="false" mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" text="~" GridPane.rowIndex="1">
+                                             <GridPane.margin>
+                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                             </GridPane.margin></Button>
+                                          <Button fx:id="bool_btn_or" focusTraversable="false" mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" text="∨" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                             <GridPane.margin>
+                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                             </GridPane.margin></Button>
+                                          <Button fx:id="bool_btn_invEq" focusTraversable="false" mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" text="⊕" GridPane.rowIndex="2">
+                                             <GridPane.margin>
+                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                             </GridPane.margin></Button>
+                                          <Button fx:id="bool_btn_sh" focusTraversable="false" mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" text="↑" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                             <GridPane.margin>
+                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                             </GridPane.margin></Button>
+                                          <Button fx:id="bool_btn_enter" focusTraversable="false" mnemonicParsing="false" prefHeight="32.0" prefWidth="98.0" text="Ввод" GridPane.rowIndex="3">
+                                             <GridPane.margin>
+                                                <Insets right="4.0" />
+                                             </GridPane.margin></Button>
+                                          <Button fx:id="bool_btn_arr" focusTraversable="false" mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" text="↓" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                             <GridPane.margin>
+                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                                             </GridPane.margin></Button>
                                        </children>
+                                       <HBox.margin>
+                                          <Insets top="2.0" />
+                                       </HBox.margin>
                                     </GridPane>
                                  </children>
                               </HBox>

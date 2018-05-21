@@ -1,7 +1,6 @@
 package setlab.cores;
 
 import java.util.*;
-import setlab.calculations.ReversPolish;
 
 public class SetCore {
 
@@ -96,14 +95,4 @@ public class SetCore {
     public static boolean isSubSet(SetObj a, SetObj b) {
         return b.containsAll(a);
     }
-
-    // ------------------------------------------- METHODS OF CREATING --- 
-    public static SetObj createSetOnSeq(String name, String f, String max) {
-        SetObj Res = new SetObj(name);
-        for (int i = 0; i < Integer.parseInt(max); i++) {
-            Res.add(String.valueOf(ReversPolish.get(f.replaceAll("x", String.valueOf(i)))));
-        }
-        return Res;
-    }
-
 }

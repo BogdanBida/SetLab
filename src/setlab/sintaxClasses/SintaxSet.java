@@ -32,9 +32,10 @@ public class SintaxSet {
         } else {
             // if expression
             SetObj newSet = ReversePolish_Set.get(command);
-            if (!newSet.isError()) {
-                MainWindowController.addNewSet(newSet);
+            if (newSet.isError()) {
+                return "Error\n";
             }
+            MainWindowController.addNewSet(newSet);
             res.append(command).append("\n>> ");
             res.append(newSet).append("\n");
         }
@@ -44,12 +45,18 @@ public class SintaxSet {
 
     public static String getNewSet(String name, String inner) {
         SetObj newSet = new SetObj(name, inner);
+        if (newSet.isError()) {
+            return "Error\n";
+        }
         MainWindowController.addNewSet(newSet);
         return newSet.toString();
     }
 
     public static String getNewSet(String name, SetObj set) {
         SetObj newSet = new SetObj(name, set);
+        if (newSet.isError()) {
+            return "Error\n";
+        }
         MainWindowController.addNewSet(newSet);
         return newSet.toString();
     }
