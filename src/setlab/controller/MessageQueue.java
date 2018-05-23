@@ -56,32 +56,15 @@ public class MessageQueue extends Task<Void> implements Serializable {
                 }
                 Thread.sleep(20000);
             }
-        } catch (IOException ex) {
-            Logger.getLogger(MessageQueue.class.getName()).log(Level.SEVERE, null, ex);
         } catch (URISyntaxException ex) {
             Logger.getLogger(MessageQueue.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
             Logger.getLogger(MessageQueue.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return null;
     }
 
-    @Override
-    protected void succeeded() {
-        
-    }
-
-    @Override
-    protected void cancelled() {
-
-    }
-
-    @Override
-    protected void failed() {
-        
-    }
-    
     public void addToQueue(String subject, String text) {
         list.add(new Pair<>(subject, text));
         try {

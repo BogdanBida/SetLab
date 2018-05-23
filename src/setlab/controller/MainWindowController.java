@@ -1,17 +1,8 @@
 package setlab.controller;
 
-import setlab.Setting;
-import setlab.calculations.BinRel_GraphicsGraphCore;
-import setlab.sintaxClasses.CombSolutionCore;
-import setlab.sintaxClasses.Set_SintaxHistory;
-import setlab.sintaxClasses.SintaxSet;
-import setlab.sintaxClasses.SintaxBinRel;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Deque;
-import java.util.EmptyStackException;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.Stack;
@@ -50,9 +41,15 @@ import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import setlab.SetLab;
+import setlab.Setting;
+import setlab.calculations.BinRel_GraphicsGraphCore;
 import setlab.cores.BinRelCore.BinRel;
 import setlab.cores.SetCore.SetObj;
 import setlab.s.BinRelTypesGraph;
+import setlab.sintaxClasses.CombSolutionCore;
+import setlab.sintaxClasses.Set_SintaxHistory;
+import setlab.sintaxClasses.SintaxBinRel;
+import setlab.sintaxClasses.SintaxSet;
 
 public class MainWindowController implements Initializable {
 
@@ -199,12 +196,11 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private Tab tab_logic;
-    
+
     @FXML
     private GridPane panelButton;
     // --------------------------------- BINARY LOGIC -----------------------
-    
-    
+
     public static HashMap<String, SetObj> MapOfSets = new HashMap<>();
     private static ObservableList obsList = FXCollections.observableArrayList();
     public static BinRel bufferedBinRel;
@@ -288,19 +284,19 @@ public class MainWindowController implements Initializable {
 
             });
             myThready.start();
-            
+
             comb_fieldN.setText("");
             comb_fieldM.setText("");
         }
     }
 
-    private void initializeTread(){
+    private void initializeTread() {
         MessageQueue messageQueue = new MessageQueue();
         Thread dThread = new Thread(messageQueue);
         dThread.setDaemon(true);
         dThread.start();
     }
-    
+
     private void initializeSet() {
         tab_set.getTabPane().setOnKeyPressed((event) -> {
             if (event.getCode() == KeyCode.Q && event.isControlDown()) {
@@ -646,7 +642,7 @@ public class MainWindowController implements Initializable {
     private void initializeBoolLogic() {
         panelButton.setId("panel");
     }
-    
+
     @FXML
     public void commandStart() {
         string.set("start");
@@ -831,4 +827,5 @@ public class MainWindowController implements Initializable {
     public void closeProgram(ActionEvent actionEvent) {
         System.exit(0);
     }
+
 }
