@@ -23,7 +23,7 @@ public class BinRel_GraphicsGraphCore {
         float x, y, r, x2, y2;
         String name;
 
-        public Figure(String name, float x, float y, float x2, float y2) {
+        Figure(String name, float x, float y, float x2, float y2) {
             this.name = name;
             this.x = x;
             this.y = y;
@@ -40,10 +40,8 @@ public class BinRel_GraphicsGraphCore {
         r += zoom;
         if (r <= 25) {
             r = 25;
-            return;
         } else if (r >= 100) {
             r = 100;
-            return;
         }
     }
 
@@ -74,12 +72,15 @@ public class BinRel_GraphicsGraphCore {
         }
 
         HashMap<String, Figure> mapFigure = new HashMap<>();
-        for (Figure t : listFigure) {
+        listFigure.stream().map((t) -> {
             context.fillText(t.name, t.x2, t.y2);
+            return t;
+        }).map((t) -> {
             context.strokeOval(t.x, t.y, 6, 6);
-
+            return t;
+        }).forEachOrdered((t) -> {
             mapFigure.put(t.name, t);
-        }
+        });
 
         BinEl[] listBinEl = R.toArray(new BinEl[R.size()]);
 
