@@ -308,7 +308,7 @@
                         </AnchorPane>
                     </content>
                 </Tab>
-            <Tab fx:id="tab_logic" text="Логические выражения">
+            <Tab fx:id="tab_logic" disable="true" text="Логические выражения (в разраб.)">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
