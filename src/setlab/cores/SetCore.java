@@ -15,7 +15,7 @@ public class SetCore {
 
         public SetObj(String name, String line) {
             this.name = name;
-            if (line.length() > 1) {
+            if (line.length() > 0) {
                 this.addAll(Arrays.asList(line.split(",")));
             }
         }
