@@ -238,7 +238,7 @@ public class BinRelCore {
     }
 
     public static boolean AntiSimetry(BinRel r) {
-        return isSubAndNotEqualBinRel(Intersect(r, Reverse(r)), r);
+        return isSubBinRel(Intersect(r, Reverse(r)), r);
     }
 
     public static boolean Asimetry(BinRel r) {
